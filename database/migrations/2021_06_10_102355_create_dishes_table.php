@@ -15,6 +15,14 @@ class CreateDishesTable extends Migration
     {
         Schema::create('dishes', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
+            $table->string('name', 50);
+            $table->text('description');
+            $table->decimal('price', 5,2);  // 999,99
+            $table->boolean('visibility');
             $table->timestamps();
         });
     }
@@ -26,6 +34,10 @@ class CreateDishesTable extends Migration
      */
     public function down()
     {
+        Schema::table('dishes', function (Blueprint $table) {
+            $table->dropForeign('user_dishes_id_foreign');
+        });
         Schema::dropIfExists('dishes');
+
     }
 }

@@ -20,7 +20,8 @@ class CreateOrdersTable extends Migration
             $table->string('customer_phone', 20);
             $table->string('customer_name', 50);
             $table->string('code', 10)->unique();
-            $table->string('status', 100);
+            $table->string('status', 100)->default('Pending');
+            $table->decimal('amount', 6,2); // 9999,99
             $table->timestamps();
         });
     }
