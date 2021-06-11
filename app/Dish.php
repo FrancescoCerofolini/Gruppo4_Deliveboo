@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Dish extends Model
 {
-    protected $fillable = ['name', 'description', 'price', 'customer_name', 'visibility'];
+    protected $fillable = ['name', 'description', 'price', 'visibility', "user_id"];
 
     public function user()
     {
