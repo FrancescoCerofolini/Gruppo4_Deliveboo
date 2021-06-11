@@ -14,13 +14,13 @@ class CreateOrderDishTable extends Migration
     public function up()
     {
         Schema::create('order_dish', function (Blueprint $table) {
-            $table->unsignedBigInteger("order_id");
-            $table->foreign("order_id")->references("id")->on("orders");
+            $table->unsignedBigInteger('order_id');
+            $table->foreign('order_id')->references('id')->on('orders');
 
-            $table->unsignedBigInteger("dish_id");
-            $table->foreign("dish_id")->references("id")->on("dishes");
+            $table->unsignedBigInteger('dish_id');
+            $table->foreign('dish_id')->references('id')->on('dishes');
 
-            $table->primary(["order_id", "dish_id"]);
+            $table->primary(['order_id', 'dish_id']);
 
             $table->tinyInteger('quantity');
         });
@@ -35,9 +35,9 @@ class CreateOrderDishTable extends Migration
     {
         Schema::table('order_dish', function (Blueprint $table) {
             $table->dropForeign('order_dish_dish_id_foreign');
-            $table->dropColumn('order_id');
-            $table->dropColumn('dish_id');
-            $table->dropColumn('quantity');
+            $table->dropForeign('order_dish_order_id_foreign');
+            // $table->dropForeign('dish_id');
+           // $table->dropColumn('quantity');
             
         });
         Schema::dropIfExists('order_dish');

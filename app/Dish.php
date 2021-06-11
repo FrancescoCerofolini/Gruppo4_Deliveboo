@@ -8,9 +8,9 @@ class Dish extends Model
 {
     protected $fillable = ['name', 'description', 'price', 'customer_name', 'visibility'];
 
-    public function restaurant()
+    public function user()
     {
-        return $this->belongsTo('App\Restaurant');
+        return $this->belongsTo('App\User');
     }
 
     public function orders()

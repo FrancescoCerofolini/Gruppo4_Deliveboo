@@ -8,9 +8,9 @@ class Category extends Model
 {
     protected $fillable ['name'];
 
-    public function restaurants()
+    public function users()
     {
-        return $this->belongsToMany('App\Restaurant');
+        return $this->belongsToMany('App\User');
         
     }
 }

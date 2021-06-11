@@ -35,7 +35,7 @@ class CreateDishesTable extends Migration
     public function down()
     {
         Schema::table('dishes', function (Blueprint $table) {
-            $table->dropForeign('user_dishes_id_foreign');
+            $table->dropForeign('dishes_user_id_foreign');
         });
         Schema::dropIfExists('dishes');
 
