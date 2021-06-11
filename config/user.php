@@ -1,7 +1,7 @@
 <?php
 
     return [
-        [
+        [ 
             'Pizza Pellegrino',
             'Mexican Burritos',
             'Chinese Restaurant',
