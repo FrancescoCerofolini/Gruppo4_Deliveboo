@@ -16,9 +16,6 @@ class UserSeeder extends Seeder
     {   
         $data = config('user');
         
-        $category1 = Category::all();
-        $category2 = $category1->find('id');
-
        for ($i = 0; $i < 10; $i ++) {
            $newUser = new User();
            $newUser->name = $data[0][$i];
@@ -27,11 +24,7 @@ class UserSeeder extends Seeder
            $newUser->address = $data[3][$i];
            $newUser->slug = $data[5][$i];
            $newUser->piva = $data[4][$i];
-           $newUser->categories()->sync([1,2,3]);
            $newUser->save();
         }
-
-
-
     }
 }
