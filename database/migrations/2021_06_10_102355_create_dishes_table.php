@@ -22,7 +22,7 @@ class CreateDishesTable extends Migration
             $table->string('name', 50);
             $table->text('description');
             $table->decimal('price', 5,2);  // 999,99
-            $table->boolean('visibility');
+            $table->boolean('visibility')->default(0);
             $table->timestamps();
         });
     }

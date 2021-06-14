@@ -36,31 +36,31 @@ Route::prefix('admin')
         Route::resource('/dish', 'DishController');
         Route::resource('dish', DishController::class)->names([
             'index' => 'admin.dish.index',
-            // 'create' => 'admin.dish.create',
-            // 'destroy' => 'admin.dish.destroy',
-            // 'update' => 'admin.dish.update',
-            // 'show' => 'admin.dish.show',
-            // 'edit' => 'admin.dish.edit',
-            // 'store' => 'admin.dish.store',
+            'create' => 'admin.dish.create',
+            'destroy' => 'admin.dish.destroy',
+            'update' => 'admin.dish.update',
+            'show' => 'admin.dish.show',
+            'edit' => 'admin.dish.edit',
+            'store' => 'admin.dish.store',
         ]);
         Route::resource('/order', 'OrderController');
         Route::resource('order', OrderController::class)->names([
             'index' => 'admin.order.index',
-            // 'create' => 'admin.order.create',
-            // 'destroy' => 'admin.order.destroy',
-            // 'update' => 'admin.order.update',
-            // 'show' => 'admin.order.show',
-            // 'edit' => 'admin.order.edit',
-            // 'store' => 'admin.order.store',
+            'create' => 'admin.order.create',
+            'destroy' => 'admin.order.destroy',
+            'update' => 'admin.order.update',
+            'show' => 'admin.order.show',
+            'edit' => 'admin.order.edit',
+            'store' => 'admin.order.store',
         ]);
         Route::resource('/category', 'CategoryController');
         Route::resource('category', CategoryController::class)->names([
             'index' => 'admin.category.index',
-            // 'create' => 'admin.category.create',
-            // 'destroy' => 'admin.category.destroy',
-            // 'update' => 'admin.category.update',
-            // 'show' => 'admin.category.show',
-            // 'edit' => 'admin.category.edit',
-            // 'store' => 'admin.category.store',
+            'create' => 'admin.category.create',
+            'destroy' => 'admin.category.destroy',
+            'update' => 'admin.category.update',
+            'show' => 'admin.category.show',
+            'edit' => 'admin.category.edit',
+            'store' => 'admin.category.store',
         ]);
         });

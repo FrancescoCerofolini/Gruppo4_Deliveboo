@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Dish;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class DishController extends Controller
 {
@@ -13,9 +15,12 @@ class DishController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+        $id = Auth::id();
+        $piatti = Dish::all()->where('user_id', $id);
+
         $data = [
-            'dishes' => Dish::all()
+            'dishes' => $piatti
         ];
         return view('admin.dishes.index', $data);
     }
@@ -27,7 +32,7 @@ class DishController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.dishes.create');
     }
 
     /**
@@ -37,8 +42,14 @@ class DishController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        
+        $data = $request->all();
+        $new_Dish = new Dish();
+        $new_Dish->fill($data);
+        $new_Dish->user_id = Auth::id();
+        $new_Dish->save();
+        return redirect()->route('admin.dish.index');
     }
 
     /**
@@ -59,8 +70,8 @@ class DishController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Dish $dish)
-    {
-        //
+    {   
+        return view('admin.dishes.edit', compact('dish'));
     }
 
     /**
@@ -71,8 +82,10 @@ class DishController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Dish $dish)
-    {
-        //
+    {   
+        $data = $request->all();
+        $dish->update($data);
+        return redirect()->route('admin.dish.index');
     }
 
     /**
@@ -82,7 +95,9 @@ class DishController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Dish $dish)
-    {
-        //
+    {   
+        $dish->orders()->sync([]);
+        $dish->delete();
+        return redirect()->route('admin.dish.index');
     }
 }
