@@ -13,8 +13,7 @@ class OrderSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        
-        for ($i= 0; $i < 10; $i++) {
+        for ($i= 0; $i < 20; $i++) {
             $neworder = new Order;
             $neworder->customer_address = $faker->address();
             $neworder->customer_email = $faker->email();
@@ -24,7 +23,6 @@ class OrderSeeder extends Seeder
             $neworder->status = "paid";
             $neworder->amount = $faker->randomFloat(2, 1, 1000);
             $neworder->save();
-
-        }
+        } 
     }
 }

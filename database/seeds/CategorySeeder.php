@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Category;
+use App\User;
 
 class CategorySeeder extends Seeder
 {
@@ -20,5 +21,6 @@ class CategorySeeder extends Seeder
             $new_category->name = $categories[$i];
             $new_category->save(); 
         }
+
     }
 }

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use App\Category;
 use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
@@ -14,7 +15,7 @@ class UserSeeder extends Seeder
     public function run()
     {   
         $data = config('user');
-
+        
        for ($i = 0; $i < 10; $i ++) {
            $newUser = new User();
            $newUser->name = $data[0][$i];
@@ -25,6 +26,5 @@ class UserSeeder extends Seeder
            $newUser->piva = $data[4][$i];
            $newUser->save();
         }
-
     }
 }
