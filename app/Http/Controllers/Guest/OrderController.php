@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Guest;
+
+use App\Dish;
 use App\Http\Controllers\Controller;
 
 
@@ -16,7 +18,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -26,7 +28,11 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        $user_id = 1;
+        $data = [
+            'dishes' => Dish::all()->where('user_id', $user_id),
+        ];
+        return view('guest.order.create', $data);
     }
 
     /**
@@ -37,7 +43,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        @dd('ciao sono lo store');
     }
 
     /**
