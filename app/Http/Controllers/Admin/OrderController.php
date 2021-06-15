@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Order;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use DB;
 
 class OrderController extends Controller
 {
@@ -14,7 +16,16 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $id = Auth::id();
+        $orders = DB::table('order_dish')
+            ->select('orders.code', 'orders.created_at', 'orders.id')
+            ->join('dishes', 'order_dish.dish_id', '=', 'dishes.id')
+            ->join('orders', 'order_dish.order_id', '=', 'orders.id')
+            ->where('dishes.user_id', $id)
+            ->groupBy('order_id')
+            ->get();
+
+        return view('Admin.orders.index', compact('orders'));
     }
 
     /**
@@ -46,7 +57,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return view('Admin.orders.show', compact('order'));
     }
 
     /**
