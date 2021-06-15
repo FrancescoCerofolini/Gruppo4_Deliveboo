@@ -43,7 +43,8 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        @dd('ciao sono lo store');
+        $data = $request->all();
+        @dd($data);
     }
 
     /**
