@@ -47,7 +47,7 @@ class OrderController extends Controller
         $data = $request->all();
         //@dd($request);
         
-        if ($data['status'] == 'SETTLED') {
+        if ($data['status'] == 'SUBMITTED_FOR_SETTLEMENT') {
             $new_order = new Order();
             $new_order->status = $data['status'];
             $code = $faker->isbn10();
@@ -82,7 +82,9 @@ class OrderController extends Controller
             $new_order->update($data);
             return redirect()->route('order.create');
         }
-        return 'non accettato';
+        else {
+            return 'non accettato:' . $data['status'];
+        }
     }
     
     /**

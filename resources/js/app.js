@@ -41,16 +41,18 @@ const app = new Vue({
             console.log(this.categories);
         });
     },
-    data: {
-        url: 'https://payments.sandbox.braintree-api.com/graphql',
-        payment_status: '',
-        boolean: false,
-        restaurants : '',
-        collection : '',
-        categories : false,
-        selected_category : '',
-        searchFilter : '',
-        flag : false,
+    data() {
+        return {
+            url: 'https://payments.sandbox.braintree-api.com/graphql',
+            payment_status: '',
+            boolean: false,
+            restaurants : '',
+            collection : '',
+            categories : false,
+            selected_category : '',
+            searchFilter : '',
+            flag : false,
+        }
     },
     methods: {
         payment: function(event) {
@@ -69,9 +71,9 @@ const app = new Vue({
                     'query': 'mutation chargePaymentMethod($input: ChargePaymentMethodInput!) { chargePaymentMethod(input: $input) { transaction { id status } } }',
                     'variables': {
                         'input': {
-                        'paymentMethodId': 'fake-valid-visa-nonce',
+                        'paymentMethodId': 'fake-valid-mastercard-nonce',
                         'transaction': {
-                            'amount': '11.23'
+                            'amount': '1.00'
                         }
                     }
                     }
@@ -81,12 +83,13 @@ const app = new Vue({
                 console.log(response);
                 this.payment_status = response.data.data.chargePaymentMethod.transaction.status;
 
-                if (response == 'SETTLED') {
-                    this.boolean = true;
-                }
+                //if (this.payment_status == 'SUBMITTED_FOR_SETTLEMENT') {
+                    //this.boolean = true;
+                    document.getElementById('status').value = this.payment_status;
+                    document.getElementById('tiodio').click();
+                //}
                 console.log(this.payment_status);
 
-                document.getElementById('tiodio').click();
             });
 
 
