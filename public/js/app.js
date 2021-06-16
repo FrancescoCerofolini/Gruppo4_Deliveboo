@@ -49934,6 +49934,12 @@ var app = new Vue({
     });
   },
   data: {
+<<<<<<< HEAD
+=======
+    url: 'https://payments.sandbox.braintree-api.com/graphql',
+    payment_status: '',
+    "boolean": false,
+>>>>>>> remotes/origin/pagamenti
     restaurants: '',
     collection: '',
     categories: false,
@@ -49942,17 +49948,65 @@ var app = new Vue({
     flag: false
   },
   methods: {
+<<<<<<< HEAD
     getRestaurants: function getRestaurants(category) {
       var _this2 = this;
 
+=======
+    payment: function payment(event) {
+      var _this2 = this;
+
+      console.log(event);
+      axios({
+        method: 'post',
+        url: this.url,
+        headers: {
+          'Authorization': 'Basic aHJydnM3ZHBnaGRxaDZ4OTo2ODA3NTc0MjFmMzM4MDgxNTFhYmY2YmZiZTkxNmVhNw==',
+          //'Authorization': 'Bearer sandbox_gpjjc8yd_k3ttz8vgdfcbv2v5',
+          'Braintree-Version': '2021-06-09',
+          'Content-Type': 'application/json'
+        },
+        data: {
+          'query': 'mutation chargePaymentMethod($input: ChargePaymentMethodInput!) { chargePaymentMethod(input: $input) { transaction { id status } } }',
+          'variables': {
+            'input': {
+              'paymentMethodId': 'fake-valid-visa-nonce',
+              'transaction': {
+                'amount': '11.23'
+              }
+            }
+          }
+        }
+      }).then(function (response) {
+        console.log(response);
+        _this2.payment_status = response.data.data.chargePaymentMethod.transaction.status;
+
+        if (response == 'SETTLED') {
+          _this2["boolean"] = true;
+        }
+
+        console.log(_this2.payment_status);
+        document.getElementById('tiodio').click();
+      });
+    },
+    getRestaurants: function getRestaurants(category) {
+      var _this3 = this;
+
+>>>>>>> remotes/origin/pagamenti
       parameter = category.id;
       console.log(parameter);
       var restaurantApi = 'api/guests/restaurants/' + parameter;
       axios.get(restaurantApi).then(function (result) {
         console.log(result);
+<<<<<<< HEAD
         _this2.selected_category = category.name;
         _this2.restaurants = result.data.results.response;
         _this2.flag = true;
+=======
+        _this3.selected_category = category.name;
+        _this3.restaurants = result.data.results.response;
+        _this3.flag = true;
+>>>>>>> remotes/origin/pagamenti
       });
     },
     searchResults: function searchResults() {
@@ -50110,8 +50164,13 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 __webpack_require__(/*! C:\Users\miche\Desktop\deliveboo\Gruppo4_Deliveboo\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! C:\Users\miche\Desktop\deliveboo\Gruppo4_Deliveboo\resources\sass\app.scss */"./resources/sass/app.scss");
+=======
+__webpack_require__(/*! C:\Users\laura\Documents\boolean\Gruppo4_Deliveboo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\laura\Documents\boolean\Gruppo4_Deliveboo\resources\sass\app.scss */"./resources/sass/app.scss");
+>>>>>>> remotes/origin/pagamenti
 
 
 /***/ })
