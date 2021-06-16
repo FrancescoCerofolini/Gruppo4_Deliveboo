@@ -29,9 +29,10 @@ class DishController extends Controller
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request  $request
      */
-    public function create()
-    {
+    public function create(Request $request)
+    {   
         return view('admin.dishes.create');
     }
 
