@@ -24,14 +24,16 @@ class OrderController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $user_id = 1; // qui dobbiamo sostituire 1 con id del rispettivo ristorante
+        //@dd($request);
+        $user_id = $request['user_id']; // qui dobbiamo sostituire 1 con id del rispettivo ristorante
         $data = [
             'dishes' => Dish::all()->where('user_id', $user_id),
-
+            'user_id' => $user_id,
         ];
         return view('guest.order.create', $data);
     }
@@ -59,7 +61,7 @@ class OrderController extends Controller
             }
             $new_order->code = $code;
             
-            $dish_ids = Dish::all()->where('user_id', 1)->pluck('id')->toArray();
+            $dish_ids = Dish::all()->where('user_id', $data['user_id'])->pluck('id')->toArray();
             $counter = 0;
             $amount = 0;
             $new_order->amount = $amount;
@@ -72,7 +74,7 @@ class OrderController extends Controller
                     $new_order->dishes()->attach(['order_id' => $new_order->id], ['dish_id' => $value]);
                     
                     $new_order->dishes()->updateExistingPivot([$new_order->id, $value], ['quantity' => $data['quantity'][$counter]]);
-                    $price = Dish::select('price')->where('user_id', 1)->where('id', $value)->get(['price'])->toArray()[0]["price"];
+                    $price = Dish::select('price')->where('user_id', $data['user_id'])->where('id', $value)->get(['price'])->toArray()[0]["price"];
                     $amount = $amount + ($data['quantity'][$counter] * $price);
                 }
                 

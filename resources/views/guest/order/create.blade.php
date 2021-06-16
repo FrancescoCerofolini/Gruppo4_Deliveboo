@@ -9,7 +9,7 @@
                 <div class="form-group">
                     {{-- ALLA FINE QUESTO FORM GRUOP DEVE ESSERE INVISIBILE --}}
                     <label>Ristorante</label>
-                    <input type="text" name="user_id" class="form-control" value="1">
+                    <input type="text" name="user_id" class="form-control" value="{{$user_id}}">
                 </div>
                 @foreach ($dishes as $dish)
                     <div class="form-group">

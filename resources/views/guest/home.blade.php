@@ -86,7 +86,15 @@
                 </div>
                 <h2 class='category'>@{{ selected_category }}</h2>
                 <div class="ristoranti">
-                    <span v-if='flag != false' v-for='(restaurant, index) in restaurants'><a href="{{ route('order.create')}}">@{{restaurant.slug}}</a></span>
+                    <span v-if='flag != false' v-for='(restaurant, index) in restaurants'>
+                        <form action="{{ route('order.create')}}" method="get">
+                            @csrf
+                            <input name="user_id" type="text" :value="(restaurant.user_id != '') ? restaurant.user_id : 'default'">
+                            <button type="submit">ordina da @{{restaurant.slug}}</button>
+    
+                        </form>
+                        {{-- <a href="{{ route('order.create')}}">@{{restaurant.slug}}</a> --}}
+                    </span>
                     <span v-for='(element, index) in collection' v-if='flag == false'><a href="{{ route('order.create')}}">@{{ element.slug }}</a></span>
                 </div>
                 <div v-if='selected_category != ""' class="searchbar">
