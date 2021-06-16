@@ -49916,7 +49916,97 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
  */
 
 var app = new Vue({
-  el: '#app'
+  el: '#app',
+  mounted: function mounted() {
+    var _this = this;
+
+    var categoryApi = 'api/guests/dishes_categories';
+    axios.get(categoryApi).then(function (result) {
+      console.log(result);
+      _this.categories = result.data.results;
+      console.log(_this.categories);
+    });
+  },
+  data: {
+    url: 'https://payments.sandbox.braintree-api.com/graphql',
+    payment_status: '',
+    "boolean": false,
+    restaurants: '',
+    collection: '',
+    categories: false,
+    selected_category: '',
+    searchFilter: '',
+    flag: false
+  },
+  methods: {
+    payment: function payment(event) {
+      var _this2 = this;
+
+      console.log(event);
+      axios({
+        method: 'post',
+        url: this.url,
+        headers: {
+          'Authorization': 'Basic aHJydnM3ZHBnaGRxaDZ4OTo2ODA3NTc0MjFmMzM4MDgxNTFhYmY2YmZiZTkxNmVhNw==',
+          //'Authorization': 'Bearer sandbox_gpjjc8yd_k3ttz8vgdfcbv2v5',
+          'Braintree-Version': '2021-06-09',
+          'Content-Type': 'application/json'
+        },
+        data: {
+          'query': 'mutation chargePaymentMethod($input: ChargePaymentMethodInput!) { chargePaymentMethod(input: $input) { transaction { id status } } }',
+          'variables': {
+            'input': {
+              'paymentMethodId': 'fake-valid-visa-nonce',
+              'transaction': {
+                'amount': '11.23'
+              }
+            }
+          }
+        }
+      }).then(function (response) {
+        console.log(response);
+        _this2.payment_status = response.data.data.chargePaymentMethod.transaction.status;
+
+        if (response == 'SETTLED') {
+          _this2["boolean"] = true;
+        }
+
+        console.log(_this2.payment_status);
+        document.getElementById('tiodio').click();
+      });
+    },
+    getRestaurants: function getRestaurants(category) {
+      var _this3 = this;
+
+      parameter = category.id;
+      console.log(parameter);
+      var restaurantApi = 'api/guests/restaurants/' + parameter;
+      axios.get(restaurantApi).then(function (result) {
+        console.log(result);
+        _this3.selected_category = category.name;
+        _this3.restaurants = result.data.results.response;
+        _this3.flag = true;
+      });
+    },
+    searchResults: function searchResults() {
+      filter = this.searchFilter;
+      console.log(filter);
+      newResults = [];
+      this.restaurants.forEach(function (element) {
+        console.log(element);
+
+        if (element.slug.includes(filter)) {
+          newResults.push(element);
+        }
+      });
+      this.collection = newResults;
+      this.flag = false;
+      this.searchFilter = '';
+    },
+    resetRestaurants: function resetRestaurants() {
+      this.collection = this.restaurants;
+    }
+  }
 });
 
 /***/ }),
@@ -50053,8 +50143,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\miliu\Documents\Progetto di gruppo\Gruppo4_Deliveboo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\miliu\Documents\Progetto di gruppo\Gruppo4_Deliveboo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\laura\Documents\boolean\Gruppo4_Deliveboo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\laura\Documents\boolean\Gruppo4_Deliveboo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
