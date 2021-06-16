@@ -49895,6 +49895,12 @@ module.exports = function(module) {
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"),
+    axios = _require["default"];
+
+var _require2 = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js"),
+    includes = _require2.includes;
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
@@ -49916,7 +49922,58 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
  */
 
 var app = new Vue({
-  el: '#app'
+  el: '#app',
+  mounted: function mounted() {
+    var _this = this;
+
+    var categoryApi = 'api/guests/dishes_categories';
+    axios.get(categoryApi).then(function (result) {
+      console.log(result);
+      _this.categories = result.data.results;
+      console.log(_this.categories);
+    });
+  },
+  data: {
+    restaurants: '',
+    collection: '',
+    categories: false,
+    selected_category: '',
+    searchFilter: '',
+    flag: false
+  },
+  methods: {
+    getRestaurants: function getRestaurants(category) {
+      var _this2 = this;
+
+      parameter = category.id;
+      console.log(parameter);
+      var restaurantApi = 'api/guests/restaurants/' + parameter;
+      axios.get(restaurantApi).then(function (result) {
+        console.log(result);
+        _this2.selected_category = category.name;
+        _this2.restaurants = result.data.results.response;
+        _this2.flag = true;
+      });
+    },
+    searchResults: function searchResults() {
+      filter = this.searchFilter;
+      console.log(filter);
+      newResults = [];
+      this.restaurants.forEach(function (element) {
+        console.log(element);
+
+        if (element.slug.includes(filter)) {
+          newResults.push(element);
+        }
+      });
+      this.collection = newResults;
+      this.flag = false;
+      this.searchFilter = '';
+    },
+    resetRestaurants: function resetRestaurants() {
+      this.collection = this.restaurants;
+    }
+  }
 });
 
 /***/ }),

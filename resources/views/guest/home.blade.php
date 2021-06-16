@@ -84,16 +84,20 @@
                 <div class="title m-b-md">
                     Laravel
                 </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <h2 class='category'>@{{ selected_category }}</h2>
+                <div class="ristoranti">
+                    <span v-if='flag != false' v-for='(restaurant, index) in restaurants'><a href="{{ route('order.create')}}">@{{restaurant.slug}}</a></span>
+                    <span v-for='(element, index) in collection' v-if='flag == false'><a href="{{ route('order.create')}}">@{{ element.slug }}</a></span>
+                </div>
+                <div v-if='selected_category != ""' class="searchbar">
+                    <form action="" method=''>
+                        <input v-model='searchFilter'  type="text">
+                        <input v-on:click='searchResults' type="button" value='Search'>
+                        <input v-on:click='resetRestaurants' type="button" value='reset'>
+                    </form>
+                </div>
+                <div v-if='selected_category == ""' class="categories">
+                    <button type='sumbit'  v-on:click='getRestaurants(category)' v-for='(category,index) in categories'>@{{category.name}}</button type='sumbit'>
                 </div>
             </div>
         </div>
