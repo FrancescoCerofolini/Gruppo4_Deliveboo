@@ -13,7 +13,7 @@ class StatisticsController extends Controller
     public function index() {
         $orders = DB::table('orders')->whereYear('created_at', '=',2021)->get();
         
-        @dd($orders);
+        //@dd($orders);
         return view('admin.statistics.index');
     }
 }
