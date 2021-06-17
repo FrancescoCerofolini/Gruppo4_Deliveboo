@@ -48,7 +48,7 @@ class OrderController extends Controller
     public function store(Request $request,Faker $faker)
     {
         $data = $request->all();
-        //@dd($request);
+        @dd($request);
         
         if ($data['status'] == 'SUBMITTED_FOR_SETTLEMENT') {
             $new_order = new Order();

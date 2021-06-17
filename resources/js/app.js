@@ -53,11 +53,20 @@ const app = new Vue({
             selected_category : '',
             searchFilter : '',
             flag : false,
+            flag_cart : true,
+            quantity_dish : []
         }
     },
     methods: {
+        hiddenCart: function() {
+            this.flag_cart = false;
+        },
+        
+
         amountFunction: function() {
+            // conut amount
             var inputs = document.getElementsByClassName('quantity');
+            // console.log(inputs[0].value);
             var quantities = new Array(inputs.length).fill(0);
 
             var textPrices = document.getElementsByClassName('price');
@@ -72,9 +81,19 @@ const app = new Vue({
             }
 
             this.amount = amount;
+
+            // count quantity
+            var tmp = [];
+            for (let index = 0; index < inputs.length; index++) {
+                quantities[index] = parseInt(inputs[index].value);
+                tmp[index] = quantities[index];
+            }
+            console.log(tmp);
+            this.quantity_dish = tmp;
         },
         payment: function(event) {
             console.log(event);
+            this.flag_cart = true;
 
             axios({
                 method: 'post',

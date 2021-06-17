@@ -49945,12 +49945,19 @@ var app = new Vue({
       categories: false,
       selected_category: '',
       searchFilter: '',
-      flag: false
+      flag: false,
+      flag_cart: true,
+      quantity_dish: []
     };
   },
   methods: {
+    hiddenCart: function hiddenCart() {
+      this.flag_cart = false;
+    },
     amountFunction: function amountFunction() {
-      var inputs = document.getElementsByClassName('quantity');
+      // conut amount
+      var inputs = document.getElementsByClassName('quantity'); // console.log(inputs[0].value);
+
       var quantities = new Array(inputs.length).fill(0);
       var textPrices = document.getElementsByClassName('price');
       var prices = [];
@@ -49962,12 +49969,23 @@ var app = new Vue({
         amount += quantities[index] * prices[index];
       }
 
-      this.amount = amount;
+      this.amount = amount; // count quantity
+
+      var tmp = [];
+
+      for (var _index = 0; _index < inputs.length; _index++) {
+        quantities[_index] = parseInt(inputs[_index].value);
+        tmp[_index] = quantities[_index];
+      }
+
+      console.log(tmp);
+      this.quantity_dish = tmp;
     },
     payment: function payment(event) {
       var _this2 = this;
 
       console.log(event);
+      this.flag_cart = true;
       axios({
         method: 'post',
         url: this.url,
@@ -50166,8 +50184,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\laura\Documents\boolean\Gruppo4_Deliveboo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\laura\Documents\boolean\Gruppo4_Deliveboo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\miche\php_boolean\Gruppo4_Deliveboo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\miche\php_boolean\Gruppo4_Deliveboo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
