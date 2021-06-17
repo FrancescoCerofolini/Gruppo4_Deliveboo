@@ -9,6 +9,7 @@
         </div>
     </div>
 
+
     <script>
         var ctx = document.getElementById('myChart').getContext('2d');
         var myChart = new Chart(ctx, {
@@ -17,7 +18,7 @@
                 labels: ['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'],
                 datasets: [{
                     label: 'Ordini ultimo anno',
-                    data: [12, 19, 3, 5, 2, 3],
+                    data: <?php echo json_encode($orders_pretty); ?>,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
