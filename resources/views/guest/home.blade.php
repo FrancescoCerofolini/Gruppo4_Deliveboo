@@ -92,7 +92,6 @@
                 <div class="ristoranti">
                     <span v-if='flag != false' v-for='(restaurant, index) in restaurants'>
                         <form action="{{ route('order.create')}}" method="get">
-                            @csrf
                             <div class=" form-group my-hidden">
                                 <input name="user_id" type="text" :value="(restaurant.user_id != '') ? restaurant.user_id : 'default'">
                                 <input name="user_slug" type="text" :value="(restaurant.slug != '') ? restaurant.slug : 'default'">
@@ -104,7 +103,6 @@
                     </span>
                     <span v-for='(element, index) in collection' v-if='flag == false'>
                         <form action="{{ route('order.create')}}" method="get">
-                            @csrf
                             <div class=" form-group my-hidden">
                                 <input name="user_id" type="text" :value="(element.user_id != '') ? element.user_id : 'default'">
                                 <input name="user_slug" type="text" :value="(element.slug != '') ? element.slug : 'default'">
