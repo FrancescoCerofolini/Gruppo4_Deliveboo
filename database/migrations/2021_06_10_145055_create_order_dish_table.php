@@ -22,7 +22,7 @@ class CreateOrderDishTable extends Migration
 
             $table->primary(['order_id', 'dish_id']);
 
-            $table->tinyInteger('quantity')->default(1);
+            $table->tinyInteger('quantity')->default(null)->nullable();
         });
     }
 
