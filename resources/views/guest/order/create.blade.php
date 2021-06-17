@@ -12,27 +12,33 @@
                     <input type="text" name="user_id" class="form-control" value="{{$user_id}}">
                 </div>
                 {{-- CARRELLO --}}
-                <div v-if="flag_cart" class="form-group">
-                    @foreach ($dishes as $dish)
-                        <div>
-                            <h3>{{$dish->name}}</h3>
+                <div v-show="flag_cart" class="form-group">
+                    {{-- @foreach ($dishes as $dish) --}}
+                        <div v-for="(quantity, index) in quantity_dish" v-if="quantity_dish[index] > 0">
+                            {{-- <h3>{{$dish->name}}</h3> --}}
+                            <h3>@{{names_dish[index]}}</h3>
 
-                            <label for="quantity-cart">quantità</label>
-                            <input type="number" id="quantity_cart" name="quantity-cart" value="" class="form-control" readonly>
+                            <label for="quantity[]">quantità</label>
+                            <input type="number" id="quantity_cart" name="quantity[]" :value="quantity_dish[index]" class="form-control" readonly>
                         </div>
-                        
- 
-                    @endforeach
 
-                    <div class="form-group">
-                        <label for="amount">Amount</label>
-                        <input name="amount" class="form-control" id="amount" v-model="amount" readonly>
-                    </div>
+                        
+                        <div class="form-group">
+                            <label for="amount">Amount</label>
+                            <input name="amount" class="form-control" id="amount" v-model="amount" readonly>
+                        </div>
+ 
+                    {{-- @endforeach --}}
+
+                    
 
                     <button type="button" class="btn btn-success" v-on:click="hiddenCart">procedi al pagamento</button>
+                    
                 </div>
                 {{-- DATI UTENTE --}}
-                <div v-else class="form-group">
+                
+
+                <div v-if="flag_cart == false" class="form-group">
 
                     <div class="form-group">
                         <label>Nome e Cognome</label>
@@ -57,6 +63,8 @@
                         <input name="status" class="form-control" id="status" :value="payment_status">
                     </div>
 
+                    
+
                     <button type="button" v-on:click="payment" class="btn btn-success">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg> Paga
                     </button>
@@ -66,7 +74,7 @@
                     </div>
                 </div>
                
-
+                
             </form>
         </div>
         <div class="col-xs-6">
@@ -78,11 +86,11 @@
                 @foreach ($dishes as $dish)
                     <div class="form-group">
                         <label>
-                            <h3>{{$dish->name}}</h3>
+                            <h3 class="name_dish">{{$dish->name}}</h3>
                             <h4>{{$dish->description}}</h4>
                             <h5>Prezzo :<span class="price">{{$dish->price}}</span></h5>                            
                         </label>
-                        
+
                         <input type="number" name="quantity[]" id="quantity" class="quantity form-control @error('quantity') is-invalid @enderror" value="0" @change="amountFunction" required>
                         @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>

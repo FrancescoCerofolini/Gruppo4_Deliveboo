@@ -49947,7 +49947,8 @@ var app = new Vue({
       searchFilter: '',
       flag: false,
       flag_cart: true,
-      quantity_dish: []
+      quantity_dish: [],
+      names_dish: []
     };
   },
   methods: {
@@ -49971,21 +49972,24 @@ var app = new Vue({
 
       this.amount = amount; // count quantity
 
-      var tmp = [];
+      var names = document.getElementsByClassName("name_dish");
+      var tmp_quantity = [];
+      var tmp_names = [];
 
       for (var _index = 0; _index < inputs.length; _index++) {
         quantities[_index] = parseInt(inputs[_index].value);
-        tmp[_index] = quantities[_index];
+        tmp_quantity[_index] = quantities[_index];
+        tmp_names[_index] = names[_index].childNodes[0].textContent;
       }
 
-      console.log(tmp);
-      this.quantity_dish = tmp;
+      console.log(tmp_quantity);
+      this.names_dish = tmp_names;
+      this.quantity_dish = tmp_quantity;
     },
     payment: function payment(event) {
       var _this2 = this;
 
       console.log(event);
-      this.flag_cart = true;
       axios({
         method: 'post',
         url: this.url,

@@ -54,7 +54,8 @@ const app = new Vue({
             searchFilter : '',
             flag : false,
             flag_cart : true,
-            quantity_dish : []
+            quantity_dish : [],
+            names_dish : []
         }
     },
     methods: {
@@ -83,17 +84,21 @@ const app = new Vue({
             this.amount = amount;
 
             // count quantity
-            var tmp = [];
+            var names = document.getElementsByClassName("name_dish");
+
+            var tmp_quantity = [];
+            var tmp_names = [];
             for (let index = 0; index < inputs.length; index++) {
                 quantities[index] = parseInt(inputs[index].value);
-                tmp[index] = quantities[index];
+                tmp_quantity[index] = quantities[index];
+                tmp_names[index] =names[index].childNodes[0].textContent;
             }
-            console.log(tmp);
-            this.quantity_dish = tmp;
+            console.log(tmp_quantity);
+            this.names_dish = tmp_names;
+            this.quantity_dish = tmp_quantity;
         },
         payment: function(event) {
             console.log(event);
-            this.flag_cart = true;
 
             axios({
                 method: 'post',
