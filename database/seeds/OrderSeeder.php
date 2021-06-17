@@ -3,6 +3,8 @@
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 use App\Order;
+use App\User;
+use Illuminate\Support\Facades\DB;
 
 class OrderSeeder extends Seeder
 {
@@ -13,6 +15,7 @@ class OrderSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
+
         for ($i= 0; $i < 20; $i++) {
             $neworder = new Order;
             $neworder->customer_address = $faker->address();
@@ -22,6 +25,7 @@ class OrderSeeder extends Seeder
             $neworder->code = $faker->isbn10();
             $neworder->status = "paid";
             $neworder->amount = $faker->randomFloat(2, 1, 1000);
+            $neworder->created_at = $faker->dateTimeBetween($startDate = '-10 years', $endDate = 'now', $timezone = null);
             $neworder->save();
         } 
     }
