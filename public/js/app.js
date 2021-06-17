@@ -49899,7 +49899,8 @@ var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
     axios = _require["default"];
 
 var _require2 = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js"),
-    includes = _require2.includes;
+    includes = _require2.includes,
+    forEach = _require2.forEach;
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
@@ -49935,6 +49936,7 @@ var app = new Vue({
   },
   data: function data() {
     return {
+      amount: '',
       url: 'https://payments.sandbox.braintree-api.com/graphql',
       payment_status: '',
       "boolean": false,
@@ -49947,6 +49949,21 @@ var app = new Vue({
     };
   },
   methods: {
+    amountFunction: function amountFunction() {
+      var inputs = document.getElementsByClassName('quantity');
+      var quantities = new Array(inputs.length).fill(0);
+      var textPrices = document.getElementsByClassName('price');
+      var prices = [];
+      var amount = 0;
+
+      for (var index = 0; index < inputs.length; index++) {
+        quantities[index] = parseInt(inputs[index].value);
+        prices[index] = parseFloat(textPrices[index].childNodes[0].textContent);
+        amount += quantities[index] * prices[index];
+      }
+
+      this.amount = amount;
+    },
     payment: function payment(event) {
       var _this2 = this;
 
@@ -49956,7 +49973,6 @@ var app = new Vue({
         url: this.url,
         headers: {
           'Authorization': 'Basic aHJydnM3ZHBnaGRxaDZ4OTo2ODA3NTc0MjFmMzM4MDgxNTFhYmY2YmZiZTkxNmVhNw==',
-          //'Authorization': 'Bearer sandbox_gpjjc8yd_k3ttz8vgdfcbv2v5',
           'Braintree-Version': '2021-06-09',
           'Content-Type': 'application/json'
         },
