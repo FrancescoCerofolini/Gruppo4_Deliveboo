@@ -99,7 +99,6 @@
                             <button type="submit">ordina da @{{restaurant.slug}}</button>
     
                         </form>
-                        {{-- <a href="{{ route('order.create')}}">@{{restaurant.slug}}</a> --}}
                     </span>
                     <span v-for='(element, index) in collection' v-if='flag == false'>
                         <form action="{{ route('order.create')}}" method="get">
@@ -110,7 +109,6 @@
                             <button type="submit">ordina da @{{element.slug}}</button>
     
                         </form>
-                        {{-- <a href="{{ route('order.create')}}">@{{ element.slug }}</a> --}}
                     </span>
                 </div>
                 <div v-if='selected_category != ""' class="searchbar">
