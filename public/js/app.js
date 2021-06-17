@@ -49973,7 +49973,6 @@ var app = new Vue({
         url: this.url,
         headers: {
           'Authorization': 'Basic aHJydnM3ZHBnaGRxaDZ4OTo2ODA3NTc0MjFmMzM4MDgxNTFhYmY2YmZiZTkxNmVhNw==',
-          //'Authorization': 'Bearer sandbox_gpjjc8yd_k3ttz8vgdfcbv2v5',
           'Braintree-Version': '2021-06-09',
           'Content-Type': 'application/json'
         },

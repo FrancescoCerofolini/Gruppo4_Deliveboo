@@ -30,9 +30,11 @@ class OrderController extends Controller
     public function create(Request $request)
     {
         $user_id = $request['user_id'];
+        $user_slug = $request['user_slug'];
         $data = [
             'dishes' => Dish::all()->where('user_id', $user_id),
             'user_id' => $user_id,
+            'user_slug' => $user_slug,
         ];
         return view('guest.order.create', $data);
     }

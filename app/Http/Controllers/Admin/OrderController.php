@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {

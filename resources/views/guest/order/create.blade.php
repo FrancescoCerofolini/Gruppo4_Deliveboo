@@ -10,6 +10,7 @@
                     <label>Ristorante</label>
                     <input type="text" name="user_id" class="form-control" value="{{$user_id}}">
                 </div>
+                <h1>Ordine da {{$user_slug}}</h1>
 
                 @foreach ($dishes as $dish)
                     <div class="form-group">
