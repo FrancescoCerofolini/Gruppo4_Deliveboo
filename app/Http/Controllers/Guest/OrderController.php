@@ -66,10 +66,12 @@ class OrderController extends Controller
             $new_order->fill($data);
             $new_order->save();
 
-            return 'accettato:' . $data['status'];
+            Mail::to($new_order->customer_email)->send(new SendNewMail($new_order));
+
+            return (($data['status'] == 'SUBMITTED_FOR_SETTLEMENT') ? 'Pagamento accettato, ' : 'null') . ' mail inviata a ' . $new_order->customer_email;
         }
         else {
-            return 'non accettato:' . $data['status'];
+            return 'non accettato: ' . $data['status'];
         }
     }
     
