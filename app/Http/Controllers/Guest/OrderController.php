@@ -8,6 +8,8 @@ use App\Order;
 use App\Http\Controllers\Controller;
 use Faker\Generator as Faker;
 use Illuminate\Http\Request;
+use App\Mail\SendNewMail;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -82,6 +84,8 @@ class OrderController extends Controller
             }
             $new_order->amount = $amount;
             $new_order->update($data);
+            Mail::to('mail@mail.it')->send(new SendNewMail);
+            
             return redirect()->route('order.create');
         }
         else {
