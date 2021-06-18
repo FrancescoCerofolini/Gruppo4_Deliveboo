@@ -89,8 +89,8 @@
                             <h5>Prezzo :<span class="price">{{$dish->price}}</span></h5>                            
                         </label>
 
-                        <input name="dish_id[]" class="form-control" value="{{ $dish->id }}">
-                        <input type="number" name="quantity[]" id="quantity" class="quantity form-control @error('quantity') is-invalid @enderror" value="0" v-on:change="amountFunction" required>
+                        <input type="hidden" name="dish_id[]" class="form-control" value="{{ $dish->id }}">
+                        <input type="number" name="quantity[]" id="quantity" class="quantity form-control @error('quantity') is-invalid @enderror" value="0" v-on:change="amountFunction" required min="0">
                         
                         @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>

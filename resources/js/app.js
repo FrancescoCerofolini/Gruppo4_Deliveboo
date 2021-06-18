@@ -84,7 +84,7 @@ const app = new Vue({
                 prices[index] = parseFloat(textPrices[index].childNodes[0].textContent);
                 amount += quantities[index] * prices[index];
             }
-
+            amount = parseFloat(amount.toFixed(2))
             this.amount = amount;
 
             // count quantity
