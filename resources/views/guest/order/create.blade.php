@@ -91,7 +91,7 @@
                             <h5>Prezzo :<span class="price">{{$dish->price}}</span></h5>                            
                         </label>
 
-                        <input type="number" name="quantity[]" id="quantity" class="quantity form-control @error('quantity') is-invalid @enderror" value="0" @change="amountFunction" required>
+                        <input type="number" name="quantity[]" id="quantity" class="quantity form-control @error('quantity') is-invalid @enderror" value="0" v-on:change="amountFunction" required>
                         @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
