@@ -50,7 +50,7 @@ class OrderController extends Controller
     public function store(Request $request,Faker $faker)
     {
         $data = $request->all();
-        // @dd($request);
+        //dd($request);
 
         if ($data['status'] == 'SUBMITTED_FOR_SETTLEMENT') {
             $new_order = new Order();
@@ -65,32 +65,25 @@ class OrderController extends Controller
             $new_order->amount = $data['amount'];
             $new_order->fill($data);
             $new_order->save();
-            $dish_ids = Dish::all()->where('user_id', $data['user_id'])->pluck('id')->toArray();
+
+            // Codice Laura
+            $amount = 0;
             $counter = 0;
+            $dish_ids = Dish::all()->where('user_id', $data['user_id'])->pluck('id')->toArray();
             foreach ($dish_ids as $value) {
-                // dd($data);
-                if ($data["quantity"][$counter] != null) {
-                    continue;
+
+                if ($data['quantity'][$counter]) {
+
                     $new_order->dishes()->attach(['order_id' => $new_order->id], ['dish_id' => $value]);
 
                     $new_order->dishes()->updateExistingPivot([$new_order->id, $value], ['quantity' => $data['quantity'][$counter]]);
+                    $price = Dish::select('price')->where('user_id', $data['user_id'])->where('id', $value)->get(['price'])->toArray()[0]["price"];
+                    $amount = $amount + ($data['quantity'][$counter] * $price);
                 }
-
-                // if ($data['quantity'][$counter] != null) {
-
-                //     $new_order->dishes()->attach(['order_id' => $new_order->id], ['dish_id' => $value]);
-
-                //     $new_order->dishes()->updateExistingPivot([$new_order->id, $value], ['quantity' => $data['quantity'][$counter]]);
-                    
-                    
-                // }
-                
 
                 $counter = $counter + 1;
             }
-                
-
-
+            $new_order->amount = $amount;
             $new_order->update($data);
 
             Mail::to($new_order->customer_email)->send(new SendNewMail($new_order));

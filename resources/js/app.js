@@ -55,7 +55,11 @@ const app = new Vue({
             flag : false,
             flag_cart : true,
             quantity_dish : [],
-            names_dish : []
+            names_dish : [],
+            numeroTelefono : '',
+            indirizzo : '',
+            indirizzoMail : '',
+            nomeCognome : ''
         }
     },
     methods: {
@@ -123,13 +127,15 @@ const app = new Vue({
             .then(response => {
                 console.log(response);
                 this.payment_status = response.data.data.chargePaymentMethod.transaction.status;
+                console.log(this.payment_status);
 
                 //if (this.payment_status == 'SUBMITTED_FOR_SETTLEMENT') {
                     //this.boolean = true;
                     document.getElementById('status').value = this.payment_status;
+                    
                     document.getElementById('tiodio').click();
                 //}
-                console.log(this.payment_status);
+                
 
             });
 

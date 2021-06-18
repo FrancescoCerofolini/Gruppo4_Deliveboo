@@ -49948,7 +49948,11 @@ var app = new Vue({
       flag: false,
       flag_cart: true,
       quantity_dish: [],
-      names_dish: []
+      names_dish: [],
+      numeroTelefono: '',
+      indirizzo: '',
+      indirizzoMail: '',
+      nomeCognome: ''
     };
   },
   methods: {
@@ -50011,13 +50015,12 @@ var app = new Vue({
         }
       }).then(function (response) {
         console.log(response);
-        _this2.payment_status = response.data.data.chargePaymentMethod.transaction.status; //if (this.payment_status == 'SUBMITTED_FOR_SETTLEMENT') {
+        _this2.payment_status = response.data.data.chargePaymentMethod.transaction.status;
+        console.log(_this2.payment_status); //if (this.payment_status == 'SUBMITTED_FOR_SETTLEMENT') {
         //this.boolean = true;
 
         document.getElementById('status').value = _this2.payment_status;
         document.getElementById('tiodio').click(); //}
-
-        console.log(_this2.payment_status);
       });
     },
     getRestaurants: function getRestaurants(category) {
@@ -50188,13 +50191,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
 __webpack_require__(/*! C:\Users\miliu\Documents\Progetto di gruppo\Gruppo4_Deliveboo\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! C:\Users\miliu\Documents\Progetto di gruppo\Gruppo4_Deliveboo\resources\sass\app.scss */"./resources/sass/app.scss");
-=======
-__webpack_require__(/*! C:\Users\miche\php_boolean\Gruppo4_Deliveboo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\miche\php_boolean\Gruppo4_Deliveboo\resources\sass\app.scss */"./resources/sass/app.scss");
->>>>>>> b4307116ef3f1857b616a5f7197f8857b9c2a983
 
 
 /***/ })
