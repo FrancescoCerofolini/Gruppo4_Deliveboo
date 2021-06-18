@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use App\User;
 use App\Category;
 use Illuminate\Support\Str;
+use Faker\Generator as Faker;
 
 class UserSeeder extends Seeder
 {
@@ -12,7 +13,7 @@ class UserSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {   
         $data = config('user');
         
@@ -24,6 +25,7 @@ class UserSeeder extends Seeder
            $newUser->address = $data[3][$i];
            $newUser->slug = $data[5][$i];
            $newUser->piva = $data[4][$i];
+           $newUser->created_at = new DateTime('2011-01-01 00:00:01',null);
            $newUser->save();
         }
     }

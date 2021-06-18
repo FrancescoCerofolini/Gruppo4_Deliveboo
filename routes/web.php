@@ -33,6 +33,7 @@ Route::prefix('admin')
     ->middleware('auth')
     ->group(function () {
         Route::get('/', 'HomeController@index')->name('admin-home');
+        Route::get('/statistics', 'StatisticsController@index')->name('admin-statistics');
         Route::resource('/dish', 'DishController');
         Route::resource('dish', DishController::class)->names([
             'index' => 'admin.dish.index',
