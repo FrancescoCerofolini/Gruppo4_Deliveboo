@@ -4,10 +4,13 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>DeliveBoo</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -22,19 +25,19 @@
                     <div class="my-navbar">
                         <div class="row">
     
-                            <div class="col-xs-4 col-md-4 logo debug">
+                            <div class="col-xs-4 col-md-4 logo">
                                 <a href="{{ route('guest-home') }}">
                                     <img src="{{ asset('img/DeliveBoo_logo.png') }}" alt="DeliveBoo logo">
                                 </a>
                             </div>
     
-                            <div class="col-xs-3 col-md-4 text-center debug">
+                            <div class="col-xs-3 col-md-4 text-center">
                                 <i class="fas fa-map-marker-alt"></i>
                                 <span>Milano</span>
                             </div>
     
                             @if (Route::has('login'))
-                                <div class="col-xs-5 col-md-4 text-right debug">
+                                <div class="col-xs-5 col-md-4 text-right">
                                     @auth
                                         <a href="{{ url('/admin') }}">Home</a>
                                     @else
@@ -50,42 +53,43 @@
                     </div>
                 </header>
                 {{-- Fine NavBar --}}
-                <div class="title m-b-md">
-                    DeliveBoo
-                </div>
-                <h2 class='category'>@{{ selected_category }}</h2>
-                <div class="ristoranti">
-                    <span v-if='flag != false && selected_category != ""' v-for='(restaurant, index) in restaurants'>
-                        <form action="{{ route('order.create')}}" method="get">
-                            <div class=" form-group my-hidden">
-                                <input name="user_id" type="text" :value="(restaurant.user_id != '') ? restaurant.user_id : 'default'">
-                                <input name="user_slug" type="text" :value="(restaurant.slug != '') ? restaurant.slug : 'default'">
-                            </div>
-                            <button type="submit"> @{{ restaurant.slug.charAt(0).toUpperCase() + restaurant.slug.slice(1).replace('-', ' ') }}</button>
-    
+                <div class="container-fluid text-center">
+
+                    <h2 class='category'>@{{ selected_category }}</h2>
+                    <div class="ristoranti">
+                        <span v-if='flag != false && selected_category != ""' v-for='(restaurant, index) in restaurants'>
+                            <form action="{{ route('order.create')}}" method="get">
+                                <div class=" form-group my-hidden">
+                                    <input name="user_id" type="text" :value="(restaurant.user_id != '') ? restaurant.user_id : 'default'">
+                                    <input name="user_slug" type="text" :value="(restaurant.slug != '') ? restaurant.slug : 'default'">
+                                </div>
+                                <button type="submit" class="ristorante"> @{{ restaurant.slug.charAt(0).toUpperCase() + restaurant.slug.slice(1).replace('-', ' ') }}</button>
+        
+                            </form>
+                        </span>
+                        <span v-for='(element, index) in collection' v-if='flag == false && selected_category != ""'>
+                            <form action="{{ route('order.create')}}" method="get">
+                                <div class=" form-group my-hidden">
+                                    <input name="user_id" type="text" :value="(element.user_id != '') ? element.user_id : 'default'">
+                                    <input name="user_slug" type="text" :value="(element.slug != '') ? element.slug : 'default'">
+                                </div>
+                                <button type="submit">@{{element.slug.replace('-', ' ') }}</button>
+        
+                            </form>
+                        </span>
+                    </div>
+                    <div v-if='selected_category != ""' class="searchbar">
+                        <form action="" method=''>
+                            <input v-if='flag != false' v-model='searchFilter' placeholder='Find your restaurant' type="text">
+                            <input v-if='flag != false' v-on:click='searchResults' type="button"  value='Search'>
+                            <input v-on:click='selected_category = ""' type="button" value='Back to categories'>
+                            <input v-if='flag == false' v-on:click='resetRestaurants' type="button" value='Back to all restaurants'>
                         </form>
-                    </span>
-                    <span v-for='(element, index) in collection' v-if='flag == false && selected_category != ""'>
-                        <form action="{{ route('order.create')}}" method="get">
-                            <div class=" form-group my-hidden">
-                                <input name="user_id" type="text" :value="(element.user_id != '') ? element.user_id : 'default'">
-                                <input name="user_slug" type="text" :value="(element.slug != '') ? element.slug : 'default'">
-                            </div>
-                            <button  type="submit">@{{element.slug.replace('-', ' ') }}</button>
-    
-                        </form>
-                    </span>
-                </div>
-                <div v-if='selected_category != ""' class="searchbar">
-                    <form action="" method=''>
-                        <input v-if='flag != false' v-model='searchFilter' placeholder='Find your restaurant' type="text">
-                        <input v-if='flag != false' v-on:click='searchResults' type="button"  value='Search'>
-                        <input v-on:click='selected_category = ""' type="button" value='Back to categories'>
-                        <input v-if='flag == false' v-on:click='resetRestaurants' type="button" value='Back to all restaurants'>
-                    </form>
-                </div>
-                <div v-if='selected_category == ""' class="categories">
-                    <button type='sumbit'  v-on:click='getRestaurants(category)' v-for='(category,index) in categories'>@{{category.name}}</button type='sumbit'>
+                    </div>
+                    <div v-if='selected_category == ""' class="categories">
+                        <button type='sumbit' class="categoria" v-on:click='getRestaurants(category)' v-for='(category,index) in categories'>@{{category.name}}</button>
+                    </div>
+
                 </div>
             </div>
         </div>

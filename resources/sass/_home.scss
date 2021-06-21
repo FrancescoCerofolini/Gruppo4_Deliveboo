@@ -1,6 +1,30 @@
 // Content
 .content {
     padding-top: 200px;
+
+    .categoria {
+        color: white;
+        width: 120px;
+        height: 120px;
+        border: none;
+        border-radius: 50%;
+        background: linear-gradient($brandPrimary,$red);
+
+        &:hover {
+            background: linear-gradient($yellow,$brandPrimary);
+            box-shadow: 0 0 5px 2px black;
+        }
+    }
+
+    .ristorante {
+        color: red;
+    }
+
+    .categoria,
+    .ristorante {
+        text-transform: capitalize;
+        margin: 20px;
+    }
 }
 
 @media (min-width: 768px) {

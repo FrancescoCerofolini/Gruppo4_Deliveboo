@@ -50,6 +50,30 @@
   padding-top: 200px;
 }
 
+.content .categoria {
+  color: white;
+  width: 120px;
+  height: 120px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(#ff8d00, #e3342f);
+}
+
+.content .categoria:hover {
+  background: linear-gradient(#ffed4a, #ff8d00);
+  box-shadow: 0 0 5px 2px black;
+}
+
+.content .ristorante {
+  color: red;
+}
+
+.content .categoria,
+.content .ristorante {
+  text-transform: capitalize;
+  margin: 20px;
+}
+
 @media (min-width: 768px) {
   .content {
     padding-top: 80px;
