@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Guest;
 
 use App\Dish;
 use App\Order;
+use App\User;
 
 use App\Http\Controllers\Controller;
 use Faker\Generator as Faker;
@@ -30,7 +31,8 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
-    {
+    {   
+
         $user_id = $request['user_id'];
         $user_slug = $request['user_slug'];
         $data = [
@@ -85,13 +87,17 @@ class OrderController extends Controller
             }
             $new_order->amount = $amount;
             $new_order->update($data);
+            
+            //dd($msUser);
 
             Mail::to($new_order->customer_email)->send(new SendNewMail($new_order));
 
             return (($data['status'] == 'SUBMITTED_FOR_SETTLEMENT') ? 'Pagamento accettato, ' : 'null') . ' mail inviata a ' . $new_order->customer_email;
         }
         else {
-            return 'non accettato: ' . $data['status'];
+            $msUser = new User();
+            $msUser = User::select('slug')->where('id', $data['user_id'])->first();
+            return view('guest.order.ciao', compact('data', 'msUser') );
         }
     }
     
