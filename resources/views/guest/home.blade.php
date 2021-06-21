@@ -90,7 +90,7 @@
                 </div>
                 <h2 class='category'>@{{ selected_category }}</h2>
                 <div class="ristoranti">
-                    <span v-if='flag != false' v-for='(restaurant, index) in restaurants'>
+                    <span v-if='flag != false && selected_category != ""' v-for='(restaurant, index) in restaurants'>
                         <form action="{{ route('order.create')}}" method="get">
                             <div class=" form-group my-hidden">
                                 <input name="user_id" type="text" :value="(restaurant.user_id != '') ? restaurant.user_id : 'default'">
@@ -100,22 +100,23 @@
     
                         </form>
                     </span>
-                    <span v-for='(element, index) in collection' v-if='flag == false'>
+                    <span v-for='(element, index) in collection' v-if='flag == false && selected_category != ""'>
                         <form action="{{ route('order.create')}}" method="get">
                             <div class=" form-group my-hidden">
                                 <input name="user_id" type="text" :value="(element.user_id != '') ? element.user_id : 'default'">
                                 <input name="user_slug" type="text" :value="(element.slug != '') ? element.slug : 'default'">
                             </div>
-                            <button type="submit">ordina da @{{element.slug}}</button>
+                            <button  type="submit">ordina da @{{element.slug}}</button>
     
                         </form>
                     </span>
                 </div>
                 <div v-if='selected_category != ""' class="searchbar">
                     <form action="" method=''>
-                        <input v-model='searchFilter'  type="text">
-                        <input v-on:click='searchResults' type="button" value='Search'>
-                        <input v-if='flag == false' v-on:click='resetRestaurants' type="button" value='reset'>
+                        <input v-if='flag != false' v-model='searchFilter'  type="text">
+                        <input v-if='flag != false' v-on:click='searchResults' type="button" value='Search'>
+                        <input v-on:click='selected_category = ""' type="button" value='Back to categories'>
+                        <input v-if='flag == false' v-on:click='resetRestaurants' type="button" value='Back to all restaurants'>
                     </form>
                 </div>
                 <div v-if='selected_category == ""' class="categories">
