@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Guest;
 
 use App\Dish;
 use App\Order;
+use App\User;
 
 use App\Http\Controllers\Controller;
 use Faker\Generator as Faker;
@@ -50,7 +51,7 @@ class OrderController extends Controller
     public function store(Request $request,Faker $faker)
     {
         $data = $request->all();
-        // dd($data);
+        // @dd($data);
 
         if ($data['status'] == 'SUBMITTED_FOR_SETTLEMENT') {
             $new_order = new Order();
@@ -87,12 +88,18 @@ class OrderController extends Controller
             $data["amount"] = $data["amount"] + $data['delivery'];
             $new_order->update($data);
 
+            // $user_slug = User::all()->where('id', $data['user_id']);
+
+            // @dd($user_slug);
+
             Mail::to($new_order->customer_email)->send(new SendNewMail($new_order));
 
-            return (($data['status'] == 'SUBMITTED_FOR_SETTLEMENT') ? 'Pagamento accettato, ' : 'null') . ' mail inviata a ' . $new_order->customer_email;
+            return (($data['status'] == 'SUBMITTED_FOR_SETTLEMENT') ? 'Pagamento accettato, ' : 'null') . ' mail inviata a ' . $new_order->customer_email . view('guest.order.store', $data);
         }
         else {
-            return 'non accettato: ' . $data['status'];
+            $msUser = new User();
+            $msUser = User::select('slug')->where('id', $data['user_id'])->first();
+            return view('guest.order.ciao', compact('data', 'msUser') );
         }
     }
     
