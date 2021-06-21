@@ -82,7 +82,9 @@
                     <input type="hidden" name="user_id" class="form-control" value="{{$user_id}}">
 
                 @foreach ($dishes as $dish)
-                    <div class="form-group">
+                    @if ($dish->visibility == 1)
+                
+                    <div class="form-group">                            
                         <label>
                             <h3 class="name_dish">{{ucfirst($dish->name)}}</h3>
                             <h4>{{$dish->description}}</h4>
@@ -95,8 +97,7 @@
                         @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
-
-                        
+                        @endif
                     </div>
                 @endforeach
                 <input type='hidden' name="customer_name" class="form-control" :value="(nomeCognome == '') ? 'placeholder' : nomeCognome">
