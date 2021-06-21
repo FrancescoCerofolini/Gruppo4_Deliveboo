@@ -4,12 +4,15 @@
 // Variables
 @import 'variables';
 
+// Common
+@import 'common';
+
+// Home
+@import 'home';
+
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
-<<<<<<< HEAD
 
 .my-hidden {
     display: none;
 }
-=======
->>>>>>> remotes/origin/grafici
