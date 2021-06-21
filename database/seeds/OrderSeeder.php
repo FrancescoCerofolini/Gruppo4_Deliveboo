@@ -16,7 +16,7 @@ class OrderSeeder extends Seeder
     public function run(Faker $faker)
     {
 
-        for ($i= 0; $i < 20; $i++) {
+        for ($i= 0; $i < 2000; $i++) {
             $neworder = new Order;
             $neworder->customer_address = $faker->address();
             $neworder->customer_email = $faker->email();
@@ -25,7 +25,7 @@ class OrderSeeder extends Seeder
             $neworder->code = $faker->isbn10();
             $neworder->status = "paid";
             $neworder->amount = $faker->randomFloat(2, 1, 1000);
-            $neworder->created_at = $faker->dateTimeBetween($startDate = '-10 years', $endDate = 'now', $timezone = null);
+            $neworder->created_at = $faker->dateTimeBetween($startDate = '2012-01-01', $endDate = 'now', $timezone = null);
             $neworder->save();
         } 
     }

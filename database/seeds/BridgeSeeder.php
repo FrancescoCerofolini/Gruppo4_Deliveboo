@@ -59,68 +59,13 @@ class BridgeSeeder extends Seeder
         $orders = Order::all();
 
         foreach ($orders as $order) {
-            switch ($order->id) {
-                case 1:
-                    $order->dishes()->sync([2,3,4]);
-                    break;
-                case 2:
-                    $order->dishes()->sync([11,12]);
-                    break;
-                case 3:
-                    $order->dishes()->sync([15]);
-                    break;
-                case 4:
-                    $order->dishes()->sync([21,22]);
-                    break;
-                case 5:
-                    $order->dishes()->sync([1,2]);
-                    break;
-                case 6:
-                    $order->dishes()->sync([23,25]);
-                    break;
-                case 7:
-                    $order->dishes()->sync([18,19,20]);
-                    break;
-                case 8:
-                    $order->dishes()->sync([12,14]);
-                    break;
-                case 9:
-                    $order->dishes()->sync([11,15]);
-                    break;
-                case 10:
-                    $order->dishes()->sync([19]);
-                    break;
-                case 11:
-                    $order->dishes()->sync([18]);
-                    break;
-                case 12:
-                    $order->dishes()->sync([7,8]);
-                    break;
-                case 13:
-                    $order->dishes()->sync([21,24]);
-                    break;
-                case 14:
-                    $order->dishes()->sync([11,16]);
-                    break;
-                case 15:
-                    $order->dishes()->sync([9,12]);
-                    break;
-                case 16:
-                    $order->dishes()->sync([5]);
-                    break;
-                case 17:
-                    $order->dishes()->sync([11,18]);
-                    break;
-                case 18:
-                    $order->dishes()->sync([3,11,14]);
-                    break;
-                case 19:
-                    $order->dishes()->sync([11,16]);
-                    break;
-                case 20:
-                    $order->dishes()->sync([19]);
-                    break;
-            }           
+            $howMany = rand(1,5);
+            $where = rand(0,4);
+            $which = array_fill(0,$howMany,0);
+            for ($i = 0; $i < $howMany; $i++) {
+                $which[$i] = rand(1,5) + (5 * $where);
+            }
+            $order->dishes()->sync($which);
         }
 
     }
