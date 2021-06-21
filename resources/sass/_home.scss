@@ -2,10 +2,10 @@
 .content {
     padding-top: 200px;
 
-    .categoria {
+    .btn-categoria {
         color: white;
-        width: 120px;
-        height: 120px;
+        width: 150px;
+        height: 150px;
         border: none;
         border-radius: 50%;
         background: linear-gradient($brandPrimary,$red);
@@ -15,16 +15,32 @@
             box-shadow: 0 0 5px 2px black;
         }
     }
+    
+    .btn-ristorante {
+        border: none;
+        border-radius: 20px;
+        background: transparent;
 
-    .ristorante {
-        color: red;
+        &:hover {
+            color: $brandPrimary;
+            box-shadow: 0 0 5px 2px $brandPrimary;
+        }
     }
 
-    .categoria,
-    .ristorante {
+    .btn-categoria,
+    .btn-ristorante {
         text-transform: capitalize;
+        padding: 20px;
         margin: 20px;
     }
+
+    .category {
+        margin-top: 20px;
+    }
+
+    .cerca-ristorante input {
+        padding: 10px;
+    } 
 }
 
 @media (min-width: 768px) {

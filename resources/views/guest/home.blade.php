@@ -53,17 +53,36 @@
                     </div>
                 </header>
                 {{-- Fine NavBar --}}
+
                 <div class="container-fluid text-center">
 
+                    {{-- selezione categoria --}}
+                    <div v-if='selected_category == ""' class="categories">
+                        <button type='sumbit' class="btn-categoria" v-on:click='getRestaurants(category)'
+                            v-for='(category,index) in categories'>@{{category.name}}</button>
+                    </div>
+                    
+                    {{-- searchbar per nome ristorante --}}
+                    <div v-if='selected_category != ""' class="searchbar cerca-ristorante">
+                        <form action="" method=''>
+                            <input v-if='flag != false' v-model='searchFilter' placeholder='Trova il tuo ristorante' type="text">
+                            <input v-if='flag != false' v-on:click='searchResults' type="button" value='Cerca'>
+                            <input v-on:click='selected_category = ""' type="button" value='Torna alle categorie'>
+                            <input v-if='flag == false' v-on:click='resetRestaurants' type="button" value='Torna ai ristoranti'>
+                        </form>
+                    </div>
+                    
                     <h2 class='category'>@{{ selected_category }}</h2>
+
+                    {{-- selezione ristorante --}}
                     <div class="ristoranti">
                         <span v-if='flag != false && selected_category != ""' v-for='(restaurant, index) in restaurants'>
-                            <form action="{{ route('order.create')}}" method="get">
+                            <form action="{{ route('order.create')}}" method="get" class="in-linea">
                                 <div class=" form-group my-hidden">
                                     <input name="user_id" type="text" :value="(restaurant.user_id != '') ? restaurant.user_id : 'default'">
                                     <input name="user_slug" type="text" :value="(restaurant.slug != '') ? restaurant.slug : 'default'">
                                 </div>
-                                <button type="submit" class="ristorante"> @{{ restaurant.slug.charAt(0).toUpperCase() + restaurant.slug.slice(1).replace('-', ' ') }}</button>
+                                <button type="submit" class="btn-ristorante"> @{{ restaurant.slug.charAt(0).toUpperCase() + restaurant.slug.slice(1).replace('-', ' ') }}</button>
         
                             </form>
                         </span>
@@ -78,18 +97,7 @@
                             </form>
                         </span>
                     </div>
-                    <div v-if='selected_category != ""' class="searchbar">
-                        <form action="" method=''>
-                            <input v-if='flag != false' v-model='searchFilter' placeholder='Find your restaurant' type="text">
-                            <input v-if='flag != false' v-on:click='searchResults' type="button"  value='Search'>
-                            <input v-on:click='selected_category = ""' type="button" value='Back to categories'>
-                            <input v-if='flag == false' v-on:click='resetRestaurants' type="button" value='Back to all restaurants'>
-                        </form>
-                    </div>
-                    <div v-if='selected_category == ""' class="categories">
-                        <button type='sumbit' class="categoria" v-on:click='getRestaurants(category)' v-for='(category,index) in categories'>@{{category.name}}</button>
-                    </div>
-
+                    
                 </div>
             </div>
         </div>
