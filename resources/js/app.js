@@ -155,8 +155,8 @@ const app = new Vue({
             });
         },
         searchResults() {
-            filter = this.searchFilter;
-            // console.log(filter);
+            filter = this.searchFilter.toLowerCase();
+            //console.log(filter);
             newResults = [];
             if (filter != '') {
                 this.restaurants.forEach(element => {

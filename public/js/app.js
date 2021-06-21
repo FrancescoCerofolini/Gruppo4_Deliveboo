@@ -50039,7 +50039,7 @@ var app = new Vue({
       });
     },
     searchResults: function searchResults() {
-      filter = this.searchFilter; // console.log(filter);
+      filter = this.searchFilter.toLowerCase(); //console.log(filter);
 
       newResults = [];
 
