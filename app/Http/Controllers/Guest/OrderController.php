@@ -50,7 +50,7 @@ class OrderController extends Controller
     public function store(Request $request,Faker $faker)
     {
         $data = $request->all();
-        //dd($request);
+        // dd($request);
 
         if ($data['status'] == 'SUBMITTED_FOR_SETTLEMENT') {
             $new_order = new Order();
@@ -62,7 +62,7 @@ class OrderController extends Controller
                 $code_presente = Order::where('code', $code)->first();
             }
             $new_order->code = $code;
-            $new_order->amount = $data['amount'];
+            $new_order->amount = $data['amount'] + $data['delivery'];
             $new_order->fill($data);
             $new_order->save();
 
@@ -83,7 +83,8 @@ class OrderController extends Controller
 
                 $counter = $counter + 1;
             }
-            $new_order->amount = $amount;
+            $new_order->amount = $amount + $data['delivery'];
+            $data["amount"] = $data["amount"] + $data['delivery'];
             $new_order->update($data);
 
             Mail::to($new_order->customer_email)->send(new SendNewMail($new_order));

@@ -27,6 +27,11 @@
                             <label for="amount">Amount</label>
                             <input name="amount" class="form-control" v-model="amount" readonly>
                         </div>
+
+                        <div class="form-group">
+                            <label for="delivery">spese di consegna</label>
+                            <input type="number" value=3.00 name="delivery" class="form-control" readonly>
+                        </div>
  
                     {{-- @endforeach --}}
 
@@ -105,6 +110,7 @@
                 <input type='hidden'name="customer_phone" class="form-control" :value="(numeroTelefono == '') ? 'placeholder' : numeroTelefono">
                 <input type='hidden' name="status" class="form-control" id="status" value="" readonly>
                 <input name="amount" class="form-control" id="amount" v-model="amount" readonly>
+                <input type="hidden" name="delivery" value=3.00>
 
                 {{-- Bottoni pagamento nel form di blade --}}
                 
