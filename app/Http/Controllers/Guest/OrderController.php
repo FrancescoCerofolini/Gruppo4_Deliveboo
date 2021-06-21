@@ -69,7 +69,7 @@ class OrderController extends Controller
             // Codice Laura
             $amount = 0;
             $counter = 0;
-            $dish_ids = Dish::all()->where('user_id', $data['user_id'])->pluck('id')->toArray();
+            $dish_ids = $data['dish_id'];
             foreach ($dish_ids as $value) {
 
                 if ($data['quantity'][$counter]) {

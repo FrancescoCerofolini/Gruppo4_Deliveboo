@@ -96,9 +96,9 @@
                         
                         @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                        @endif
+                        @enderror 
                     </div>
+                    @endif
                 @endforeach
                 <input type='hidden' name="customer_name" class="form-control" :value="(nomeCognome == '') ? 'placeholder' : nomeCognome">
                 <input type='hidden' name="customer_address" class="form-control" :value="(indirizzo == '') ? 'placeholder' : indirizzo">
