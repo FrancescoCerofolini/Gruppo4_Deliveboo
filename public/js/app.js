@@ -49927,12 +49927,13 @@ var app = new Vue({
   mounted: function mounted() {
     var _this = this;
 
-    var categoryApi = 'api/guests/dishes_categories';
-    axios.get(categoryApi).then(function (result) {
-      console.log(result);
-      _this.categories = result.data.results;
-      console.log(_this.categories);
-    });
+    if (window.location.pathname == '/') {
+      var categoryApi = 'api/guests/dishes_categories';
+      axios.get(categoryApi).then(function (result) {
+        // console.log(result);
+        _this.categories = result.data.results;
+      });
+    }
   },
   data: function data() {
     return {
@@ -50015,9 +50016,9 @@ var app = new Vue({
           }
         }
       }).then(function (response) {
-        console.log(response);
-        _this2.payment_status = response.data.data.chargePaymentMethod.transaction.status;
-        console.log(_this2.payment_status); //if (this.payment_status == 'SUBMITTED_FOR_SETTLEMENT') {
+        // console.log(response);
+        _this2.payment_status = response.data.data.chargePaymentMethod.transaction.status; // console.log(this.payment_status);
+        //if (this.payment_status == 'SUBMITTED_FOR_SETTLEMENT') {
         //this.boolean = true;
 
         document.getElementById('status').value = _this2.payment_status;
@@ -50027,33 +50028,38 @@ var app = new Vue({
     getRestaurants: function getRestaurants(category) {
       var _this3 = this;
 
-      parameter = category.id;
-      console.log(parameter);
+      parameter = category.id; // console.log(parameter);
+
       var restaurantApi = 'api/guests/restaurants/' + parameter;
       axios.get(restaurantApi).then(function (result) {
-        console.log(result);
+        // console.log(result);
         _this3.selected_category = category.name;
         _this3.restaurants = result.data.results.response;
         _this3.flag = true;
       });
     },
     searchResults: function searchResults() {
-      filter = this.searchFilter;
-      console.log(filter);
-      newResults = [];
-      this.restaurants.forEach(function (element) {
-        console.log(element);
+      filter = this.searchFilter.toLowerCase(); //console.log(filter);
 
-        if (element.slug.includes(filter)) {
-          newResults.push(element);
-        }
-      });
-      this.collection = newResults;
-      this.flag = false;
-      this.searchFilter = '';
+      newResults = [];
+
+      if (filter != '') {
+        this.restaurants.forEach(function (element) {
+          //console.log(element);
+          var nFix = element.slug.replace('-', ' '); //console.log(nFix);
+
+          if (nFix.includes(filter)) {
+            newResults.push(element);
+          }
+        });
+        this.collection = newResults;
+        this.flag = false;
+        this.searchFilter = '';
+      }
     },
     resetRestaurants: function resetRestaurants() {
       this.collection = this.restaurants;
+      this.flag = true;
     }
   }
 });

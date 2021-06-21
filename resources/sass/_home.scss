@@ -1,0 +1,10 @@
+// Content
+.content {
+    padding-top: 200px;
+}
+
+@media (min-width: 768px) {
+    .content {
+        padding-top: 80px;
+    }
+}
