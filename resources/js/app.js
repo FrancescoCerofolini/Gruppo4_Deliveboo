@@ -160,8 +160,10 @@ const app = new Vue({
             newResults = [];
             if (filter != '') {
                 this.restaurants.forEach(element => {
-                    // console.log(element);
-                    if(element.slug.includes(filter)) {
+                    //console.log(element);
+                    let nFix = element.slug.replace('-', ' ');
+                    //console.log(nFix);
+                    if(nFix.includes(filter)) {
                         newResults.push(element);
                     }
                 });

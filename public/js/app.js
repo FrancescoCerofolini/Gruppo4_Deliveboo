@@ -50045,8 +50045,10 @@ var app = new Vue({
 
       if (filter != '') {
         this.restaurants.forEach(function (element) {
-          // console.log(element);
-          if (element.slug.includes(filter)) {
+          //console.log(element);
+          var nFix = element.slug.replace('-', ' '); //console.log(nFix);
+
+          if (nFix.includes(filter)) {
             newResults.push(element);
           }
         });
