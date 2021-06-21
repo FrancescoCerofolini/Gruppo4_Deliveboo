@@ -30,19 +30,18 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-
-
 const app = new Vue({
     el: '#app',
     mounted() {
-        var categoryApi = 'api/guests/dishes_categories';
-        axios.get(categoryApi)
-        .then(result => {
-            console.log(result);
-            this.categories = result.data.results;
-            console.log(this.categories);
-        });
-},
+        if (window.location.pathname == '/') {
+            var categoryApi = 'api/guests/dishes_categories';
+            axios.get(categoryApi)
+            .then(result => {
+                // console.log(result);
+                this.categories = result.data.results;
+            });
+        }
+    },
     data() {
         return {
             amount: '',
@@ -127,9 +126,9 @@ const app = new Vue({
                 }
             })
             .then(response => {
-                console.log(response);
+                // console.log(response);
                 this.payment_status = response.data.data.chargePaymentMethod.transaction.status;
-                console.log(this.payment_status);
+                // console.log(this.payment_status);
 
                 //if (this.payment_status == 'SUBMITTED_FOR_SETTLEMENT') {
                     //this.boolean = true;
@@ -145,11 +144,11 @@ const app = new Vue({
         },
         getRestaurants(category) {
             parameter = category.id;
-            console.log(parameter);
+            // console.log(parameter);
             var restaurantApi = 'api/guests/restaurants/' + parameter;
             axios.get(restaurantApi)
             .then(result => {
-            console.log(result);
+            // console.log(result);
             this.selected_category = category.name;
             this.restaurants = result.data.results.response
             this.flag = true;
@@ -157,20 +156,23 @@ const app = new Vue({
         },
         searchResults() {
             filter = this.searchFilter;
-            console.log(filter);
+            // console.log(filter);
             newResults = [];
-            this.restaurants.forEach(element => {
-                console.log(element);
-                if(element.slug.includes(filter)) {
-                    newResults.push(element);
-                }
-            });
-            this.collection = newResults;
-            this.flag = false;
-            this.searchFilter = '';
+            if (filter != '') {
+                this.restaurants.forEach(element => {
+                    // console.log(element);
+                    if(element.slug.includes(filter)) {
+                        newResults.push(element);
+                    }
+                });
+                this.collection = newResults;
+                this.flag = false;
+                this.searchFilter = '';
+            }            
         },
         resetRestaurants() {
             this.collection = this.restaurants
+            this.flag = true;
         },
     }
 });

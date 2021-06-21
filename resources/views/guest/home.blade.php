@@ -115,7 +115,7 @@
                     <form action="" method=''>
                         <input v-model='searchFilter'  type="text">
                         <input v-on:click='searchResults' type="button" value='Search'>
-                        <input v-on:click='resetRestaurants' type="button" value='reset'>
+                        <input v-if='flag == false' v-on:click='resetRestaurants' type="button" value='reset'>
                     </form>
                 </div>
                 <div v-if='selected_category == ""' class="categories">
