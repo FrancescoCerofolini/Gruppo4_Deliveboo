@@ -82,14 +82,16 @@
             <form action="{{ route('order.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 
-                <h1>Ordine da {{$user_slug}}</h1>
+                <h1>Ordine da {{ strtoupper(str_replace('-', ' ', $user_slug)) }}</h1>
                 <label>Ristorante</label>
                     <input type="hidden" name="user_id" class="form-control" value="{{$user_id}}">
 
                 @foreach ($dishes as $dish)
-                    <div class="form-group">
+                    @if ($dish->visibility == 1)
+                
+                    <div class="form-group">                            
                         <label>
-                            <h3 class="name_dish">{{$dish->name}}</h3>
+                            <h3 class="name_dish">{{ucfirst($dish->name)}}</h3>
                             <h4>{{$dish->description}}</h4>
                             <h5>Prezzo :<span class="price">{{$dish->price}}</span></h5>                            
                         </label>
@@ -99,10 +101,9 @@
                         
                         @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-
-                        
+                        @enderror 
                     </div>
+                    @endif
                 @endforeach
                 <input type='hidden' name="customer_name" class="form-control" :value="(nomeCognome == '') ? 'placeholder' : nomeCognome">
                 <input type='hidden' name="customer_address" class="form-control" :value="(indirizzo == '') ? 'placeholder' : indirizzo">
