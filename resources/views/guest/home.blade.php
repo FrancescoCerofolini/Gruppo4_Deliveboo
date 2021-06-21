@@ -96,7 +96,7 @@
                                 <input name="user_id" type="text" :value="(restaurant.user_id != '') ? restaurant.user_id : 'default'">
                                 <input name="user_slug" type="text" :value="(restaurant.slug != '') ? restaurant.slug : 'default'">
                             </div>
-                            <button type="submit">ordina da @{{restaurant.slug}}</button>
+                            <button type="submit">ordina da @{{ restaurant.slug.replace('-', ' ') }}</button>
     
                         </form>
                     </span>
@@ -113,8 +113,8 @@
                 </div>
                 <div v-if='selected_category != ""' class="searchbar">
                     <form action="" method=''>
-                        <input v-if='flag != false' v-model='searchFilter'  type="text">
-                        <input v-if='flag != false' v-on:click='searchResults' type="button" value='Search'>
+                        <input v-if='flag != false' v-model='searchFilter' placeholder='Find your restaurant' type="text">
+                        <input v-if='flag != false' v-on:click='searchResults' type="button"  value='Search'>
                         <input v-on:click='selected_category = ""' type="button" value='Back to categories'>
                         <input v-if='flag == false' v-on:click='resetRestaurants' type="button" value='Back to all restaurants'>
                     </form>
