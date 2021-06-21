@@ -136,8 +136,6 @@ const app = new Vue({
                     
                     document.getElementById('tiodio').click();
                 //}
-                
-
             });
 
 
