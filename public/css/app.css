@@ -55,10 +55,6 @@
   display: inline-block;
 }
 
-.debug {
-  border: 1px solid red;
-}
-
 .slideshow-container {
   width: 100%;
   height: 500px;
