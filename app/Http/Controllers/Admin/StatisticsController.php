@@ -30,15 +30,14 @@ class StatisticsController extends Controller
             ->groupBy('year')
             ->get();
         //@dd($orders_by_year);
+        //@dd($orders_by_month);
 
         $orders_by_month = json_decode($orders_by_month, true);
         $orders_by_year = json_decode($orders_by_year, true);
 
         $orders_by_month_pretty = array_fill(0,12,0);
-        //andare a generalizzare gli anni a partire dall'anno di iscrizione
         $orders_by_year_pretty = array_fill(0,10,0);
 
-        //@dd($orders_by_month);
 
         for ($i = 0; $i < count($orders_by_month); $i++) {
             $position = $orders_by_month[$i]['month'] - 1;
@@ -48,7 +47,6 @@ class StatisticsController extends Controller
 
         //@dd($orders_by_year);
         for ($i = 0; $i < count($orders_by_year); $i++) {
-        //andare a generalizzare gli anni a partire dall'anno di iscrizione
             $position = $orders_by_year[$i]['year'] - 2012;
             $orders_by_year_pretty[$position] = $orders_by_year[$i]['orders'];
         }

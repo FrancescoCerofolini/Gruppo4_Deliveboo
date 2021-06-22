@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
            $newUser->address = $data[3][$i];
            $newUser->slug = $data[5][$i];
            $newUser->piva = $data[4][$i];
-           $newUser->created_at = new DateTime('2011-01-01 00:00:01',null);
+           $newUser->created_at = new DateTime('2012-01-01 00:00:00',null);
            $newUser->save();
         }
     }

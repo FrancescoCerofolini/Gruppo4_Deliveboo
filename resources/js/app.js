@@ -134,7 +134,7 @@ const app = new Vue({
                     //this.boolean = true;
                     document.getElementById('status').value = this.payment_status;
                     
-                    document.getElementById('tiodio').click();
+                    document.getElementById('ordine').click();
                 //}
             });
 

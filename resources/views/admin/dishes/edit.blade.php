@@ -26,16 +26,20 @@
                 <div class="form-group">
                     <label>Nome piatto</label>
                     <input type="text" name="name" class="form-control @error('title') is-invalid @enderror" placeholder="Inserisci il titolo" value="{{ value( $dish->name) }}" required>
-                    @error('title')
+                    @error('name')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
+
                     <label>Prezzo</label>
-                    <input type="number" name="price" class="form-control @error('price') is-invalid @enderror" placeholder="Inserisci il titolo" value="{{ value( $dish->price) }}" required>
+                    <input type="number" name="price" step="0.01" class="form-control @error('price') is-invalid @enderror" value="{{ value( $dish->price) }}" required min="0.00" max="20.00">
+                    @error('price')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label>Allergeni</label>
-                    <textarea name="description" class="form-control @error('content') is-invalid @enderror" rows="10" placeholder="Inizia a scrivere qualcosa..." required>{{ value($dish->description) }}</textarea>
-                    @error('content')
+                    <textarea name="description" class="form-control @error('content') is-invalid @enderror" rows="10" placeholder="Inizia a scrivere qualcosa..." required max="255">{{ value($dish->description) }}</textarea>
+                    @error('description')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                     <label for="visibility">Disponibile</label>

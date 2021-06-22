@@ -97,26 +97,40 @@
                         </label>
 
                         <input type="hidden" name="dish_id[]" class="form-control" value="{{ $dish->id }}">
-                        <input type="number" name="quantity[]" id="quantity" class="quantity form-control @error('quantity') is-invalid @enderror" value="0" v-on:change="amountFunction" required min="0">
+                        <input type="number" name="quantity[]" id="quantity" class="quantity form-control @error('quantity') is-invalid @enderror" value="0" v-on:change="amountFunction" required min="0" max="10">
                         
-                        @error('name')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                        @error('quantity[]')
+                            <div class="invalid-feedback" role="alert">{{ $message }}</div>
                         @enderror 
                     </div>
                     @endif
                 @endforeach
-                <input type='hidden' name="customer_name" class="form-control" :value="(nomeCognome == '') ? 'placeholder' : nomeCognome">
-                <input type='hidden' name="customer_address" class="form-control" :value="(indirizzo == '') ? 'placeholder' : indirizzo">
-                <input type='hidden'name="customer_email" class="form-control" :value="(indirizzoMail == '') ? 'placeholder' : indirizzoMail">
-                <input type='hidden'name="customer_phone" class="form-control" :value="(numeroTelefono == '') ? 'placeholder' : numeroTelefono">
+                {{-- CURRENT MAIN --}}
+                <input type='hidden' name="customer_name" class="form-control" :value="(nomeCognome == '') ? 'placeholder' : nomeCognome" required max="255">
+                @error('customer_name')
+                    <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                @enderror
+                <input type='hidden' name="customer_address" class="form-control" :value="(indirizzo == '') ? 'placeholder' : indirizzo" required max="255">
+                @error('customer_address')
+                    <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                @enderror
+                <input type='hidden'name="customer_email" class="form-control" :value="(indirizzoMail == '') ? 'placeholder' : indirizzoMail" required max="255" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$">
+                @error('customer_email')
+                    <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                @enderror
+                <input type='hidden' name="customer_phone" class="form-control" :value="(numeroTelefono == '') ? 'placeholder' : numeroTelefono"  required pattern="[0-9]{10}" >
+                @error('customer_phone')
+                    <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                @enderror
                 <input type='hidden' name="status" class="form-control" id="status" value="" readonly>
                 <input name="amount" class="form-control" id="amount" v-model="amount" readonly>
                 <input type="hidden" name="delivery" value=3.00>
+                
 
                 {{-- Bottoni pagamento nel form di blade --}}
                 
                 <div class="form-group my-hidden">
-                    <button id='tiodio' type="submit">Automatico</button>
+                    <button id='ordine' type="submit">Automatico</button>
                 </div>
 
             </form>
