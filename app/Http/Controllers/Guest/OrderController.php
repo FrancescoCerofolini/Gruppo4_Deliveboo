@@ -31,15 +31,18 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
-    {
+    {   
+        //dd($request);
         $user_id = $request['user_id'];
         $user_slug = $request['user_slug'];
+        $quantity = $request['quantity'];
         $data = [
             'dishes' => Dish::all()->where('user_id', $user_id),
             'user_id' => $user_id,
             'user_slug' => $user_slug,
+            'quantity' => $quantity
         ];
-        return view('guest.order.create', $data);
+        return view('guest.order.create', compact('data'));
     }
 
     /**
@@ -96,6 +99,8 @@ class OrderController extends Controller
             $new_order->amount = $amount + $data['delivery'];
             $data["amount"] = $data["amount"] + $data['delivery'];
             $new_order->update($data);
+            
+            //dd($msUser);
 
             // $user_slug = User::all()->where('id', $data['user_id']);
 
