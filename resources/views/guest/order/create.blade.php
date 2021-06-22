@@ -19,29 +19,40 @@
                             <h5>Prezzo :{{$dish->price}}</h5>
                         </label>
                         
-                        <input type="number" name="quantity[]" class="form-control @error('quantity') is-invalid @enderror" value="0" required>
-                        @error('name')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                        <input type="number" name="quantity[]" class="form-control @error('quantity') is-invalid @enderror" value="0" required min="0" max="10">
+                        @error('quantity[]')
+                            <div class="invalid-feedback" role="alert">{{ $message }}</div>
                         @enderror
                     </div>
                 @endforeach
                      
                 <div class="form-group">
                     <label>Nome e Cognome</label>
-                    <input type="text" name="customer_name" class="form-control" id="exampleFormControlInput1" placeholder="Mario Rossi">
+                    <input type="text" name="customer_name" class="form-control" placeholder="Nome Cognome" required max="255">
+                    @error('customer_name')
+                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label>indirizzo email</label>
-                    <input type="email" name="customer_email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-                    
+                    <input type="email" name="customer_email" class="form-control"  placeholder="name@example.com" required max="255">
+                    @error('customer_email')
+                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label>inserisci il tuo indirizzo</label>
-                    <input type="text" name="customer_address" class="form-control" id="exampleFormControlInput1">
+                    <input type="text" name="customer_address" class="form-control" required max="255">
+                    @error('customer_address')
+                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label>numero di telefono</label>
-                    <input type="text" name="customer_phone" class="form-control" id="exampleFormControlInput1" value="+39">
+                    <input type="text" name="customer_phone" class="form-control" id="exampleFormControlInput1" value="+39" required pattern="^[+39]?[0-9]{12}$">
+                    @error('customer_phone')
+                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="form-group">

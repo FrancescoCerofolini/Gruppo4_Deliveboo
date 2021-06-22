@@ -25,18 +25,22 @@
                 @csrf
                 <div class="form-group">
                     <label>Nome piatto</label>
-                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Inserisci il titolo" value="{{ old('name') }}" required>
+                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Inserisci il titolo" value="{{ old('name') }}" required max="255">
                     @error('name')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
                     @enderror
+
                     <label>Prezzo</label>
-                    <input type="number" name="price" class="form-control @error('price') is-invalid @enderror" placeholder="Inserisci il titolo" value="{{ old('price') }}" required>
+                    <input type="number" step="0.01" name="price" class="form-control @error('price') is-invalid @enderror" placeholder="Inserisci il titolo" value="{{ old('price') }}" required min="1.00" max="20.00">
+                    @error('price')
+                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label>Allergeni</label>
-                    <textarea name="description" class="form-control @error('description') is-invalid @enderror" rows="10" placeholder="Inizia a scrivere qualcosa..." required>{{ old('description') }}</textarea>
+                    <textarea name="description" class="form-control @error('description') is-invalid @enderror" rows="10" placeholder="Inizia a scrivere qualcosa..." required max="255">{{ old('description') }}</textarea>
                     @error('description')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="invalid-feedback" role="alert">{{ $message }}</div>
                     @enderror
                     <label for="visibility">Disponibile</label>
                     <input type="checkbox" name="visibility" id="" value="1">
