@@ -32,15 +32,17 @@ class OrderController extends Controller
      */
     public function create(Request $request)
     {   
-
+        //dd($request);
         $user_id = $request['user_id'];
         $user_slug = $request['user_slug'];
+        $quantity = $request['quantity'];
         $data = [
             'dishes' => Dish::all()->where('user_id', $user_id),
             'user_id' => $user_id,
             'user_slug' => $user_slug,
+            'quantity' => $quantity
         ];
-        return view('guest.order.create', $data);
+        return view('guest.order.create', compact('data'));
     }
 
     /**
@@ -52,7 +54,7 @@ class OrderController extends Controller
     public function store(Request $request,Faker $faker)
     {
         $data = $request->all();
-        //dd($data);
+        // @dd($data);
 
         if ($data['status'] == 'SUBMITTED_FOR_SETTLEMENT') {
             $new_order = new Order();
@@ -64,7 +66,7 @@ class OrderController extends Controller
                 $code_presente = Order::where('code', $code)->first();
             }
             $new_order->code = $code;
-            $new_order->amount = $data['amount'];
+            $new_order->amount = $data['amount'] + $data['delivery'];
             $new_order->fill($data);
             $new_order->save();
 
@@ -85,14 +87,19 @@ class OrderController extends Controller
 
                 $counter = $counter + 1;
             }
-            $new_order->amount = $amount;
+            $new_order->amount = $amount + $data['delivery'];
+            $data["amount"] = $data["amount"] + $data['delivery'];
             $new_order->update($data);
             
             //dd($msUser);
 
+            // $user_slug = User::all()->where('id', $data['user_id']);
+
+            // @dd($user_slug);
+
             Mail::to($new_order->customer_email)->send(new SendNewMail($new_order));
 
-            return (($data['status'] == 'SUBMITTED_FOR_SETTLEMENT') ? 'Pagamento accettato, ' : 'null') . ' mail inviata a ' . $new_order->customer_email;
+            return (($data['status'] == 'SUBMITTED_FOR_SETTLEMENT') ? 'Pagamento accettato, ' : 'null') . ' mail inviata a ' . $new_order->customer_email . view('guest.order.store', $data);
         }
         else {
             $msUser = new User();

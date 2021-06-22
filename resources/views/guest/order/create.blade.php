@@ -4,6 +4,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-xs-6">
+           {{-- @dd($data); --}}
+           {{-- @dd($data['quantity']) --}}
            {{-- <form action="{{ route('order.store') }}" method="post">
                 @csrf
 
@@ -26,6 +28,11 @@
                         <div class="form-group">
                             <label for="amount">Amount</label>
                             <input name="amount" class="form-control" v-model="amount" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="delivery">spese di consegna</label>
+                            <input type="number" value=3.00 name="delivery" class="form-control" readonly>
                         </div>
  
                     {{-- @endforeach --}}
@@ -77,28 +84,42 @@
             <form action="{{ route('order.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 
-                <h1>Ordine da {{ strtoupper(str_replace('-', ' ', $user_slug)) }}</h1>
+                <h1>Ordine da {{ strtoupper(str_replace('-', ' ', $data['user_slug'])) }}</h1>
                 <label>Ristorante</label>
-                    <input type="hidden" name="user_id" class="form-control" value="{{$user_id}}">
-
-                @foreach ($dishes as $dish)
+                    <input type="hidden" name="user_id" class="form-control" value="{{$data['user_id']}}">
+                    @php
+                    $counter = 0;
+                    @endphp
+                    {{-- @dd($data['quantity'][$counter])    --}}
+                @foreach ($data['dishes'] as $dish)
                     @if ($dish->visibility == 1)
+                    
                 
                     <div class="form-group">                            
                         <label>
-                            <h3 class="name_dish">{{ucfirst($dish->name)}}</h3>
+                            <h3 class="name_dish">{{ucfirst($dish->name)}} <?php echo $counter ?></h3>
                             <h4>{{$dish->description}}</h4>
                             <h5>Prezzo :<span class="price">{{$dish->price}}</span></h5>                            
                         </label>
 
                         <input type="hidden" name="dish_id[]" class="form-control" value="{{ $dish->id }}">
-                        <input type="number" name="quantity[]" id="quantity" class="quantity form-control @error('quantity') is-invalid @enderror" value="0" v-on:change="amountFunction" required min="0">
+                        @if ($data['quantity'] != null )
+                        <input type="number" name="quantity[]" id="quantity" class="quantity form-control @error('quantity') is-invalid @enderror" value="{{($data['quantity'][$counter] != "") ? $data['quantity'][$counter] : 0}}" v-on:change="amountFunction" required min="0">  
+                        @else
+                        <input type="number" name="quantity[]" id="quantity" class="quantity form-control @error('quantity') is-invalid @enderror" value="0" v-on:change="amountFunction" required min="0"> 
+                        @endif
+                        
                         
                         @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror 
                     </div>
+                    @php
+                        $counter += 1;
+                    @endphp
+                    
                     @endif
+                    
                 @endforeach
                 <input type='hidden' name="customer_name" class="form-control" :value="(nomeCognome == '') ? 'placeholder' : nomeCognome">
                 <input type='hidden' name="customer_address" class="form-control" :value="(indirizzo == '') ? 'placeholder' : indirizzo">
@@ -106,6 +127,7 @@
                 <input type='hidden'name="customer_phone" class="form-control" :value="(numeroTelefono == '') ? 'placeholder' : numeroTelefono">
                 <input type='hidden' name="status" class="form-control" id="status" value="" readonly>
                 <input name="amount" class="form-control" id="amount" v-model="amount" readonly>
+                <input type="hidden" name="delivery" value="3.00">
 
                 {{-- Bottoni pagamento nel form di blade --}}
                 
