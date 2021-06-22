@@ -65,7 +65,7 @@
                     {{-- searchbar per nome ristorante --}}
                     <div v-if='selected_category != ""' class="searchbar cerca-ristorante">
                         <form action="" method=''>
-                            <input v-if='flag != false' v-model='searchFilter' placeholder='Trova il tuo ristorante' type="text">
+                            <input v-if='flag != false' v-on:keyup.enter='searchResults' v-model='searchFilter' placeholder='Trova il tuo ristorante' type="text" onkeydown="return event.key != 'Enter';">
                             <input v-if='flag != false' v-on:click='searchResults' type="button" value='Cerca'>
                             <input v-on:click='selected_category = ""' type="button" value='Torna alle categorie'>
                             <input v-if='flag == false' v-on:click='resetRestaurants' type="button" value='Torna ai ristoranti'>
