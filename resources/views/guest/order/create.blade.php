@@ -6,7 +6,7 @@
         <div class="col-xs-6">
            {{-- @dd($data); --}}
            {{-- @dd($data['quantity']) --}}
-           {{-- <form action="{{ route('order.store') }}" method="post">
+          {{--  <form action="{{ route('order.store') }}" method="post">
                 @csrf
 
                 <div class="form-group my-hidden">
@@ -14,6 +14,7 @@
                     <input type="text" name="user_id" class="form-control" value="{{$user_id}}">
                 </div> --}}
                 {{-- CARRELLO --}}
+            <form action="" id="myform">
                  <div v-show="flag_cart" class="form-group">
                      {{-- @foreach ($dishes as $dish)  --}}
                         <div v-for="(quantity, index) in quantity_dish" v-if="quantity_dish[index] > 0">
@@ -49,20 +50,31 @@
 
                     <div class="form-group">
                         <label>Nome e Cognome</label>
-                        <input type="text" name="customer_name" class="form-control" id="exampleFormControlInput1" placeholder="Mario Rossi" v-model='nomeCognome'>
+                        <input type="text" name="customer_name" class="form-control @error('customer_name') is-invalid @enderror" id="exampleFormControlInput1" placeholder="Mario Rossi" v-model='nomeCognome' required max="255">
+                        @error('customer_name')
+                            <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                        @enderror    
                     </div>
                     <div class="form-group">
                         <label>indirizzo email</label>
-                        <input type="email" name="customer_email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" v-model='indirizzoMail'>
-                        
+                        <input type="email" name="customer_email" class="form-control @error('email') is-invalid @enderror" id="exampleFormControlInput1" placeholder="name@example.com" v-model='indirizzoMail' required max="255" {{-- pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$" --}}>
+                        @error('customer_email')
+                            <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label>inserisci il tuo indirizzo</label>
-                        <input type="text" name="customer_address" class="form-control" id="exampleFormControlInput1" v-model='indirizzo'>
+                        <input type="text" name="customer_address" class="form-control @error('customer_address') is-invalid @enderror" id="exampleFormControlInput1" v-model='indirizzo' required max="255">
+                        @error('customer_address')
+                            <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label>numero di telefono</label>
-                        <input type="text" name="customer_phone" class="form-control" id="exampleFormControlInput1" value="+39" v-model='numeroTelefono'>
+                        <input type="text" name="customer_phone" class="form-control @error('customer_phone') is-invalid @enderror" id="exampleFormControlInput1" v-model='numeroTelefono' required pattern="[0-9]{10}">
+                        @error('customer_phone')
+                            <div class="invalid-feedback" role="alert">{{ $message }}</div>
+                        @enderror
                     </div>
     
                     <div class="form-group my-hidden">
@@ -73,9 +85,9 @@
                     <button type="button" v-on:click="payment" class="btn btn-success">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg> Paga
                     </button>
-    
+                    @if (!$errors->any())
 
-                    
+                    @endif 
 
                 </div>
             </form>
@@ -122,19 +134,19 @@
                     
                 @endforeach
                 {{-- CURRENT MAIN --}}
-                <input type='hidden' name="customer_name" class="form-control" :value="(nomeCognome == '') ? 'placeholder' : nomeCognome" required max="255">
+                <input type='hidden' name="customer_name" class="form-control @error('customer_name') is-invalid @enderror" :value="(nomeCognome == '') ? 'placeholder' : nomeCognome" required max="255">
                 @error('customer_name')
                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                 @enderror
-                <input type='hidden' name="customer_address" class="form-control" :value="(indirizzo == '') ? 'placeholder' : indirizzo" required max="255">
+                <input type='hidden' name="customer_address" class="form-control @error('customer_address') is-invalid @enderror" :value="(indirizzo == '') ? 'placeholder' : indirizzo" required max="255">
                 @error('customer_address')
                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                 @enderror
-                <input type='hidden'name="customer_email" class="form-control" :value="(indirizzoMail == '') ? 'placeholder' : indirizzoMail" required max="255" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$">
+                <input type='hidden' name="customer_email" class="form-control @error('customer_email') is-invalid @enderror" :value="(indirizzoMail == '') ? 'placeholder' : indirizzoMail" required max="255" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$">
                 @error('customer_email')
                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                 @enderror
-                <input type='hidden' name="customer_phone" class="form-control" :value="(numeroTelefono == '') ? 'placeholder' : numeroTelefono"  required pattern="[0-9]{10}" >
+                <input type='hidden' name="customer_phone" class="form-control @error('customer_phone') is-invalid @enderror" :value="(numeroTelefono == '') ? 'placeholder' : numeroTelefono"  required pattern="[0-9]{10}" >
                 @error('customer_phone')
                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                 @enderror

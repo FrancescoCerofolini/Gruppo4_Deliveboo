@@ -49992,6 +49992,11 @@ var app = new Vue({
       this.names_dish = tmp_names;
       this.quantity_dish = tmp_quantity;
     },
+    validation: function validation() {
+      document.getElementById('myform').addEventListener('error', function () {
+        console.log('ciao');
+      });
+    },
     payment: function payment(event) {
       var _this2 = this;
 
@@ -50198,8 +50203,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\miliu\Documents\Progetto di gruppo\Gruppo4_Deliveboo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\miliu\Documents\Progetto di gruppo\Gruppo4_Deliveboo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\laura\Documents\boolean\Gruppo4_Deliveboo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\laura\Documents\boolean\Gruppo4_Deliveboo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

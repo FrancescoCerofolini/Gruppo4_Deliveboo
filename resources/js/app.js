@@ -102,6 +102,11 @@ const app = new Vue({
             this.names_dish = tmp_names;
             this.quantity_dish = tmp_quantity;
         },
+        validation: function() {
+            document.getElementById('myform').addEventListener('error', function() {
+                console.log('ciao');
+            });
+        },
         payment: function(event) {
             console.log(event);
 

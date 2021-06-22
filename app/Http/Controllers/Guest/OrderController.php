@@ -54,12 +54,10 @@ class OrderController extends Controller
     public function store(Request $request,Faker $faker)
     {
         $request->validate([
-            'customer_address' => 'required|string|max:255',
-            'customer_email' => 'required|string|email|max:255',
+            'customer_address' => 'required|max:255',
+            'customer_email' => 'required|email|max:255',
             'customer_phone' => 'required|regex:/[0-9]{10}/',
-            'customer_name' => 'required|string|max:255',
-            'code' => 'unique',
-            'amount' => 'required',
+            'customer_name' => 'required|max:255'
         ]);    
 
         $data = $request->all();
