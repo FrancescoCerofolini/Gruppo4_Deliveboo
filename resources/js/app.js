@@ -68,7 +68,6 @@ const app = new Vue({
             this.flag_cart = false;
         },
         
-
         amountFunction: function() {
             // conut amount
             var inputs = document.getElementsByClassName('quantity');

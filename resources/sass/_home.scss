@@ -106,6 +106,17 @@
     }
 }
 
+// Searchbar ricerca per nome
+.searchbar {
+    line-height: normal;
+    font-size: 0.8rem;
+    padding-top: 20px;
+
+    input {
+        padding: 10px;
+    }
+}
+
 // Content
 .content {
     padding-top: 180px;
@@ -145,10 +156,6 @@
     .category {
         margin-top: 20px;
     }
-
-    .cerca-ristorante input {
-        padding: 10px;
-    } 
 }
 
 @media (min-width: 768px) {

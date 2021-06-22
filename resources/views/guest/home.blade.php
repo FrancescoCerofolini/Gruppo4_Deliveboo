@@ -56,6 +56,8 @@
 
                 {{-- Slider --}}
                 <div class="slideshow-container">
+
+
                 
                     <div class="mySlides" id="slide1">
                         <div class="overlay">
@@ -75,8 +77,8 @@
                         </div>
                     </div>
                 
-                    <a class="prev" onclick="plusSlides(-1)">❮</a>
-                    <a class="next" onclick="plusSlides(1)">❯</a>
+                    <a class="prev" onclick="changeSlide(-1)">❮</a>
+                    <a class="next" onclick="changeSlide(1)">❯</a>
                 
                 </div>
                 
@@ -135,10 +137,11 @@
         </div>
 
         <script>
+            // funzionamento slider
             var slideIndex = 1;
             showSlides(slideIndex);
             
-            function plusSlides(n) {
+            function changeSlide(n) {
                 showSlides(slideIndex += n);
             }
             
@@ -148,7 +151,6 @@
             
             function showSlides(n) {
                 var i;
-                var t;
                 var slides = document.getElementsByClassName("mySlides");
                 var dots = document.getElementsByClassName("dot");
                 

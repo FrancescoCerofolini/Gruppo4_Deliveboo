@@ -30,11 +30,6 @@
   padding: 0 5px;
 }
 
-.my-navbar .searchbar {
-  line-height: normal;
-  font-size: 0.8rem;
-}
-
 .my-navbar a {
   padding: 0 10px;
   color: #6b6b83;
@@ -172,6 +167,16 @@
   background-color: #ff8d00;
 }
 
+.searchbar {
+  line-height: normal;
+  font-size: 0.8rem;
+  padding-top: 20px;
+}
+
+.searchbar input {
+  padding: 10px;
+}
+
 .content {
   padding-top: 180px;
 }
@@ -210,10 +215,6 @@
 
 .content .category {
   margin-top: 20px;
-}
-
-.content .cerca-ristorante input {
-  padding: 10px;
 }
 
 @media (min-width: 768px) {
