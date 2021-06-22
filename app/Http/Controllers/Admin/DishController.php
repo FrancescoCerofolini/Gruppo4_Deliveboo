@@ -44,11 +44,18 @@ class DishController extends Controller
      */
     public function store(Request $request)
     {   
+        $request->validate([
+            'name' => 'required|unique:posts|max:255',
+            'description' => 'max:255',
+            'price' => 'required|between:0,99.99',
+            'visibility' => 'required',
+        ]);
         
         $data = $request->all();
         $new_Dish = new Dish();
         $new_Dish->fill($data);
         $new_Dish->user_id = Auth::id();
+
         $new_Dish->save();
         return redirect()->route('admin.dish.index');
     }
@@ -84,7 +91,15 @@ class DishController extends Controller
      */
     public function update(Request $request, Dish $dish)
     {   
+        $request->validate([
+            'name' => 'required|unique:posts|max:255',
+            'description' => 'max:255',
+            'price' => 'required|between:0,99.99',
+            'visibility' => 'required',
+        ]);
+
         $data = $request->all();
+        
         $dish->update($data);
         return redirect()->route('admin.dish.index');
     }

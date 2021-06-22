@@ -46,6 +46,16 @@ class OrderController extends Controller
      */
     public function store(Request $request,Faker $faker)
     {
+        $request->validate([
+            'customer_address' => 'required|string|max:255',
+            'customer_email' => 'required|string|email|max:255',
+            'customer_phone' => 'required|regex:/(\+393)[0-9]{9}/',
+            'customer_name' => 'required|string|max:255',
+            'code' => 'unique',
+            'amount' => 'required',
+            'quantity' => 'required|integer|min:0|max:10'
+        ]);    
+
         $data = $request->all();
         //@dd($request);
         

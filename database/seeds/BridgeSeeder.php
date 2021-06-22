@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use App\User;
 use App\Category;
 use App\Order;
+use App\Dish;
 use Illuminate\Support\Facades\DB;
 
 class BridgeSeeder extends Seeder
@@ -57,15 +58,30 @@ class BridgeSeeder extends Seeder
         //order-dish
 
         $orders = Order::all();
+        $counter = 0;
 
         foreach ($orders as $order) {
+            $counter += 1;
             $howMany = rand(1,5);
             $where = rand(0,4);
             $which = array_fill(0,$howMany,0);
+            $priceDB = [];
+            $price = [];
             for ($i = 0; $i < $howMany; $i++) {
-                $which[$i] = rand(1,5) + (5 * $where);
+                do {
+                    $number = rand(1,5) + (5 * $where);
+                } while (in_array($number,$which));
+                $which[$i] = $number;
+                $priceDB[$i] = DB::table('dishes')->selectRaw('price')->where('id','=',$which[$i])->get();
+                $price[$i] = floatval(json_decode($priceDB[$i],true)[0]['price']);
+                $order->amount += $price[$i];
+                $order->save();
             }
+
             $order->dishes()->sync($which);
+            $order->amount += 3.00;
+
+            $order->save();
         }
 
     }
