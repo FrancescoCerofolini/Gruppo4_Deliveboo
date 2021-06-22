@@ -142,6 +142,14 @@
                 <input name="amount" class="form-control" id="amount" v-model="amount" readonly>
                 <input type="hidden" name="delivery" value="3.00">
 
+                <Button v-if='backToHome == false' v-on:click='backToHome = true'>Torna alla Home</Button>
+                
+                <div v-if='backToHome == true'>
+                    <p>Tornando alla home perderai il contenuto attuale nel tuo carrello, vuoi continuare ?</p>
+                    <button type='button'><a href="{{route('guest-home')}}">Si</a></button>
+                    <button v-on:click='backToHome = false'>No</button>
+                </div>
+
                 {{-- Bottoni pagamento nel form di blade --}}
                 
                 <div class="form-group my-hidden">

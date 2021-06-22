@@ -49953,7 +49953,8 @@ var app = new Vue({
       numeroTelefono: '',
       indirizzo: '',
       indirizzoMail: '',
-      nomeCognome: ''
+      nomeCognome: '',
+      backToHome: false
     };
   },
   methods: {
