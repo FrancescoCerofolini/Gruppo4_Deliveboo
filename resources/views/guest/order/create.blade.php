@@ -97,7 +97,7 @@
                 
                     <div class="form-group">                            
                         <label>
-                            <h3 class="name_dish">{{ucfirst($dish->name)}} <?php echo $counter ?></h3>
+                            <h3 class="name_dish">{{ucfirst($dish->name)}}</h3>
                             <h4>{{$dish->description}}</h4>
                             <h5>Prezzo :<span class="price">{{$dish->price}}</span></h5>                            
                         </label>
