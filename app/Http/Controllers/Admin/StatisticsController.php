@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -51,10 +52,13 @@ class StatisticsController extends Controller
             $orders_by_year_pretty[$position] = $orders_by_year[$i]['orders'];
         }
         //@dd($orders_by_year_pretty);
+        $id = Auth::id();
+        $user = User::all()->where('id', $id);
 
         $data = [
             'orders_by_month_pretty' => $orders_by_month_pretty,
             'orders_by_year_pretty' => $orders_by_year_pretty,
+            'user' => $user
         ];
 
         return view('admin.statistics.index',$data);

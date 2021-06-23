@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Order;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -24,8 +25,13 @@ class OrderController extends Controller
             ->where('dishes.user_id', $id)
             ->groupBy('order_id')
             ->get();
+        $user = User::all()->where('id', $id);
+        $data = [
+            'orders' => $orders,
+            'user' => $user
+        ];
 
-        return view('Admin.orders.index', compact('orders'));
+        return view('Admin.orders.index', $data);
     }
 
     /**
