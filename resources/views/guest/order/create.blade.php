@@ -50,20 +50,19 @@
 
                     <div class="form-group">
                         <label>Nome e Cognome</label>
-                        <input type="text" name="customer_name" class="form-control" id="exampleFormControlInput1" placeholder="Mario Rossi" v-model='nomeCognome'>
+                        <input type="text" name="customer_name" class="form-control" id="customer_name" placeholder="Mario Rossi" v-model='nomeCognome' required max="255">
                     </div>
                     <div class="form-group">
                         <label>indirizzo email</label>
-                        <input type="email" name="customer_email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" v-model='indirizzoMail'>
-                        
+                        <input type="email" name="customer_email" class="form-control" id="customer_email" placeholder="name@example.com" v-model='indirizzoMail' required max="255" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$">
                     </div>
                     <div class="form-group">
                         <label>inserisci il tuo indirizzo</label>
-                        <input type="text" name="customer_address" class="form-control" id="exampleFormControlInput1" v-model='indirizzo'>
+                        <input type="text" name="customer_address" class="form-control" id="customer_address" v-model='indirizzo' required max="255">
                     </div>
                     <div class="form-group">
                         <label>numero di telefono</label>
-                        <input type="text" name="customer_phone" class="form-control" id="exampleFormControlInput1" value="+39" v-model='numeroTelefono'>
+                        <input type="text" name="customer_phone" class="form-control" id="customer_phone" v-model='numeroTelefono' required pattern="[0-9]{10}">
                     </div>
     
                     <div class="form-group my-hidden">
