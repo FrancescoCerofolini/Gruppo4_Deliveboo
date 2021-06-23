@@ -18,9 +18,11 @@ class DishController extends Controller
     {   
         $id = Auth::id();
         $piatti = Dish::all()->where('user_id', $id);
+        $user = User::all()->where('id', $id);
 
         $data = [
-            'dishes' => $piatti
+            'dishes' => $piatti,
+            'user' => $user
         ];
         return view('admin.dishes.index', $data);
     }
