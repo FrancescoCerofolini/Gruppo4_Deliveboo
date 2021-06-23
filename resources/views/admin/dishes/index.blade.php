@@ -29,7 +29,7 @@
                                 <td>{{ $dish->id }}</td>
                                 <td>{{ $dish->name }}</td>
                                 <td>{{ $dish->description }}</td>
-                                <td class="text-center">{{ $dish->price }} €</td>
+                                <td class="text-center">{{ $dish->price }} &euro;</td>
                                 <td class="text-center">{{ $dish->visibility }}</td>
                                 <td class="text-center">
                                     <ul class="action-list">

@@ -67,7 +67,7 @@
 .panel .panel-body .table thead tr th{
     color: white;
     background-color: rgba($brandPrimary, 0.5);
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 500;
     text-transform: uppercase;
     padding: 12px;
@@ -78,7 +78,7 @@
 }
 .panel .panel-body .table tbody tr td{
     color: #720E07; // da cambiare in $brandSecondary
-    font-size: 1rem;
+    font-size: 0.8rem;
     padding: 10px 12px;
     vertical-align: middle;
     border: none;
