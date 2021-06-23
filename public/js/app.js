@@ -49935,6 +49935,9 @@ var app = new Vue({
       });
     }
   },
+  created: function created() {
+    this.amountFunction();
+  },
   data: function data() {
     return {
       amount: '',
@@ -50038,6 +50041,15 @@ var app = new Vue({
         this.amountFunction();
       }
     },
+    // resetCart(value){
+    //     console.log(value);
+    //     for(let i = 0; i < value; i++) {
+    //         console.log(i);
+    //         document.getElementsByClassName('quantity')[i].value = 0;
+    //         this.quantity_dish = [];
+    //         this.amountFunction();
+    //     }
+    //},
     getRestaurants: function getRestaurants(category) {
       var _this3 = this;
 

@@ -53,4 +53,64 @@
             margin: 0 5px;
         }
     }
+    .create-home {
+        position: fixed;
+        bottom: 2%;
+        right: 2%;
+    }
+    .create-home-mobile {
+        position: fixed;
+        bottom: 2%;
+        right: 2%;
+    }
+    .backToHome {
+        z-index: 999;
+        position: fixed;
+        transform: translate(-50%, -50%);
+        bottom: 50%;
+        left: 50%;
+        border: 1px solid black;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 50px;
+        border-radius: 10px;
+        button {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            border: 1px solid black;
+            background: transparent;
+            &:focus {
+                outline: none;
+            }
+            &:hover {
+                color: red;
+                background: rgba(0, 0, 0, 0.041);
+            }
+            &:hover a {
+                color: red;
+            }
+            a {
+                overflow: hidden;
+                text-decoration: none;
+                color: black;
+                &:hover {
+                    color: red;
+                }
+            }
+        }
+    }
+    .amount-container {
+        padding: 0px 10px;
+        border: 2px solid black;
+        border-radius: 10px;
+        background-color: #e9ecef;
+        #resoconto {
+            background-color: transparent;
+            display: inline-block;
+            width: 50%;
+            border: none;
+        }
+    }
+    
 }
+

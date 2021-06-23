@@ -169,6 +169,75 @@
   margin: 0 5px;
 }
 
+.ms-create-dish .create-home {
+  position: fixed;
+  bottom: 2%;
+  right: 2%;
+}
+
+.ms-create-dish .create-home-mobile {
+  position: fixed;
+  bottom: 2%;
+  right: 2%;
+}
+
+.ms-create-dish .backToHome {
+  z-index: 999;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  bottom: 50%;
+  left: 50%;
+  border: 1px solid black;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 50px;
+  border-radius: 10px;
+}
+
+.ms-create-dish .backToHome button {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  background: transparent;
+}
+
+.ms-create-dish .backToHome button:focus {
+  outline: none;
+}
+
+.ms-create-dish .backToHome button:hover {
+  color: red;
+  background: rgba(0, 0, 0, 0.041);
+}
+
+.ms-create-dish .backToHome button:hover a {
+  color: red;
+}
+
+.ms-create-dish .backToHome button a {
+  overflow: hidden;
+  text-decoration: none;
+  color: black;
+}
+
+.ms-create-dish .backToHome button a:hover {
+  color: red;
+}
+
+.ms-create-dish .amount-container {
+  padding: 0px 10px;
+  border: 2px solid black;
+  border-radius: 10px;
+  background-color: #e9ecef;
+}
+
+.ms-create-dish .amount-container #resoconto {
+  background-color: transparent;
+  display: inline-block;
+  width: 50%;
+  border: none;
+}
+
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
