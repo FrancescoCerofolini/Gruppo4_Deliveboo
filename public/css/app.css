@@ -50,8 +50,107 @@
   display: inline-block;
 }
 
-.debug {
-  border: 1px solid red;
+.btn_orange {
+  padding: 5px 10px;
+  background-color: #ff8d00;
+  border-color: #ff8d00;
+  border-radius: 7px;
+  color: white;
+}
+
+.btn_orange:hover {
+  text-decoration: none;
+  color: white;
+  background-color: rgba(255, 141, 0, 0.5);
+}
+
+.table_title {
+  margin-bottom: 20px;
+}
+
+.panel .panel-body .table thead tr th {
+  color: white;
+  background-color: rgba(255, 141, 0, 0.5);
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 12px;
+  border: none;
+}
+
+.panel .panel-body .table tbody .row_on_hover:hover {
+  background-color: rgba(255, 141, 0, 0.2);
+}
+
+.panel .panel-body .table tbody tr td {
+  color: #720E07;
+  font-size: 0.8rem;
+  padding: 10px 12px;
+  vertical-align: middle;
+  border: none;
+}
+
+.panel .panel-body .table tbody .action-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.panel .panel-body .table tbody .action-list li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.panel .panel-body .table tbody .action-list li a,
+.panel .panel-body .table tbody .action-list li .form_elimina {
+  color: #0a0404;
+  font-size: 15px;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease 0s;
+}
+
+.panel .panel-body .table tbody .action-list li a:before,
+.panel .panel-body .table tbody .action-list li a:after,
+.panel .panel-body .table tbody .action-list li .form_elimina:before,
+.panel .panel-body .table tbody .action-list li .form_elimina:after {
+  content: attr(data-tip);
+  color: white;
+  background-color: #ff8d00;
+  font-size: 12px;
+  padding: 5px 7px;
+  border-radius: 4px;
+  text-transform: capitalize;
+  display: none;
+  transform: translateX(-50%);
+  position: absolute;
+  left: 50%;
+  top: -32px;
+  transition: all 0.3s ease 0s;
+}
+
+.panel .panel-body .table tbody .action-list li a:after,
+.panel .panel-body .table tbody .action-list li .form_elimina:after {
+  content: "";
+  height: 15px;
+  width: 15px;
+  padding: 0;
+  border-radius: 0;
+  transform: translateX(-50%) rotate(45deg);
+  top: -18px;
+  z-index: -1;
+}
+
+.panel .panel-body .table tbody .action-list li a:hover:before,
+.panel .panel-body .table tbody .action-list li a:hover:after,
+.panel .panel-body .table tbody .action-list li .form_elimina:hover:before,
+.panel .panel-body .table tbody .action-list li .form_elimina:hover:after {
+  display: block;
+}
+
+.panel .panel-body .table tbody .action-list li .form_elimina button {
+  border: none;
+  background-color: transparent;
 }
 
 .btn_orange {
