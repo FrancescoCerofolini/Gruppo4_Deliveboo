@@ -100,6 +100,57 @@
   }
 }
 
+.ms-cart {
+  position: fixed;
+  right: 5%;
+  top: 10%;
+}
+
+.ms-cart span,
+.ms-cart button,
+.ms-cart label,
+.ms-cart input {
+  font-size: 15px;
+}
+
+.ms-cart .dish div {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.ms-cart .dish div input {
+  display: inline-block;
+  overflow: visible;
+  background-color: transparent;
+  border: none;
+}
+
+.ms-cart .dish div #amount {
+  width: 100px;
+}
+
+.ms-cart .dish div #consegna {
+  width: 45px;
+}
+
+.ms-cart .dish div .plate {
+  width: 35px;
+}
+
+.ms-create-dish h1 {
+  font-size: 24px;
+}
+
+.ms-create-dish h3 {
+  font-size: 20px;
+}
+
+.ms-create-dish h4,
+.ms-create-dish h5 {
+  font-size: 16px;
+}
+
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors

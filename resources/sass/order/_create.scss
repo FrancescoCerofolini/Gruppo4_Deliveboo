@@ -1,0 +1,42 @@
+.ms-cart {
+    position: fixed;
+    right: 5%;
+    top: 10%;
+    span,button,label,input {
+        font-size: 15px;
+    }
+    .dish {
+        div {
+            width: max-content;
+            input {
+                display: inline-block;
+                overflow:visible;
+                background-color: transparent;
+                border: none;
+            }
+            #amount {
+                width: 100px;
+            }
+            #consegna {
+                width: 45px;
+            }
+            .plate {
+                width: 35px;
+            }
+        }
+        
+    }
+    
+}
+
+.ms-create-dish {
+    h1 {
+        font-size: 24px;
+    }
+    h3 {
+        font-size: 20px;
+    };
+    h4,h5 {
+        font-size: 16px;
+    };
+}

@@ -49987,16 +49987,16 @@ var app = new Vue({
         quantities[_index] = parseInt(inputs[_index].value);
         tmp_quantity[_index] = quantities[_index];
         tmp_names[_index] = names[_index].childNodes[0].textContent;
-      }
+      } // console.log(tmp_quantity);
 
-      console.log(tmp_quantity);
+
       this.names_dish = tmp_names;
       this.quantity_dish = tmp_quantity;
     },
     payment: function payment(event) {
       var _this2 = this;
 
-      console.log(event);
+      // console.log(event);
       axios({
         method: 'post',
         url: this.url,
@@ -50025,6 +50025,18 @@ var app = new Vue({
         document.getElementById('status').value = _this2.payment_status;
         document.getElementById('ordine').click(); //}
       });
+    },
+    addToCart: function addToCart($value) {
+      document.getElementById('quantity' + $value).value++;
+      this.amountFunction();
+    },
+    decrementCart: function decrementCart($value) {
+      var ref = document.getElementById('quantity' + $value).value;
+
+      if (ref > 0) {
+        document.getElementById('quantity' + $value).value--;
+        this.amountFunction();
+      }
     },
     getRestaurants: function getRestaurants(category) {
       var _this3 = this;

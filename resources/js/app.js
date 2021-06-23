@@ -99,12 +99,12 @@ const app = new Vue({
                 tmp_quantity[index] = quantities[index];
                 tmp_names[index] =names[index].childNodes[0].textContent;
             }
-            console.log(tmp_quantity);
+            // console.log(tmp_quantity);
             this.names_dish = tmp_names;
             this.quantity_dish = tmp_quantity;
         },
         payment: function(event) {
-            console.log(event);
+            // console.log(event);
 
             axios({
                 method: 'post',
@@ -140,6 +140,17 @@ const app = new Vue({
             });
 
 
+        },
+        addToCart($value){
+            document.getElementById('quantity' + $value).value ++;
+            this.amountFunction();
+        },
+        decrementCart($value){
+            let ref = document.getElementById('quantity' + $value).value;
+            if(ref > 0) {
+                document.getElementById('quantity' + $value).value --;
+                this.amountFunction();
+            }
         },
         getRestaurants(category) {
             parameter = category.id;
