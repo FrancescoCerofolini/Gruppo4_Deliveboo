@@ -4,10 +4,10 @@
     <div class="container">
         <div class="row">
                <div class="col-xs-12">
-                   <h1>andata bene</h1>
-                   <h1>andata bene</h1>
-                   <h1>andata bene</h1>
-
+                    <br>
+                    <br>
+                    <br>
+                    <h1>Pagamento accettato</h1>
                </div>
         </div>
     </div>    
