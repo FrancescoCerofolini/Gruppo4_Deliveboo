@@ -40,7 +40,7 @@ class OrderController extends Controller
             'dishes' => Dish::all()->where('user_id', $user_id),
             'user_id' => $user_id,
             'user_slug' => $user_slug,
-            'quantity' => $quantity
+            'quantity' => $quantity,
         ];
         return view('guest.order.create', compact('data'));
     }

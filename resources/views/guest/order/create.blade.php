@@ -105,12 +105,10 @@
 
                         <input type="hidden" name="dish_id[]" class="form-control" value="{{ $dish->id }}">
                         @if ($data['quantity'] != null )
-                        <input type="number" name="quantity[]" id="quantity" class="quantity form-control @error('quantity') is-invalid @enderror" value="{{($data['quantity'][$counter] != "") ? $data['quantity'][$counter] : 0}}" v-on:change="amountFunction" required min="0"  max="10">  
+                            <input type="number" name="quantity[]" id="quantity" class="quantity form-control @error('quantity') is-invalid @enderror" value="{{($data['quantity'][$counter] != "") ? $data['quantity'][$counter] : 0}}" v-on:change="amountFunction" required min="0"  max="10">  
                         @else
-                        <input type="number" name="quantity[]" id="quantity" class="quantity form-control @error('quantity') is-invalid @enderror" value="0" v-on:change="amountFunction" required min="0"  max="10"> 
+                            <input type="number" name="quantity[]" id="quantity" class="quantity form-control @error('quantity') is-invalid @enderror" value="0" v-on:change="amountFunction" required min="0"  max="10"> 
                         @endif
-                        
-                        
                         @error('quantity[]')
                             <div class="invalid-feedback" role="alert">{{ $message }}</div>
                         @enderror 
@@ -131,7 +129,7 @@
                 @error('customer_address')
                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                 @enderror
-                <input type='hidden'name="customer_email" class="form-control" :value="(indirizzoMail == '') ? 'placeholder' : indirizzoMail" required max="255" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$">
+                <input type='hidden' name="customer_email" class="form-control" :value="(indirizzoMail == '') ? 'placeholder' : indirizzoMail" required max="255" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$">
                 @error('customer_email')
                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                 @enderror

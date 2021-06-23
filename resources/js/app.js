@@ -40,7 +40,11 @@ const app = new Vue({
                 // console.log(result);
                 this.categories = result.data.results;
             });
-        }
+        };
+
+        if (window.location.pathname == '/guest/order/create') {
+            this.amountFunction();
+        };
     },
     data() {
         return {
