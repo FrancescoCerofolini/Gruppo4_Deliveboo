@@ -91,9 +91,9 @@
                         <div class="right-side">
                             <input type="hidden" name="dish_id[]" class="form-control" value="{{ $dish->id }}">
                             @if ($data['quantity'] != null )
-                            <input type="number" name="quantity[]" id="{{'quantity' . $index }}" class="quantity form-control @error('quantity') is-invalid @enderror" value="{{($data['quantity'][$counter] != "") ? $data['quantity'][$counter] : 0}}" v-on:change="amountFunction" required min="0"  max="10">  
+                            <input type="hidden" name="quantity[]" id="{{'quantity' . $index }}" class="quantity form-control @error('quantity') is-invalid @enderror" value="{{($data['quantity'][$counter] != "") ? $data['quantity'][$counter] : 0}}" v-on:change="amountFunction" required min="0"  max="10">  
                             @else
-                            <input type="number" name="quantity[]" id={{'quantity' . $index }} class="quantity form-control @error('quantity') is-invalid @enderror" value="0" v-on:change="amountFunction" required min="0"  max="10"> 
+                            <input type="hidden" name="quantity[]" id={{'quantity' . $index }} class="quantity form-control @error('quantity') is-invalid @enderror" value="0" v-on:change="amountFunction" required min="0"  max="10"> 
                             @endif
                             <button type='button' v-on:click='addToCart({{$index}})'>+</button><button type='button' v-on:click='decrementCart({{$index}})'>-</button>
                         </div>                            
@@ -127,7 +127,7 @@
                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                 @enderror
                 <input type='hidden' name="status" class="form-control" id="status" value="" readonly>
-                <input name="amount" class="form-control" id="amount" v-model="amount" readonly>
+                <input type='hidden' name="amount" class="form-control" id="amount" v-model="amount" readonly>
                 <input type="hidden" name="delivery" value="3.00">
 
                 <Button v-if='backToHome == false' v-on:click='backToHome = true'>Torna alla Home</Button>

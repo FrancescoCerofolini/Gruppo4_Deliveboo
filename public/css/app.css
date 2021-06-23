@@ -151,6 +151,24 @@
   font-size: 16px;
 }
 
+.ms-create-dish .left-side,
+.ms-create-dish .right-side {
+  height: 100%;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.ms-create-dish .right-side {
+  padding-left: 50px;
+}
+
+.ms-create-dish .right-side button {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin: 0 5px;
+}
+
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
