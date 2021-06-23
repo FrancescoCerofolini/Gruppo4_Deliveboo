@@ -20,8 +20,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark flex-md-nowrap p-0">
+<body id="body" >
+    {{-- <nav class="navbar navbar-expand-md navbar-dark bg-dark flex-md-nowrap p-0">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Deliveboo</a>
         <ul class="navbar-nav px-3 ml-auto">
             <li class="nav-item">
@@ -40,14 +40,15 @@
                 </form>
             </li>
         </ul>
-    </nav>
-    <div class="container-fluid">
+    </nav> --}}
+    @include('partials.header')
+    <div class="container-fluid p-0" id="dashboard">
         <div class="row">
-            <nav class="col-md-2 d-none d-md-block bg-light sidebar py-4">
-                <div class="sidebar-sticky">
+            <nav class="col-sm-1 col-md-3">
+                <div class="menu_nav_left">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="">
+                            <a class="nav-link active" href="{{route('admin-home')}}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
                                 Dashboard
                             </a>
@@ -70,18 +71,22 @@
                               Statistiche
                             </a>
                         </li>
-                        {{-- <li class="nav-item">
-                            <a class="nav-link" href="#">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
-                              Tags
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                Logout
                             </a>
-                        </li> --}}
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </li>
                     </ul>
 
                 </div>
             </nav>
 
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 py-4">
+            <main role="main" class="col-sm-11 col-md-9">
                 @yield('content')
             </main>
         </div>

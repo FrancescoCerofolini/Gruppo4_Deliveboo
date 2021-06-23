@@ -50,6 +50,18 @@
   display: inline-block;
 }
 
+.debug {
+  border: 1px solid red;
+}
+
+.btn_orange {
+  padding: 5px 10px;
+  background-color: #ff8d00;
+  border-color: #ff8d00;
+  border-radius: 7px;
+  color: white;
+}
+
 .slideshow-container {
   width: 100%;
   height: 500px;
@@ -225,6 +237,77 @@
   .slideshow-container .overlay h2 {
     font-size: 2.5rem;
   }
+}
+
+.banner {
+  position: relative;
+  width: 100%;
+  height: 700px;
+  margin-top: 62px;
+}
+
+.banner .img_banner {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.banner .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #00000075;
+}
+
+.banner .form_banner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.text_bunner {
+  color: white;
+}
+
+.text_bunner h1 {
+  font-size: 3em;
+  font-weight: 700;
+}
+
+.text_bunner span {
+  color: #ff8d00;
+  font-weight: 700;
+}
+
+@media screen and (max-width: 768px) {
+  .banner.register {
+    height: 1000px;
+  }
+}
+
+.card_login {
+  height: 450px;
+}
+
+.card_login .form-group {
+  margin: 35px 0;
+}
+
+#body {
+  background-color: #e8e8e8;
+}
+
+#dashboard {
+  margin-top: 62px;
+}
+
+.menu_nav_left {
+  height: 100%;
+  background-color: white;
 }
 
 /*!
