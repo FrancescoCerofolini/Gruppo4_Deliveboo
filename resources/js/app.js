@@ -40,7 +40,11 @@ const app = new Vue({
                 // console.log(result);
                 this.categories = result.data.results;
             });
-        }
+        };
+
+        if (window.location.pathname == '/guest/order/create') {
+            this.amountFunction();
+        };
     },
     created() {
         this.amountFunction();
@@ -73,7 +77,6 @@ const app = new Vue({
             this.flag_cart = false;
         },
         
-
         amountFunction: function() {
             // conut amount
             var inputs = document.getElementsByClassName('quantity');

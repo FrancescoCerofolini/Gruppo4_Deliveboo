@@ -3,19 +3,24 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+.container {
+    margin-top: 80px;
+}
 // Navbar
 .my-navbar {
     width: 100%;
-    height: 60px;
+    height: 180px;
     font-weight: 500;
     line-height: 60px;
     color: $brandPrimary;
+    background-color: $body-bg;
+    border-bottom: 2px solid $brandSecondary;
     position: fixed;
     padding: 0 20px;
     top: 0;
     left: 0;
     right: 0;
+    z-index: 999;
 
     .logo img {
         max-height: 60px;
@@ -23,11 +28,6 @@
 
     i {
         padding: 0 5px;
-    }
-
-    .searchbar {
-        line-height: normal;
-        font-size: 0.8rem;
     }
 
     a {
@@ -41,12 +41,107 @@
     }
 }
 
+@media (min-width: 768px) {
+    .my-navbar {
+        height: 60px;
+    }
+}
+
 // utilities
 .in-linea {
     display: inline-block;
 }
 
-// DEBUG //
-.debug {
-    border: 1px solid red;
+.btn_orange {
+    padding: 5px 10px;
+    background-color: $brandPrimary;
+    border-color: $brandPrimary;
+    border-radius: 7px;
+    color: white;
+
+    &:hover {
+        text-decoration: none;
+        color: white;
+        background-color: rgba($brandPrimary, 0.5);
+    }
+}
+
+// Tabelle
+.table_title {
+    margin-bottom: 20px;
+}
+.panel .panel-body .table thead tr th{
+    color: white;
+    background-color: rgba($brandPrimary, 0.5);
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding: 12px;
+    border: none;
+}
+.panel .panel-body .table tbody .row_on_hover:hover {
+    background-color: rgba($brandPrimary, 0.2);
+}
+.panel .panel-body .table tbody tr td{
+    color: $brandSecondary; 
+    font-size: 0.8rem;
+    padding: 10px 12px;
+    vertical-align: middle;
+    border: none;
+}
+.panel .panel-body .table tbody .action-list{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.panel .panel-body .table tbody .action-list li{
+    display: inline-block;
+    margin: 0 5px;
+
+
+}
+.panel .panel-body .table tbody .action-list li a,
+.panel .panel-body .table tbody .action-list li .form_elimina{
+    color: rgb(10, 4, 4);
+    font-size: 15px;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease 0s;
+
+    &:before,
+    &:after {
+        content: attr(data-tip);
+        color: white;
+        background-color: $brandPrimary;
+        font-size: 12px;
+        padding: 5px 7px;
+        border-radius: 4px;
+        text-transform: capitalize;
+        display: none;
+        transform: translateX(-50%);
+        position: absolute;
+        left: 50%;
+        top: -32px;
+        transition: all 0.3s ease 0s;
+    }
+
+    &:after {
+        content: '';
+        height: 15px;
+        width: 15px;
+        padding: 0;
+        border-radius: 0;
+        transform: translateX(-50%) rotate(45deg);
+        top: -18px;
+        z-index: -1;        
+    }
+
+    &:hover:before,
+    &:hover:after {
+        display: block;
+    }
+}
+.panel .panel-body .table tbody .action-list li .form_elimina button {
+    border: none;
+    background-color: transparent;
 }

@@ -31,8 +31,18 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
-    {   
+    {
         //dd($request);
+        // $gateway = new \Braintree\Gateway([
+        //     'environment' => config('services.braintree.environment'),
+        //     'merchantId' => config('services.braintree.merchantId'),
+        //     'publicKey' => config('services.braintree.publicKey'),
+        //     'privateKey' => config('services.braintree.privateKey')
+        // ]);
+
+        // $token = $gateway->ClientToken()->generate();
+
+        
         $user_id = $request['user_id'];
         $user_slug = $request['user_slug'];
         $quantity = $request['quantity'];
@@ -40,7 +50,8 @@ class OrderController extends Controller
             'dishes' => Dish::all()->where('user_id', $user_id),
             'user_id' => $user_id,
             'user_slug' => $user_slug,
-            'quantity' => $quantity
+            'quantity' => $quantity,
+            // 'token' => $token
         ];
         return view('guest.order.create', compact('data'));
     }

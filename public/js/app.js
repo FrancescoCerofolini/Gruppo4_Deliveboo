@@ -49934,6 +49934,14 @@ var app = new Vue({
         _this.categories = result.data.results;
       });
     }
+
+    ;
+
+    if (window.location.pathname == '/guest/order/create') {
+      this.amountFunction();
+    }
+
+    ;
   },
   created: function created() {
     this.amountFunction();

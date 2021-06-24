@@ -20,46 +20,49 @@
         <div id='app' class="flex-center position-ref full-height">
 
             <div class="content">
-                <header>
-                    {{-- navbar --}}
-                    <div class="my-navbar">
-                        <div class="row">
-    
-                            <div class="col-xs-4 col-md-4 logo">
-                                <a href="{{ route('guest-home') }}">
-                                    <img src="{{ asset('img/DeliveBoo_logo.png') }}" alt="DeliveBoo logo">
-                                </a>
-                            </div>
-    
-                            <div class="col-xs-3 col-md-4 text-center">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Milano</span>
-                            </div>
-    
-                            @if (Route::has('login'))
-                                <div class="col-xs-5 col-md-4 text-right">
-                                    @auth
-                                        <a href="{{ url('/admin') }}">Home</a>
-                                    @else
-                                        <a href="{{ route('login') }}">Login</a>
-    
-                                        @if (Route::has('register'))
-                                            <a href="{{ route('register') }}">Registrati</a>
-                                        @endif
-                                    @endauth
-                                </div>
-                            @endif
+                @include('partials.header')
+                
+
+                {{-- Slider --}}
+                <div class="slideshow-container">
+
+
+                
+                    <div class="mySlides" id="slide1">
+                        <div class="overlay">
+                            <h2>Scopri nuovi ristoranti vicino a te e goditi i loro fantastici piatti comodamente a casa tua.</h2>
                         </div>
                     </div>
-                </header>
-                {{-- Fine NavBar --}}
+                
+                    <div class="mySlides" id="slide2">
+                        <div class="overlay">
+                            <h2>Sei un ristoratore? Iscriviti e raggiungi migliaia di utenti affamati.</h2>
+                        </div>
+                    </div>
+                
+                    <div class="mySlides" id="slide3">
+                        <div class="overlay">
+                            <h2>Presto disponibile anche a Roma e Bologna.</h2>
+                        </div>
+                    </div>
+                
+                    <a class="prev" onclick="changeSlide(-1)">❮</a>
+                    <a class="next" onclick="changeSlide(1)">❯</a>
+                
+                </div>
+                
+                <div class="dot-container">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                </div>
+                {{-- fine Slider --}}
 
                 <div class="container-fluid text-center">
 
                     {{-- selezione categoria --}}
                     <div v-if='selected_category == ""' class="categories">
-                        <button type='sumbit' class="btn-categoria" v-on:click='getRestaurants(category)'
-                            v-for='(category,index) in categories'>@{{category.name}}</button>
+                        <button type='sumbit' class="btn-categoria" v-on:click='getRestaurants(category)' v-for='(category,index) in categories'>@{{category.name}}</button>
                     </div>
                     
                     {{-- searchbar per nome ristorante --}}
@@ -101,5 +104,45 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            // funzionamento slider
+            var slideIndex = 1;
+            showSlides(slideIndex);
+            
+            function changeSlide(n) {
+                showSlides(slideIndex += n);
+            }
+            
+            function currentSlide(n) {
+                showSlides(slideIndex = n);
+            }
+            
+            function showSlides(n) {
+                var i;
+                var slides = document.getElementsByClassName("mySlides");
+                var dots = document.getElementsByClassName("dot");
+                
+                if (n > slides.length) {
+                    slideIndex = 1
+                }
+                if (n < 1) {
+                    slideIndex = slides.length
+                }
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";  
+                }
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                slides[slideIndex-1].style.display = "block";
+                dots[slideIndex-1].className += " active";
+
+                if (slideIndex > slides.length) {
+                    slideIndex = 1
+                }
+                slides[slideIndex-1].style.display = "block";
+            }
+        </script>
     </body>
 </html>

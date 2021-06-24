@@ -1,0 +1,60 @@
+// banner
+.banner {
+    position: relative;
+    width: 100%;
+    height: 700px;
+    margin-top: 60px;
+
+    .img_banner {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #00000075;
+
+    }
+
+    .form_banner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.text_bunner {
+    color: white;
+    h1 {
+        font-size: 3em;
+        font-weight: 700;
+    }
+    span {
+        color: $brandPrimary;
+        font-weight: 700;
+    }
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .banner.register {
+        height: 1000px;
+    }
+}
+
+
+
+//login
+.card_login {
+    height: 450px;
+    .form-group {
+        margin: 35px 0;
+    }
+}

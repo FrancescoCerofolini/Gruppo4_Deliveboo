@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
+use App\User;
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,6 +27,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.home');
+        $id = Auth::id();
+        $user = User::all()->where('id', $id);
+        return view('admin.home', compact('user'));
     }
 }
