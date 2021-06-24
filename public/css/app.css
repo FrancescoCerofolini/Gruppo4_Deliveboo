@@ -572,10 +572,19 @@
 .ms-create-dish h1 {
   font-size: 24px;
   color: #ff8d00;
+  margin-bottom: 15px;
+  font-style: italic;
 }
 
 .ms-create-dish h3 {
+  font-weight: bolder;
   font-size: 20px;
+  color: #38c172;
+  font-style: italic;
+}
+
+.ms-create-dish h4 {
+  color: red;
 }
 
 .ms-create-dish h4,
@@ -590,10 +599,21 @@
 }
 
 .ms-create-dish .right-side button {
+  color: white;
+  background-color: #ff8d0087;
+  border: 2px solid #c4c4c4;
+  margin-right: 10px;
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  margin: 0 5px;
+}
+
+.ms-create-dish .right-side button:hover {
+  background-color: #ff8d00;
+}
+
+.ms-create-dish .right-side button:active {
+  transform: scale(1.1);
 }
 
 .ms-create-dish .create-home {
@@ -614,17 +634,20 @@
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
-  border: 1px solid black;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 50px;
+  border: 2px solid black;
+  color: white;
+  background: #ff8d00;
+  padding: 70px;
   border-radius: 10px;
 }
 
 .ms-create-dish .backToHome button {
+  margin-right: 15px;
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  border: 1px solid black;
+  border: 2px solid white;
+  color: white;
   background: transparent;
 }
 
@@ -644,7 +667,7 @@
 .ms-create-dish .backToHome button a {
   overflow: hidden;
   text-decoration: none;
-  color: black;
+  color: white;
 }
 
 .ms-create-dish .backToHome button a:hover {
@@ -664,6 +687,17 @@
   display: inline-block;
   width: 50%;
   border: none;
+}
+
+@media screen and (min-width: 992px) {
+  .ms-create-dish .left-side,
+  .ms-create-dish .right-side {
+    display: inline-block;
+  }
+
+  .ms-create-dish .left-side {
+    min-width: 70%;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -722,6 +756,10 @@
     text-align: center;
     width: 100%;
     font-size: 13px;
+  }
+
+  .ms-create-dish .backToHome {
+    padding: 25px;
   }
 }
 

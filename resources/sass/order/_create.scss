@@ -54,13 +54,23 @@
 }
 
 .ms-create-dish {
+    
     h1 {
         font-size: 24px;
         color: $brandPrimary;
+        margin-bottom: 15px;
+        font-style: italic;
     }
     h3 {
+        font-weight: bolder;
         font-size: 20px;
+        color: #38c172;
+        font-style: italic;
+        
     };
+    h4 {
+        color: red;
+    }
     h4,h5 {
         font-size: 16px;
     };
@@ -70,10 +80,19 @@
     }
     .right-side {
         button {
+            color: white;
+            background-color: #ff8d0087;
+            border: 2px solid rgb(196, 196, 196);
+            margin-right: 10px;
             border-radius: 50%;
             width: 40px;
             height: 40px;
-            margin: 0 5px;
+            &:hover {
+                background-color: $brandPrimary;
+            }
+            &:active {
+                transform: scale(1.1);
+            }
         }
     }
     .create-home {
@@ -92,15 +111,18 @@
         transform: translate(-50%, -50%);
         top: 50%;
         left: 50%;
-        border: 1px solid black;
-        background: rgba(255, 255, 255, 0.9);
-        padding: 50px;
+        border: 2px solid black;
+        color: white;
+        background: $brandPrimary;
+        padding: 70px;
         border-radius: 10px;
         button {
+            margin-right: 15px;
             border-radius: 50%;
             width: 40px;
             height: 40px;
-            border: 1px solid black;
+            border: 2px solid white;
+            color: white;
             background: transparent;
             &:focus {
                 outline: none;
@@ -115,7 +137,7 @@
             a {
                 overflow: hidden;
                 text-decoration: none;
-                color: black;
+                color: white;
                 &:hover {
                     color: red;
                 }
@@ -136,6 +158,16 @@
         }
     }
     
+}
+@media screen and (min-width : 992px){
+    .ms-create-dish {
+        .left-side,.right-side {
+            display: inline-block;
+        }
+        .left-side {
+            min-width: 70%;
+        }
+    }
 }
 @media screen and (max-width : 768px){
     .ms-create-dish {
@@ -186,6 +218,9 @@
                 width: 100%;
                 font-size: 13px;
             }
+        }
+        .backToHome {
+            padding: 25px;
         }
     }
 }
