@@ -459,7 +459,7 @@
   color: #ff8d00;
 }
 
-main {
+#dashboard main {
   width: calc(100% - 220px);
   margin-left: 220px;
 }
@@ -490,6 +490,15 @@ main {
     max-width: 120px;
     min-width: 120px;
   }
+}
+
+.panel {
+  position: relative;
+}
+
+.panel .list_dish {
+  position: absolute;
+  right: -30px;
 }
 
 /*!
