@@ -23,16 +23,16 @@ Route::prefix('guest')
     ->group(function () {
         Route::resource('/dish', 'DishController');
         Route::resource('dish', DishController::class)->names([
-        'index' => 'guest.dish.index',
+            'index' => 'guest.dish.index',
         ]);
         Route::resource('/order', 'OrderController');
-        Route::prefix('order')
-            ->namespace('Order')
-            ->group(function() {
-                Route::get('/payment', 'PaymentController@index')->name('guest-payment');
-            });
         Route::resource('/category', 'CategoryController');
-        });
+        
+        Route::get('/payment', 'PaymentController@index1');
+        Route::post('/payment/checkout', 'PaymentController@index2');
+        Route::get('/payment/hosted', 'PaymentController@index3');
+        
+    });
 Route::prefix('admin')
     ->namespace('Admin')
     ->middleware('auth')
