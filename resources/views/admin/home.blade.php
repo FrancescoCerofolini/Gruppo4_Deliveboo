@@ -20,7 +20,6 @@
                     @foreach ($user as $value)
                         <p>Bentornato <strong>{{$value->name}}</strong>!</p>
                     @endforeach
-                    <p>{{-- inserire data e ora --}}</p>
                 </div>
             </div>
         </div>
