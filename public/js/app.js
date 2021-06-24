@@ -50005,7 +50005,7 @@ var app = new Vue({
       this.quantity_dish = tmp_quantity;
     },
     payment: function payment(event) {
-      // console.log(event);
+      console.log(event);
       document.getElementById('ordine').click();
     },
     addToCart: function addToCart($value) {

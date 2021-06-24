@@ -56,7 +56,7 @@
                                     </section>
 
                                     <input id="nonce" name="payment_method_nonce" type="hidden" />
-                                    <button class="button"  v-on:click="payment" type="submit"><span>Test Transaction</span></button>
+                                    <button class="button" type="submit"><span>Test Transaction</span></button>
                                 </form>
                             </div>
                         </div>

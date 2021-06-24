@@ -44,8 +44,9 @@ class PaymentController extends Controller
 
     public function index2(Request $request,Faker $faker)
     {
+
         $data = $request->all();
-        @dd($request);
+        @dd($data);
         $gateway = new \Braintree\Gateway([
             'environment' => config('services.braintree.environment'),
             'merchantId' => config('services.braintree.merchantId'),

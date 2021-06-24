@@ -110,7 +110,7 @@ const app = new Vue({
             this.quantity_dish = tmp_quantity;
         },
         payment: function(event) {
-            // console.log(event);
+            console.log(event);
 
             document.getElementById('ordine').click();
 

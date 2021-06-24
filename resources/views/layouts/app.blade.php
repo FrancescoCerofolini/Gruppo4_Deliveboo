@@ -78,8 +78,8 @@
 
             
         </main>
-        @yield('extra-script')
+        
     </div>
-    
+    @yield('extra-script')
 </body>
 </html>
