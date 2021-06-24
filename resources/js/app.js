@@ -64,7 +64,8 @@ const app = new Vue({
             indirizzo : '',
             indirizzoMail : '',
             nomeCognome : '',
-            backToHome : false
+            backToHome : false,
+            cartShow : true
         }
     },
     methods: {
@@ -133,13 +134,10 @@ const app = new Vue({
                 // console.log(response);
                 this.payment_status = response.data.data.chargePaymentMethod.transaction.status;
                 // console.log(this.payment_status);
+                document.getElementById('status').value = this.payment_status;
+                
+                document.getElementById('ordine').click();
 
-                //if (this.payment_status == 'SUBMITTED_FOR_SETTLEMENT') {
-                    //this.boolean = true;
-                    document.getElementById('status').value = this.payment_status;
-                    
-                    document.getElementById('ordine').click();
-                //}
             });
 
 
@@ -155,16 +153,19 @@ const app = new Vue({
                 this.amountFunction();
             }
         },
-        // resetCart(value){
-        //     console.log(value);
-        //     for(let i = 0; i < value; i++) {
-        //         console.log(i);
-        //         document.getElementsByClassName('quantity')[i].value = 0;
-        //         this.quantity_dish = [];
-        //         this.amountFunction();
-        //     }
+        cartToggle(){
+            this.flag_cart = false;
+            if(this.cartShow) {
+                this.flag_cart = false;
+                this.cartShow = false;
+            }
+            else {
+                this.flag_cart = true;
+                this.cartShow = true;
+            }
+            this.amountFunction();
             
-        //},
+        },
         getRestaurants(category) {
             parameter = category.id;
             // console.log(parameter);

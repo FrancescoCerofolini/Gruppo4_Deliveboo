@@ -10,7 +10,7 @@
             <form class='ms-create-dish' action="{{ route('order.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 
-                <h1 >{{ strtoupper(str_replace('-', ' ', $data['user_slug'])) }}</h1>
+                <h1>{{ strtoupper(str_replace('-', ' ', $data['user_slug'])) }}</h1>
                     <input type="hidden" name="user_id" class="form-control" value="{{$data['user_id']}}">
                     @php
                     $counter = 0;
@@ -26,7 +26,7 @@
                         $nDishes = count($avaibleDishes);
                         
                     @endphp
-                    <div v-if='flag_cart == false' class="amount-container">
+                    <div v-if='!flag_cart' class="amount-container">
                         <label for="amount">Totale €</label>
                         <input id='resoconto' :type="(flag_cart == false) ? 'number' : 'hidden'" name="amount" class="form-control" id="amount" v-model="amount" readonly>
                     </div>
@@ -49,7 +49,7 @@
                             @else
                             <input type='hidden' name="quantity[]" id={{'quantity' . $index }} class="quantity form-control @error('quantity') is-invalid @enderror" value="0" v-on:change="amountFunction" required min="0"  max="10" readonly> 
                             @endif
-                            <button v-show="flag_cart != false" type='button' v-on:click='addToCart({{$index}})'>+</button><button v-show="flag_cart != false" type='button' v-on:click='decrementCart({{$index}})'>-</button>
+                            <button v-show="flag_cart" type='button' v-on:click='addToCart({{$index}}), cartShow = true'>+</button><button v-show="flag_cart != false" type='button' v-on:click='decrementCart({{$index}}), cartShow = true'>-</button>
                         </div>                            
                         
                         @error('quantity[]')
@@ -64,19 +64,19 @@
                     
                 @endforeach
                 {{-- CURRENT MAIN --}}
-                <input type='hidden' name="customer_name" class="form-control" :value="(nomeCognome == '') ? 'placeholder' : nomeCognome" required max="255">
+                <input type='hidden' name="customer_name" class="form-control" :value="(nomeCognome == '') ? 'placeholder' : nomeCognome" required max="255" min='1'>
                 @error('customer_name')
                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                 @enderror
-                <input type='hidden' name="customer_address" class="form-control" :value="(indirizzo == '') ? 'placeholder' : indirizzo" required max="255">
+                <input type='hidden' name="customer_address" class="form-control" :value="(indirizzo == '') ? 'placeholder' : indirizzo" required max="255" min='1'>
                 @error('customer_address')
                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                 @enderror
-                <input type='hidden'name="customer_email" class="form-control" :value="(indirizzoMail == '') ? 'placeholder' : indirizzoMail" required max="255" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$">
+                <input type='hidden'name="customer_email" class="form-control" :value="(indirizzoMail == '') ? 'placeholder' : indirizzoMail" required max="255" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$" min='1'>
                 @error('customer_email')
                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                 @enderror
-                <input type='hidden' name="customer_phone" class="form-control" :value="(numeroTelefono == '') ? 'placeholder' : numeroTelefono"  required pattern="[0-9]{10}" >
+                <input type='hidden' name="customer_phone" class="form-control" :value="(numeroTelefono == '') ? 'placeholder' : numeroTelefono"  required pattern="[0-9]{10}" min='10'>
                 @error('customer_phone')
                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                 @enderror
@@ -108,7 +108,12 @@
     <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
         <div class="ms-cart">
             {{-- CARRELLO --}}
-            <div v-show="flag_cart" class="form-group dish">
+            <div class="cart_icon">
+                <button v-on:click='cartToggle' class='cart-button' type='button'>
+                    <i class="fas fa-shopping-cart"></i>
+                </button>
+            </div>
+            <div v-show="flag_cart && cartShow" class="form-group dish">
                 <div v-for="(quantity, index) in quantity_dish" v-if="quantity_dish[index] > 0">
                     <span>@{{names_dish[index]}} :</span>
                     {{-- <label for="quantity[]">quantità</label> --}}
@@ -128,40 +133,40 @@
                 
                 {{-- <button class="btn btn-success" v-on:click='resetCart({{$nDishes}})' type='button'>Svuota il carrello</button> --}}
 
-                <button type="button" class="btn btn-success" v-on:click="hiddenCart">Procedi al pagamento</button>
+                <button type="button" class="btn btn-success" v-on:click="hiddenCart, flag_cart = false, cartShow = false">Procedi al pagamento</button>
         
             </div>
             {{-- DATI UTENTE --}}
             
 
-            <div v-show="flag_cart == false" class="form-group">
+            <div v-show="!flag_cart && !cartShow " class="form-group">
 
                 <div class="form-group">
                     <label>Nome e Cognome</label>
-                    <input type="text" name="customer_name" class="form-control" id="exampleFormControlInput1" placeholder="Mario Rossi" v-model='nomeCognome'>
+                    <input type="text" name="customer_name" class="form-control" id="exampleFormControlInput1" placeholder="Mario Rossi" v-model='nomeCognome' required>
                 </div>
                 <div class="form-group">
                     <label>Indirizzo email</label>
-                    <input type="email" name="customer_email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" v-model='indirizzoMail'>
+                    <input type="email" name="customer_email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" v-model='indirizzoMail' required>
                     
                 </div>
                 <div class="form-group">
                     <label>Inserisci il tuo indirizzo</label>
-                    <input type="text" name="customer_address" class="form-control" id="exampleFormControlInput1" v-model='indirizzo'>
+                    <input type="text" name="customer_address" class="form-control" id="exampleFormControlInput1" v-model='indirizzo' required>
                 </div>
                 <div class="form-group">
                     <label>Numero di telefono</label>
-                    <input type="text" name="customer_phone" class="form-control" id="exampleFormControlInput1" value="+39" v-model='numeroTelefono'>
+                    <input type="text" name="customer_phone" class="form-control" id="exampleFormControlInput1" value="+39" v-model='numeroTelefono' required>
                 </div>
 
                 <div class="form-group my-hidden">
                     <label>status</label>
-                    <input type='hidden' name="status" class="form-control"  :value="payment_status">
+                    <input type='hidden' name="status" class="form-control"  :value="payment_status" required>
                 </div>
 
                 <button type="button" v-on:click="payment" class="btn btn-success"> Paga
                 </button>
-                <button v-on:click="flag_cart = true"class='btn btn-success'>Torna al carrello</button>
+                <button v-on:click="flag_cart = true , cartShow = true"class='btn btn-success'>Torna al carrello</button>
             </div>
         </div>
         

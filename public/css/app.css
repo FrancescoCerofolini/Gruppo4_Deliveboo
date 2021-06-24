@@ -103,7 +103,7 @@
 .ms-cart {
   position: fixed;
   right: 5%;
-  top: 10%;
+  top: 20%;
 }
 
 .ms-cart span,
@@ -111,6 +111,32 @@
 .ms-cart label,
 .ms-cart input {
   font-size: 15px;
+}
+
+.ms-cart .cart_icon {
+  position: fixed;
+  transform: translate(-50%, -50%);
+  right: 7.5%;
+  top: 15%;
+  text-align: center;
+}
+
+.ms-cart .cart_icon .cart-button {
+  border: none;
+  background-color: transparent;
+}
+
+.ms-cart .cart_icon .cart-button:focus {
+  outline: none;
+}
+
+.ms-cart .cart_icon .cart-button i {
+  font-size: 60px;
+  color: #ff8d00;
+}
+
+.ms-cart .cart_icon .cart-button i:hover {
+  color: #ff8d0087;
 }
 
 .ms-cart .dish div {
@@ -140,6 +166,7 @@
 
 .ms-create-dish h1 {
   font-size: 24px;
+  color: #ff8d00;
 }
 
 .ms-create-dish h3 {
@@ -155,11 +182,6 @@
 .ms-create-dish .right-side {
   height: 100%;
   vertical-align: middle;
-  display: inline-block;
-}
-
-.ms-create-dish .right-side {
-  padding-left: 50px;
 }
 
 .ms-create-dish .right-side button {
@@ -185,7 +207,7 @@
   z-index: 999;
   position: fixed;
   transform: translate(-50%, -50%);
-  bottom: 50%;
+  top: 50%;
   left: 50%;
   border: 1px solid black;
   background: rgba(255, 255, 255, 0.9);
@@ -225,7 +247,8 @@
 }
 
 .ms-create-dish .amount-container {
-  padding: 0px 10px;
+  width: 70%;
+  padding: 0px 0px 0px 5px;
   border: 2px solid black;
   border-radius: 10px;
   background-color: #e9ecef;
@@ -236,6 +259,65 @@
   display: inline-block;
   width: 50%;
   border: none;
+}
+
+@media screen and (max-width: 768px) {
+  .ms-create-dish .amount-container {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .ms-cart span,
+  .ms-cart button,
+  .ms-cart label,
+  .ms-cart input {
+    font-size: 12px;
+  }
+
+  .ms-cart .cart_icon {
+    position: fixed;
+    transform: translate(-50%, -50%);
+    right: 15%;
+    top: 15%;
+    text-align: center;
+  }
+
+  .ms-cart .cart_icon .cart-button i {
+    font-size: 35px;
+  }
+
+  .ms-create-dish h1 {
+    font-size: 20px;
+  }
+
+  .ms-create-dish h3 {
+    font-size: 16px;
+  }
+
+  .ms-create-dish h4,
+  .ms-create-dish h5 {
+    font-size: 12px;
+  }
+
+  .ms-create-dish .left-side,
+  .ms-create-dish .right-side {
+    display: block;
+    padding: 0px;
+  }
+
+  .ms-create-dish .amount-container {
+    padding-left: 5px;
+    font-size: 13px;
+    width: 42.5%;
+  }
+
+  .ms-create-dish .amount-container input {
+    padding: 0px;
+    text-align: center;
+    width: 100%;
+    font-size: 13px;
+  }
 }
 
 /*!
