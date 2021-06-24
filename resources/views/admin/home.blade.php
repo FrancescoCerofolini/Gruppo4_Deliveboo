@@ -1,6 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -14,7 +15,12 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    
+
+                    @foreach ($user as $value)
+                        <p>Bentornato <strong>{{$value->name}}</strong>!</p>
+                    @endforeach
+                    <p>{{-- inserire data e ora --}}</p>
                 </div>
             </div>
         </div>

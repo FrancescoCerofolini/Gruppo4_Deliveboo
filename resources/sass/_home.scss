@@ -119,7 +119,7 @@
 
 // Content
 .content {
-    padding-top: 180px;
+    padding-top: 60px;
 
     .btn-categoria {
         color: white;
@@ -159,10 +159,6 @@
 }
 
 @media (min-width: 768px) {
-    .content {
-        padding-top: 60px;
-    }
-
     .slideshow-container {
         .overlay {
             h2 {
