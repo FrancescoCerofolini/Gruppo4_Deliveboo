@@ -46,9 +46,6 @@ const app = new Vue({
             this.amountFunction();
         };
     },
-    created() {
-        this.amountFunction();
-    },
     data() {
         return {
             amount: '',
@@ -69,7 +66,11 @@ const app = new Vue({
             indirizzoMail : '',
             nomeCognome : '',
             backToHome : false,
-            cartShow : true
+            cartShow : true,
+            msCardNumber : '',
+            msExpirationDate : '',
+            msCvv : '',
+            msPostal : ''
         }
     },
     methods: {
@@ -110,40 +111,88 @@ const app = new Vue({
             this.names_dish = tmp_names;
             this.quantity_dish = tmp_quantity;
         },
-        payment: function(event) {
-            // console.log(event);
-
-            axios({
-                method: 'post',
-                url: this.url,
-                headers: {
-                    'Authorization': 'Basic aHJydnM3ZHBnaGRxaDZ4OTo2ODA3NTc0MjFmMzM4MDgxNTFhYmY2YmZiZTkxNmVhNw==',
-                    'Braintree-Version': '2021-06-09',
-                    'Content-Type': 'application/json'
-                },
-                data: {
-                    'query': 'mutation chargePaymentMethod($input: ChargePaymentMethodInput!) { chargePaymentMethod(input: $input) { transaction { id status } } }',
-                    'variables': {
-                        'input': {
-                        'paymentMethodId': 'fake-valid-mastercard-nonce',
-                        'transaction': {
-                            'amount': '1.00'
+        
+        payment: function() {
+            
+            let today = new Date();
+            let dd = String(today.getDate()).padStart(2, '0');
+            let mm = String(today.getMonth() + 1).padStart(2, '0'); 
+            let yyyy = today.getFullYear();
+            today =  yyyy + '-' + mm + '-' + dd;
+            //Raccolta informazioni
+            let vName = document.getElementById('v-name').value;
+            let vAddress = document.getElementById('v-indirizzo').value;
+            let vMail = document.getElementById('v-mail').value;
+            let vPhone = document.getElementById('v-phone').value;
+            let getDate = document.getElementById('r-date').value;
+            let getCardNumber = (document.getElementById('card-numbers').value).length;
+            let getCvv = (document.getElementById('ms-cvv').value).length;
+            getPostalCode = (document.getElementById('ms-postal').value).length;
+            // VERIFICHE
+            let verifiedName = (vName.length > 0);
+            let verifiedAddress = (vAddress.length > 0);
+            let verifiedMail = (vMail.length > 0 && vMail.includes('@'));
+            let verifiedPhone = (vPhone.length >= 10);
+            let verifiedDate = (getDate >= today);
+            let verfiedCardNumber = (getCardNumber == 16);
+            let verifiedCvv = (getCvv == 3);
+            let verifiedPostal = (getPostalCode > 3);
+            // CONDIZIONE
+            if(verifiedDate && verfiedCardNumber && verifiedCvv && verifiedPostal && verifiedName && verifiedAddress && verifiedMail && verifiedPhone) {
+                axios({
+                    method: 'post',
+                    url: this.url,
+                    headers: {
+                        'Authorization': 'Basic aHJydnM3ZHBnaGRxaDZ4OTo2ODA3NTc0MjFmMzM4MDgxNTFhYmY2YmZiZTkxNmVhNw==',
+                        'Braintree-Version': '2021-06-09',
+                        'Content-Type': 'application/json'
+                    },
+                    data: {
+                        'query': 'mutation chargePaymentMethod($input: ChargePaymentMethodInput!) { chargePaymentMethod(input: $input) { transaction { id status } } }',
+                        'variables': {
+                            'input': {
+                            'paymentMethodId': 'fake-valid-mastercard-nonce',
+                            'transaction': {
+                                'amount': '1.00'
+                            }
+                        }
                         }
                     }
-                    }
-                }
-            })
-            .then(response => {
-                // console.log(response);
-                this.payment_status = response.data.data.chargePaymentMethod.transaction.status;
-                // console.log(this.payment_status);
-                document.getElementById('status').value = this.payment_status;
-                
-                document.getElementById('ordine').click();
-
-            });
-
-
+                })
+                .then(response => {
+                    // console.log(response);
+                    this.payment_status = response.data.data.chargePaymentMethod.transaction.status;
+                    // console.log(this.payment_status);
+                    document.getElementById('status').value = this.payment_status;
+                    
+                    document.getElementById('ordine').click();
+    
+                });
+            }
+            else if(!verifiedName){
+                alert('Inserire nome e cognome !')
+            }
+            else if(!verifiedAddress){
+                alert('Inserire un indirizzo valido !')
+            }
+            else if(!verifiedMail){
+                alert('Inserire una mail valida !')
+            }
+            else if(!verifiedPhone){
+                alert('Inserire un numero di telefono valido !')
+            }
+            else if(!verifiedDate){
+                alert('Data di scadenza non valida');
+            }
+            else if(!verfiedCardNumber){
+                alert('Lunghezza numero carta non valido');
+            }
+            else if(!verifiedCvv){
+                alert('Lunghezza CVV non valida');
+            }
+            else {
+                alert('Codice postale troppo corto');
+            }
         },
         addToCart($value){
             document.getElementById('quantity' + $value).value ++;
@@ -202,7 +251,7 @@ const app = new Vue({
         resetRestaurants() {
             this.collection = this.restaurants
             this.flag = true;
-        },
+        }
     }
 });
 

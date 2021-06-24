@@ -1,4 +1,104 @@
 @import '../variables';
+// CSS CHECKOUT BRAINTREE
+.hosted-field {
+    height: 50px;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px;
+    display: inline-block;
+    box-shadow: none;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid #dddddd;
+    line-height: 20px;
+    background: #fcfcfc;
+    margin-bottom: 12px;
+    background: linear-gradient(to right, white 50%, #fcfcfc 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    transition: all 300ms ease-in-out;
+    input {
+        background-color: transparent;
+        width: 100%;
+        border: none;
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        }
+        &:focus {
+            border: none;
+            outline: none;
+        }
+    }
+  }
+  
+  .hosted-fields--label {
+    font-family: courier, monospace;
+    text-transform: uppercase;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 6px;
+  }
+  
+  .button-container {
+    display: block;
+    text-align: center;
+  }
+  
+  .button {
+    cursor: pointer;
+    font-weight: 500;
+    line-height: inherit;
+    position: relative;
+    text-decoration: none;
+    text-align: center;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 3px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    display: inline-block;
+  }
+  
+  .button--small {
+    padding: 10px 20px;
+    font-size: 0.875rem;
+  }
+  
+  .button--green {
+    outline: none;
+    background-color: #64d18a;
+    border-color: #64d18a;
+    color: white;
+    transition: all 200ms ease;
+  }
+  
+  .button--green:hover {
+    background-color: #8bdda8;
+    color: white;
+  }
+  
+  .braintree-hosted-fields-focused {
+    border: 1px solid #64d18a;
+    border-radius: 1px;
+    background-position: left bottom;
+  }
+  
+  .braintree-hosted-fields-invalid {
+    border: 1px solid #ed574a;
+  }
+  
+  .braintree-hosted-fields-valid {
+  }
+  
+  #cardForm {
+    max-width: 50.75em;
+    margin: 0 auto;
+    padding: 1.875em;
+  }
+// 
 .ms-cart {
     position: fixed;
     right: 5%;
@@ -52,7 +152,45 @@
     }
     
 }
-
+.msToHome {
+    z-index: 999;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    border: 2px solid black;
+    color: white;
+    background: $brandPrimary;
+    padding: 70px;
+    border-radius: 10px;
+    button {
+        margin-right: 15px;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        border: 2px solid white;
+        color: white;
+        background: transparent;
+        &:focus {
+            outline: none;
+        }
+        &:hover {
+            color: red;
+            background: rgba(0, 0, 0, 0.041);
+        }
+        &:hover a {
+            color: red;
+        }
+        a {
+            overflow: hidden;
+            text-decoration: none;
+            color: white;
+            &:hover {
+                color: red;
+            }
+        }
+    }
+}
 .ms-create-dish {
     
     h1 {
@@ -105,48 +243,9 @@
         bottom: 2%;
         right: 2%;
     }
-    .backToHome {
-        z-index: 999;
-        position: fixed;
-        transform: translate(-50%, -50%);
-        top: 50%;
-        left: 50%;
-        border: 2px solid black;
-        color: white;
-        background: $brandPrimary;
-        padding: 70px;
-        border-radius: 10px;
-        button {
-            margin-right: 15px;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            border: 2px solid white;
-            color: white;
-            background: transparent;
-            &:focus {
-                outline: none;
-            }
-            &:hover {
-                color: red;
-                background: rgba(0, 0, 0, 0.041);
-            }
-            &:hover a {
-                color: red;
-            }
-            a {
-                overflow: hidden;
-                text-decoration: none;
-                color: white;
-                &:hover {
-                    color: red;
-                }
-            }
-        }
-    }
     .amount-container {
         width: 70%;
-        padding: 0px 0px 0px 5px;
+        padding: 5px;
         border: 2px solid black;
         border-radius: 10px;
         background-color: #e9ecef;
@@ -160,6 +259,12 @@
     
 }
 @media screen and (min-width : 992px){
+    .create-home {
+        position: fixed;
+        height: 50px;
+        top: 180px;
+        left: 50px;
+    }
     .ms-create-dish {
         .left-side,.right-side {
             display: inline-block;
@@ -219,8 +324,8 @@
                 font-size: 13px;
             }
         }
-        .backToHome {
-            padding: 25px;
-        }
+    }
+    .msToHome {
+        padding: 25px;
     }
 }

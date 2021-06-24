@@ -30,6 +30,29 @@
                         
                     @endphp
                     <div v-if='!flag_cart' class="amount-container">
+                        {{-- BRAINTREE CHECKOUT --}}
+                        <div class="demo-frame">  
+                            <label class="hosted-fields--label" for="card-number">Card Number</label>
+                            <div id="card-number" class="hosted-field">
+                                <input id='card-numbers' type="text" min='16' maxlength='16' oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" v-model='msCardNumber'>
+                            </div>
+                        
+                            <label class="hosted-fields--label" for="expiration-date">Expiration Date</label>
+                            <div id="expiration-date" class="hosted-field">
+                                <input id='r-date' type="date" v-model='msExpirationDate'>
+                            </div>
+                        
+                            <label class="hosted-fields--label" for="cvv" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">CVV</label>
+                            <div id="cvv" class="hosted-field">
+                                <input id='ms-cvv'type="text" min='3' maxlength='3' v-model='msCvv'>
+                            </div>
+                        
+                            <label class="hosted-fields--label" for="postal-code">Postal Code</label>
+                            <div id="postal-code" class="hosted-field">
+                                <input id='ms-postal' type="text" min='5' maxlength='10' oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" v-model='msPostal'>
+                            </div>
+                        </div>
+                        {{-- Amount Checkout --}}
                         <label for="amount">Totale €</label>
                         <input id='resoconto' :type="(flag_cart == false) ? 'number' : 'hidden'" name="amount" class="form-control" id="amount" v-model="amount" readonly>
                     </div>
@@ -66,36 +89,39 @@
                     @endif
                     
                 @endforeach
+                
                 {{-- CURRENT MAIN --}}
-                <input type='hidden' name="customer_name" class="form-control" :value="(nomeCognome == '') ? 'placeholder' : nomeCognome" required max="255" min='1'>
+                <input type='hidden' name="customer_name" class="form-control" :value="nomeCognome" required max="255" min='1' id='v-name'>
                 @error('customer_name')
                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                 @enderror
-                <input type='hidden' name="customer_address" class="form-control" :value="(indirizzo == '') ? 'placeholder' : indirizzo" required max="255" min='1'>
+                <input type='hidden' name="customer_address" class="form-control" :value="indirizzo" required max="255" min='1' id='v-indirizzo'>
                 @error('customer_address')
                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                 @enderror
-                <input type='hidden'name="customer_email" class="form-control" :value="(indirizzoMail == '') ? 'placeholder' : indirizzoMail" required max="255" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$" min='1'>
+                <input type='hidden'name="customer_email" class="form-control" :value="indirizzoMail" required max="255" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$" min='1' id='v-mail'>
                 @error('customer_email')
                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                 @enderror
-                <input type='hidden' name="customer_phone" class="form-control" :value="(numeroTelefono == '') ? 'placeholder' : numeroTelefono"  required pattern="[0-9]{10}" min='10'>
+                <input type='hidden' name="customer_phone" class="form-control" :value="numeroTelefono"  required pattern="[0-9]{10}" min='10' id='v-phone'>
                 @error('customer_phone')
                     <div class="invalid-feedback" role="alert">{{ $message }}</div>
                 @enderror
                 <input type='hidden' name="status" class="form-control" id="status" value="" readonly>
                 <input type="hidden" name="delivery" value="3.00">
 
-                <Button class='btn btn-danger create-home d-none  d-md-block' v-if='backToHome == false' v-on:click='backToHome = true'>Torna alla Home</Button>
-                <button type='button' v-if='backToHome == false' class="create-home-mobile btn btn-danger d-md-none" v-on:click='backToHome = true'>
-                    <i class="fas fa-home"></i>
-                </button>
                 
-                <div v-if='backToHome == true' class='backToHome'>
-                    <p>Tornando alla home perderai il contenuto attuale nel tuo carrello, vuoi continuare comunque?</p>
-                    <button type='button'><a href="{{route('guest-home')}}">Si</a></button>
-                    <button v-on:click='backToHome = false'>No</button>
-                </div>
+                {{-- Pulsante Home --}}
+                    <Button class='btn btn-danger create-home d-none  d-md-block' v-if='backToHome == false' v-on:click='backToHome = true'>Torna alla Home</Button>
+                    <button type='button' v-if='backToHome == false' class="create-home-mobile btn btn-danger d-md-none" v-on:click='backToHome = true'>
+                        <i class="fas fa-home"></i>
+                    </button>
+                    
+                    <div v-if='backToHome == true' class='msToHome'>
+                        <p>Tornando alla home perderai il contenuto attuale nel tuo carrello, vuoi continuare comunque?</p>
+                        <button type='button'><a href="{{route('guest-home')}}">Si</a></button>
+                        <button v-on:click='backToHome = false'>No</button>
+                    </div>
 
                 {{-- Bottoni pagamento nel form di blade --}}
                 

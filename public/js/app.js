@@ -49943,9 +49943,6 @@ var app = new Vue({
 
     ;
   },
-  created: function created() {
-    this.amountFunction();
-  },
   data: function data() {
     return {
       amount: '',
@@ -49966,7 +49963,11 @@ var app = new Vue({
       indirizzoMail: '',
       nomeCognome: '',
       backToHome: false,
-      cartShow: true
+      cartShow: true,
+      msCardNumber: '',
+      msExpirationDate: '',
+      msCvv: '',
+      msPostal: ''
     };
   },
   methods: {
@@ -50005,36 +50006,77 @@ var app = new Vue({
       this.names_dish = tmp_names;
       this.quantity_dish = tmp_quantity;
     },
-    payment: function payment(event) {
+    payment: function payment() {
       var _this2 = this;
 
-      // console.log(event);
-      axios({
-        method: 'post',
-        url: this.url,
-        headers: {
-          'Authorization': 'Basic aHJydnM3ZHBnaGRxaDZ4OTo2ODA3NTc0MjFmMzM4MDgxNTFhYmY2YmZiZTkxNmVhNw==',
-          'Braintree-Version': '2021-06-09',
-          'Content-Type': 'application/json'
-        },
-        data: {
-          'query': 'mutation chargePaymentMethod($input: ChargePaymentMethodInput!) { chargePaymentMethod(input: $input) { transaction { id status } } }',
-          'variables': {
-            'input': {
-              'paymentMethodId': 'fake-valid-mastercard-nonce',
-              'transaction': {
-                'amount': '1.00'
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, '0');
+      var mm = String(today.getMonth() + 1).padStart(2, '0');
+      var yyyy = today.getFullYear();
+      today = yyyy + '-' + mm + '-' + dd; //Raccolta informazioni
+
+      var vName = document.getElementById('v-name').value;
+      var vAddress = document.getElementById('v-indirizzo').value;
+      var vMail = document.getElementById('v-mail').value;
+      var vPhone = document.getElementById('v-phone').value;
+      var getDate = document.getElementById('r-date').value;
+      var getCardNumber = document.getElementById('card-numbers').value.length;
+      var getCvv = document.getElementById('ms-cvv').value.length;
+      getPostalCode = document.getElementById('ms-postal').value.length; // VERIFICHE
+
+      var verifiedName = vName.length > 0;
+      var verifiedAddress = vAddress.length > 0;
+      var verifiedMail = vMail.length > 0 && vMail.includes('@');
+      var verifiedPhone = vPhone.length >= 10;
+      var verifiedDate = getDate >= today;
+      var verfiedCardNumber = getCardNumber == 16;
+      var verifiedCvv = getCvv == 3;
+      var verifiedPostal = getPostalCode > 3; // CONDIZIONE
+
+      if (verifiedDate && verfiedCardNumber && verifiedCvv && verifiedPostal && verifiedName && verifiedAddress && verifiedMail && verifiedPhone) {
+        axios({
+          method: 'post',
+          url: this.url,
+          headers: {
+            'Authorization': 'Basic aHJydnM3ZHBnaGRxaDZ4OTo2ODA3NTc0MjFmMzM4MDgxNTFhYmY2YmZiZTkxNmVhNw==',
+            'Braintree-Version': '2021-06-09',
+            'Content-Type': 'application/json'
+          },
+          data: {
+            'query': 'mutation chargePaymentMethod($input: ChargePaymentMethodInput!) { chargePaymentMethod(input: $input) { transaction { id status } } }',
+            'variables': {
+              'input': {
+                'paymentMethodId': 'fake-valid-mastercard-nonce',
+                'transaction': {
+                  'amount': '1.00'
+                }
               }
             }
           }
-        }
-      }).then(function (response) {
-        // console.log(response);
-        _this2.payment_status = response.data.data.chargePaymentMethod.transaction.status; // console.log(this.payment_status);
+        }).then(function (response) {
+          // console.log(response);
+          _this2.payment_status = response.data.data.chargePaymentMethod.transaction.status; // console.log(this.payment_status);
 
-        document.getElementById('status').value = _this2.payment_status;
-        document.getElementById('ordine').click();
-      });
+          document.getElementById('status').value = _this2.payment_status;
+          document.getElementById('ordine').click();
+        });
+      } else if (!verifiedName) {
+        alert('Inserire nome e cognome !');
+      } else if (!verifiedAddress) {
+        alert('Inserire un indirizzo valido !');
+      } else if (!verifiedMail) {
+        alert('Inserire una mail valida !');
+      } else if (!verifiedPhone) {
+        alert('Inserire un numero di telefono valido !');
+      } else if (!verifiedDate) {
+        alert('Data di scadenza non valida');
+      } else if (!verfiedCardNumber) {
+        alert('Lunghezza numero carta non valido');
+      } else if (!verifiedCvv) {
+        alert('Lunghezza CVV non valida');
+      } else {
+        alert('Codice postale troppo corto');
+      }
     },
     addToCart: function addToCart($value) {
       document.getElementById('quantity' + $value).value++;
