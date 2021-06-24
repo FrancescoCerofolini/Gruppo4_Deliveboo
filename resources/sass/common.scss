@@ -44,3 +44,11 @@
 .debug {
     border: 1px solid red;
 }
+
+.btn_orange {
+    padding: 5px 10px;
+    background-color: $brandPrimary;
+    border-color: $brandPrimary;
+    border-radius: 7px;
+    color: white;
+}

@@ -501,6 +501,144 @@
   right: -30px;
 }
 
+.ms-cart {
+  position: fixed;
+  right: 5%;
+  top: 10%;
+}
+
+.ms-cart span,
+.ms-cart button,
+.ms-cart label,
+.ms-cart input {
+  font-size: 15px;
+}
+
+.ms-cart .dish div {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.ms-cart .dish div input {
+  display: inline-block;
+  overflow: visible;
+  background-color: transparent;
+  border: none;
+}
+
+.ms-cart .dish div #amount {
+  width: 100px;
+}
+
+.ms-cart .dish div #consegna {
+  width: 45px;
+}
+
+.ms-cart .dish div .plate {
+  width: 35px;
+}
+
+.ms-create-dish h1 {
+  font-size: 24px;
+}
+
+.ms-create-dish h3 {
+  font-size: 20px;
+}
+
+.ms-create-dish h4,
+.ms-create-dish h5 {
+  font-size: 16px;
+}
+
+.ms-create-dish .left-side,
+.ms-create-dish .right-side {
+  height: 100%;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.ms-create-dish .right-side {
+  padding-left: 50px;
+}
+
+.ms-create-dish .right-side button {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin: 0 5px;
+}
+
+.ms-create-dish .create-home {
+  position: fixed;
+  bottom: 2%;
+  right: 2%;
+}
+
+.ms-create-dish .create-home-mobile {
+  position: fixed;
+  bottom: 2%;
+  right: 2%;
+}
+
+.ms-create-dish .backToHome {
+  z-index: 999;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  bottom: 50%;
+  left: 50%;
+  border: 1px solid black;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 50px;
+  border-radius: 10px;
+}
+
+.ms-create-dish .backToHome button {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  background: transparent;
+}
+
+.ms-create-dish .backToHome button:focus {
+  outline: none;
+}
+
+.ms-create-dish .backToHome button:hover {
+  color: red;
+  background: rgba(0, 0, 0, 0.041);
+}
+
+.ms-create-dish .backToHome button:hover a {
+  color: red;
+}
+
+.ms-create-dish .backToHome button a {
+  overflow: hidden;
+  text-decoration: none;
+  color: black;
+}
+
+.ms-create-dish .backToHome button a:hover {
+  color: red;
+}
+
+.ms-create-dish .amount-container {
+  padding: 0px 10px;
+  border: 2px solid black;
+  border-radius: 10px;
+  background-color: #e9ecef;
+}
+
+.ms-create-dish .amount-container #resoconto {
+  background-color: transparent;
+  display: inline-block;
+  width: 50%;
+  border: none;
+}
+
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
