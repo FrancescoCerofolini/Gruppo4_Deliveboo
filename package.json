@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "braintree-web": "^2.32.1",
         "chart.js": "^3.3.2"
     }
 }
