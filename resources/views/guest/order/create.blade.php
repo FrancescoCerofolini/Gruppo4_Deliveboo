@@ -9,8 +9,8 @@
         {{-- INPUT FORM --}}
     <div class="row justify-content-center">
         <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
-            <form class='ms-create-dish' action="{{ route('order.store') }}" method="post" enctype="multipart/form-data">
-                @csrf
+            <form class='ms-create-dish' action="{{ route('guest.payment') }}" method="get" enctype="multipart/form-data">
+                
                 
                 <h1 >{{ strtoupper(str_replace('-', ' ', $data['user_slug'])) }}</h1>
                     <input type="hidden" name="user_id" class="form-control" value="{{$data['user_id']}}">

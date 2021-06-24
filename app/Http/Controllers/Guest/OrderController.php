@@ -75,57 +75,8 @@ class OrderController extends Controller
 
         $data = $request->all();
         // @dd($data);
-
-        if ($data['status'] == 'SUBMITTED_FOR_SETTLEMENT') {
-            $new_order = new Order();
-            $new_order->status = $data['status'];
-            $code = $faker->isbn10();
-            $code_presente = Order::where('code', $code)->first();
-            while ($code_presente) {
-                $code = $faker->isbn10();
-                $code_presente = Order::where('code', $code)->first();
-            }
-            $new_order->code = $code;
-            $new_order->amount = $data['amount'] + $data['delivery'];
-            $new_order->fill($data);
-            $new_order->save();
-
-            // Codice Laura
-            $amount = 0;
-            $counter = 0;
-            $dish_ids = $data['dish_id'];
-            foreach ($dish_ids as $value) {
-
-                if ($data['quantity'][$counter]) {
-
-                    $new_order->dishes()->attach(['order_id' => $new_order->id], ['dish_id' => $value]);
-
-                    $new_order->dishes()->updateExistingPivot([$new_order->id, $value], ['quantity' => $data['quantity'][$counter]]);
-                    $price = Dish::select('price')->where('user_id', $data['user_id'])->where('id', $value)->get(['price'])->toArray()[0]["price"];
-                    $amount = $amount + ($data['quantity'][$counter] * $price);
-                }
-
-                $counter = $counter + 1;
-            }
-            $new_order->amount = $amount + $data['delivery'];
-            $data["amount"] = $data["amount"] + $data['delivery'];
-            $new_order->update($data);
-            
-            //dd($msUser);
-
-            // $user_slug = User::all()->where('id', $data['user_id']);
-
-            // @dd($user_slug);
-
-            Mail::to($new_order->customer_email)->send(new SendNewMail($new_order));
-
-            return (($data['status'] == 'SUBMITTED_FOR_SETTLEMENT') ? 'Pagamento accettato, ' : 'null') . ' mail inviata a ' . $new_order->customer_email . view('guest.order.store', $data);
-        }
-        else {
-            $msUser = new User();
-            $msUser = User::select('slug')->where('id', $data['user_id'])->first();
-            return view('guest.order.failed', compact('data', 'msUser') );
-        }
+        return view('guest.payment.welcome', compact('data'));
+        
     }
     
     /**
