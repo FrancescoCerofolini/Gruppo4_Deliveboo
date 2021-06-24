@@ -41,6 +41,41 @@
                             <div class="content">
                                 <form method="post" id="payment-form" action="{{ url('/guest/payment/checkout') }}">
                                     @csrf
+                                    <section id="riepilogo-ordine">
+                                        <div class="form-group">
+                                            <label for="email">Email Address</label>
+                                            <input type="email" class="form-control" id="email">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="name">Name</label>
+                                            <input type="text" class="form-control" id="name" name="name">
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="phone">Phone</label>
+                                                    <input type="text" class="form-control" id="phone" name="phone">
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="amount">Amount</label>
+                                                    <input type="text" class="form-control" id="amount" name="amount" value="11">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        
+
+                                        <div class="spacer"></div>
+                                    </section>
                                     <section>
                                         <label for="amount">
                                             <span class="input-label">Amount</span>

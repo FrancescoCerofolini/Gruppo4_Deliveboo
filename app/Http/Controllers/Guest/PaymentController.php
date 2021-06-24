@@ -50,7 +50,7 @@ class PaymentController extends Controller
                 'submitForSettlement' => true
             ]
         ]);
-
+        @dd($request);
         if ($result->success) {
             $transaction = $result->transaction;
             // header("Location: transaction.php?id=" . $transaction->id);
@@ -70,21 +70,5 @@ class PaymentController extends Controller
 
     }
 
-    public function index3() {
-
-        $gateway = new \Braintree\Gateway([
-            'environment' => config('services.braintree.environment'),
-            'merchantId' => config('services.braintree.merchantId'),
-            'publicKey' => config('services.braintree.publicKey'),
-            'privateKey' => config('services.braintree.privateKey')
-        ]);
     
-        $token = $gateway->ClientToken()->generate();
-    
-        return view('guest.payment.hosted', [
-            'token' => $token
-        ]);
-
-    }
-
 }
