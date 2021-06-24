@@ -19,7 +19,7 @@ class PaymentController extends Controller
     
         $token = $gateway->ClientToken()->generate();
     
-        return view('guest.payment.prova', [
+        return view('guest.payment.welcome', [
             'token' => $token
         ]);
 
