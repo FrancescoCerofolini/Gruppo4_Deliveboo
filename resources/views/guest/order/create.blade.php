@@ -1,70 +1,6 @@
 @extends('layouts.app')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-xs-6">
-           {{-- @dd($data); --}}
-           {{-- @dd($data['quantity']) --}}
-           {{-- <form action="{{ route('order.store') }}" method="post">
-                @csrf
-
-                <div class="form-group my-hidden">
-                    <label>Ristorante</label>
-                    <input type="text" name="user_id" class="form-control" value="{{$user_id}}">
-                </div> --}}
-                {{-- CARRELLO --}}
-            <form id="myform" action="{{route('guest.payment')}}"> {{-- QUESTA È STATA CAMBIATA DA LAURA MENTRE PRIMA ESEGUIVA IL BOTTONE PAY CON UNO SCRIPT JAVASCRIPT --}}
-                 <div v-show="flag_cart" class="form-group">
-                     {{-- @foreach ($dishes as $dish)  --}}
-                        <div v-for="(quantity, index) in quantity_dish" v-if="quantity_dish[index] > 0">
-                             {{-- <h3>{{$dishes->name}}</h3>  --}}
-                            <h3>@{{names_dish[index]}}</h3>
-
-                            <label for="quantity[]">quantità</label>
-                            <input type="number" id="quantity_cart" name="quantity[]" :value="quantity_dish[index]" class="form-control" readonly>
-                        </div>
-
-                        
-                        <div class="form-group">
-                            <label for="amount">Amount</label>
-                            <input name="amount" class="form-control" v-model="amount" readonly>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="delivery">spese di consegna</label>
-                            <input type="number" value=3.00 name="delivery" class="form-control" readonly>
-                        </div>
- 
-                    {{-- @endforeach --}}
-
-                    
-
-                    <button type="button" class="btn btn-success" v-on:click="hiddenCart">procedi al pagamento</button>
-                    
-                </div>
-                {{-- DATI UTENTE --}}
-                
-
-                <div v-if="flag_cart == false" class="form-group">
-
-                    <div class="form-group">
-                        <label>Nome e Cognome</label>
-                        <input type="text" name="customer_name" class="form-control" id="customer_name" placeholder="Mario Rossi" v-model='nomeCognome' required max="255">
-                    </div>
-                    <div class="form-group">
-                        <label>indirizzo email</label>
-                        <input type="email" name="customer_email" class="form-control" id="customer_email" placeholder="name@example.com" v-model='indirizzoMail' required max="255" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$">
-                    </div>
-                    <div class="form-group">
-                        <label>inserisci il tuo indirizzo</label>
-                        <input type="text" name="customer_address" class="form-control" id="customer_address" v-model='indirizzo' required max="255">
-                    </div>
-                    <div class="form-group">
-                        <label>numero di telefono</label>
-                        <input type="text" name="customer_phone" class="form-control" id="customer_phone" v-model='numeroTelefono' required pattern="[0-9]{10}">
-                    </div>
-    
+@section('title','Ordine');
 
 @section('content')
 <div class="container">
@@ -81,7 +17,7 @@
                     @php
                     $counter = 0;
                     @endphp
-                    {{-- @dd($data['quantity'][$counter])    --}}
+                    
                     @php
                         $avaibleDishes = [];
                         foreach($data['dishes'] as $dish) {
