@@ -175,7 +175,7 @@
 </div>
 @endsection
 
-@section('extra-script')
+{{-- @section('extra-script')
     <script src="https://js.braintreegateway.com/web/dropin/1.13.0/js/dropin.min.js"></script>
     <script>
         var form = document.querySelector('#payment-form');
@@ -208,4 +208,4 @@
           });
         });
     </script>
-@endsection
+@endsection --}}

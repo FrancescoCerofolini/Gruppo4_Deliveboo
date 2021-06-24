@@ -33,14 +33,14 @@ class OrderController extends Controller
     public function create(Request $request)
     {
         //dd($request);
-        $gateway = new \Braintree\Gateway([
-            'environment' => config('services.braintree.environment'),
-            'merchantId' => config('services.braintree.merchantId'),
-            'publicKey' => config('services.braintree.publicKey'),
-            'privateKey' => config('services.braintree.privateKey')
-        ]);
+        // $gateway = new \Braintree\Gateway([
+        //     'environment' => config('services.braintree.environment'),
+        //     'merchantId' => config('services.braintree.merchantId'),
+        //     'publicKey' => config('services.braintree.publicKey'),
+        //     'privateKey' => config('services.braintree.privateKey')
+        // ]);
 
-        $token = $gateway->ClientToken()->generate();
+        // $token = $gateway->ClientToken()->generate();
 
         
         $user_id = $request['user_id'];
@@ -51,7 +51,7 @@ class OrderController extends Controller
             'user_id' => $user_id,
             'user_slug' => $user_slug,
             'quantity' => $quantity,
-            'token' => $token
+            // 'token' => $token
         ];
         return view('guest.order.create', compact('data'));
     }
