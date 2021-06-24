@@ -124,7 +124,7 @@ class OrderController extends Controller
         else {
             $msUser = new User();
             $msUser = User::select('slug')->where('id', $data['user_id'])->first();
-            return view('guest.order.ciao', compact('data', 'msUser') );
+            return view('guest.order.failed', compact('data', 'msUser') );
         }
     }
     

@@ -46,6 +46,9 @@ const app = new Vue({
             this.amountFunction();
         };
     },
+    created() {
+        this.amountFunction();
+    },
     data() {
         return {
             amount: '',
@@ -64,7 +67,8 @@ const app = new Vue({
             numeroTelefono : '',
             indirizzo : '',
             indirizzoMail : '',
-            nomeCognome : ''
+            nomeCognome : '',
+            backToHome : false
         }
     },
     methods: {
@@ -101,12 +105,12 @@ const app = new Vue({
                 tmp_quantity[index] = quantities[index];
                 tmp_names[index] =names[index].childNodes[0].textContent;
             }
-            console.log(tmp_quantity);
+            // console.log(tmp_quantity);
             this.names_dish = tmp_names;
             this.quantity_dish = tmp_quantity;
         },
         payment: function(event) {
-            console.log(event);
+            // console.log(event);
 
             axios({
                 method: 'post',
@@ -143,6 +147,27 @@ const app = new Vue({
 
 
         },
+        addToCart($value){
+            document.getElementById('quantity' + $value).value ++;
+            this.amountFunction();
+        },
+        decrementCart($value){
+            let ref = document.getElementById('quantity' + $value).value;
+            if(ref > 0) {
+                document.getElementById('quantity' + $value).value --;
+                this.amountFunction();
+            }
+        },
+        // resetCart(value){
+        //     console.log(value);
+        //     for(let i = 0; i < value; i++) {
+        //         console.log(i);
+        //         document.getElementsByClassName('quantity')[i].value = 0;
+        //         this.quantity_dish = [];
+        //         this.amountFunction();
+        //     }
+            
+        //},
         getRestaurants(category) {
             parameter = category.id;
             // console.log(parameter);

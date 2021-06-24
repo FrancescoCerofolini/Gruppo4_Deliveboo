@@ -1,0 +1,116 @@
+.ms-cart {
+    position: fixed;
+    right: 5%;
+    top: 10%;
+    span,button,label,input {
+        font-size: 15px;
+    }
+    .dish {
+        div {
+            width: max-content;
+            input {
+                display: inline-block;
+                overflow:visible;
+                background-color: transparent;
+                border: none;
+            }
+            #amount {
+                width: 100px;
+            }
+            #consegna {
+                width: 45px;
+            }
+            .plate {
+                width: 35px;
+            }
+        }
+        
+    }
+    
+}
+
+.ms-create-dish {
+    h1 {
+        font-size: 24px;
+    }
+    h3 {
+        font-size: 20px;
+    };
+    h4,h5 {
+        font-size: 16px;
+    };
+    .left-side,.right-side {
+        height: 100%;
+        vertical-align: middle;
+        display: inline-block;
+    }
+    .right-side {
+        padding-left: 50px;
+        button {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin: 0 5px;
+        }
+    }
+    .create-home {
+        position: fixed;
+        bottom: 2%;
+        right: 2%;
+    }
+    .create-home-mobile {
+        position: fixed;
+        bottom: 2%;
+        right: 2%;
+    }
+    .backToHome {
+        z-index: 999;
+        position: fixed;
+        transform: translate(-50%, -50%);
+        bottom: 50%;
+        left: 50%;
+        border: 1px solid black;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 50px;
+        border-radius: 10px;
+        button {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            border: 1px solid black;
+            background: transparent;
+            &:focus {
+                outline: none;
+            }
+            &:hover {
+                color: red;
+                background: rgba(0, 0, 0, 0.041);
+            }
+            &:hover a {
+                color: red;
+            }
+            a {
+                overflow: hidden;
+                text-decoration: none;
+                color: black;
+                &:hover {
+                    color: red;
+                }
+            }
+        }
+    }
+    .amount-container {
+        padding: 0px 10px;
+        border: 2px solid black;
+        border-radius: 10px;
+        background-color: #e9ecef;
+        #resoconto {
+            background-color: transparent;
+            display: inline-block;
+            width: 50%;
+            border: none;
+        }
+    }
+    
+}
+
