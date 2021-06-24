@@ -28,9 +28,9 @@ Route::prefix('guest')
         Route::resource('/order', 'OrderController');
         Route::resource('/category', 'CategoryController');
         
-        Route::get('/payment', 'PaymentController@index1');
-        Route::post('/payment/checkout', 'PaymentController@index2');
-        Route::get('/payment/hosted', 'PaymentController@index3');
+        Route::get('/payment', 'PaymentController@index1')->name('guest.payment');
+        Route::post('/payment/checkout', 'PaymentController@index2')->name('guest.payment.checkout');
+        Route::get('/payment/hosted', 'PaymentController@index3')->name('guest.payment.hosted');
         
     });
 Route::prefix('admin')

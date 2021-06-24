@@ -14,7 +14,7 @@
                     <input type="text" name="user_id" class="form-control" value="{{$user_id}}">
                 </div> --}}
                 {{-- CARRELLO --}}
-            <form id="myform" action="{{route('guest.payment.welcome')}}">
+            <form id="myform" action="{{route('guest.payment')}}">
                  <div v-show="flag_cart" class="form-group">
                      {{-- @foreach ($dishes as $dish)  --}}
                         <div v-for="(quantity, index) in quantity_dish" v-if="quantity_dish[index] > 0">
