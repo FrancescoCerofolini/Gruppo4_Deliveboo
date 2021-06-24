@@ -72,10 +72,13 @@
     }
 }
 
-main {
-    width: calc(100% - 220px);
-    margin-left: 220px;
+#dashboard {
+    main {
+        width: calc(100% - 220px);
+        margin-left: 220px;
+    }
 }
+
 
 
 
@@ -105,5 +108,18 @@ main {
     #nav_left {
         max-width: 120px;
         min-width: 120px;
+    }
+}
+
+
+
+
+
+
+.panel {
+    position: relative;
+    .list_dish {
+        position: absolute;
+        right: -30px;
     }
 }

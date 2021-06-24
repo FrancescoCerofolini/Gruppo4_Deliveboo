@@ -20,6 +20,7 @@
                                 <th>status</th>
                                 <th>totale</th>
                                 <th>data</th>
+                                <th>piatti</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -31,6 +32,13 @@
                             <td class="text-center">{{ $order->status }}</td>
                             <td class="text-center">{{ $order->amount }} &euro;</td>
                             <td>{{ $order->created_at }}</td>
+                            <td class="list_dish">
+                                <ul>
+                                    @foreach ($dishes as $dish)
+                                        <li>{{$dish->name}}</li>
+                                    @endforeach
+                                </ul>
+                            </td>
                         </tbody>
                     </table>
                 </div>
