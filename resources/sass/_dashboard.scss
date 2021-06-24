@@ -102,24 +102,23 @@
         }
     }
 
-    main {
-        max-width: calc(100% - 120px);
+    #dashboard main {
+        max-width: calc(100% - 80px);
+        margin-left: 80px;
     }
     #nav_left {
-        max-width: 120px;
-        min-width: 120px;
+        max-width: 80px;
+        min-width: 80px;
     }
 }
 
 
 
-
-
-
-.panel {
+#myChart1 {
     position: relative;
-    .list_dish {
+
+    h2 {
         position: absolute;
-        right: -30px;
     }
 }
+
