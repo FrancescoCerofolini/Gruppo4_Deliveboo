@@ -26,6 +26,11 @@ Route::prefix('guest')
         'index' => 'guest.dish.index',
         ]);
         Route::resource('/order', 'OrderController');
+        Route::prefix('order')
+            ->namespace('Order')
+            ->group(function() {
+                Route::get('/payment', 'PaymentController@index')->name('guest-payment');
+            });
         Route::resource('/category', 'CategoryController');
         });
 Route::prefix('admin')

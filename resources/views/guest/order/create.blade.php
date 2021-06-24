@@ -14,7 +14,7 @@
                     <input type="text" name="user_id" class="form-control" value="{{$user_id}}">
                 </div> --}}
                 {{-- CARRELLO --}}
-            <form id="myform" action="javascript:document.getElementById('pay').click();">
+            <form id="myform" action="{{route('guest-payment')}}">
                  <div v-show="flag_cart" class="form-group">
                      {{-- @foreach ($dishes as $dish)  --}}
                         <div v-for="(quantity, index) in quantity_dish" v-if="quantity_dish[index] > 0">
@@ -74,7 +74,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg> Paga
                     </button>
                     
-                    <button id="pay" type="button" v-on:click="payment" class="my-hidden"></button>
+                    {{-- <button id="pay" type="button" v-on:click="payment" class="my-hidden"></button> --}}
 
                     
 

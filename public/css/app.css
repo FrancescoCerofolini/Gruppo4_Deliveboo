@@ -83,7 +83,7 @@
 }
 
 .panel .panel-body .table tbody tr td {
-  color: #720E07;
+  color: #720e07;
   font-size: 0.8rem;
   padding: 10px 12px;
   vertical-align: middle;
@@ -151,14 +151,6 @@
 .panel .panel-body .table tbody .action-list li .form_elimina button {
   border: none;
   background-color: transparent;
-}
-
-.btn_orange {
-  padding: 5px 10px;
-  background-color: #ff8d00;
-  border-color: #ff8d00;
-  border-radius: 7px;
-  color: white;
 }
 
 .slideshow-container {
