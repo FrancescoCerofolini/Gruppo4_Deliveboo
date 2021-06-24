@@ -74,7 +74,11 @@
         @include('partials.header')
         <main>
             @yield('content')
+
+            
         </main>
+        @yield('extra-script')
     </div>
+    
 </body>
 </html>
