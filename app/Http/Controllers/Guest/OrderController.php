@@ -64,6 +64,7 @@ class OrderController extends Controller
      */
     public function store(Request $request,Faker $faker)
     {
+
         $request->validate([
             'customer_address' => 'required|string|max:255',
             'customer_email' => 'required|string|email|max:255',
@@ -74,9 +75,36 @@ class OrderController extends Controller
         ]);    
 
         $data = $request->all();
-        // @dd($data);
+        
+        $gateway = new \Braintree\Gateway([
+            'environment' => config('services.braintree.environment'),
+            'merchantId' => config('services.braintree.merchantId'),
+            'publicKey' => config('services.braintree.publicKey'),
+            'privateKey' => config('services.braintree.privateKey')
+        ]);
+        
+        $amount = $request->amount;
+        $nonce = $request->payment_method_nonce;
+        //@dd($data);
+    
+        $result = $gateway->transaction()->sale([
+            'amount' => $amount,
+            'paymentMethodNonce' => $nonce,
+            'customer' => [
+                'firstName' => 'Tony',
+                'lastName' => 'Stark',
+                'email' => 'tony@avengers.com',
+            ],
+            'options' => [
+                'submitForSettlement' => true
+            ]
+        ]);
 
-        if ($data['status'] == 'SUBMITTED_FOR_SETTLEMENT') {
+        if ($result->success) {
+            @dd('successo');
+            $transaction = $result->transaction;
+            // header("Location: transaction.php?id=" . $transaction->id);
+
             $new_order = new Order();
             $new_order->status = $data['status'];
             $code = $faker->isbn10();
@@ -120,12 +148,34 @@ class OrderController extends Controller
             Mail::to($new_order->customer_email)->send(new SendNewMail($new_order));
 
             return (($data['status'] == 'SUBMITTED_FOR_SETTLEMENT') ? 'Pagamento accettato, ' : 'null') . ' mail inviata a ' . $new_order->customer_email . view('guest.order.store', $data);
-        }
-        else {
+    
+            //return back()->with('success_message', 'Transaction successful. The ID is:'. $transaction->id);
+        } else {
+            @dd('fallimento');
+
+            /* $errorString = "";
+    
+            foreach ($result->errors->deepAll() as $error) {
+                $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
+            }
+    
+            // $_SESSION["errors"] = $errorString;
+            // header("Location: index.php");
+            return back()->withErrors('An error occurred with the message: '.$result->message); */
+
             $msUser = new User();
             $msUser = User::select('slug')->where('id', $data['user_id'])->first();
             return view('guest.order.failed', compact('data', 'msUser') );
+
         }
+
+        // @dd($data);
+
+        /* if ($data['status'] == 'SUBMITTED_FOR_SETTLEMENT') {
+            
+        }
+        else {
+        } */
     }
     
     /**

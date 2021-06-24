@@ -135,36 +135,43 @@
             </div>
             {{-- DATI UTENTE --}}
             
+            <form action="{{-- javascript:document.getElementById('pay').click(); --}}{{route('guest.payment')}}">
 
-            <div v-show="flag_cart == false" class="form-group">
-
-                <div class="form-group">
-                    <label>Nome e Cognome</label>
-                    <input type="text" name="customer_name" class="form-control" id="exampleFormControlInput1" placeholder="Mario Rossi" v-model='nomeCognome'>
-                </div>
-                <div class="form-group">
-                    <label>Indirizzo email</label>
-                    <input type="email" name="customer_email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" v-model='indirizzoMail'>
-                    
-                </div>
-                <div class="form-group">
-                    <label>Inserisci il tuo indirizzo</label>
-                    <input type="text" name="customer_address" class="form-control" id="exampleFormControlInput1" v-model='indirizzo'>
-                </div>
-                <div class="form-group">
-                    <label>Numero di telefono</label>
-                    <input type="text" name="customer_phone" class="form-control" id="exampleFormControlInput1" value="+39" v-model='numeroTelefono'>
+                <div class="my-hidden">
+                    <input type="hidden" name="user_id" class="form-control" value="{{$data['user_id']}}">
+                    <input class='plate' type="number" id="quantity_cart" name="quantity[]" :value="quantity_dish[index]" readonly>
                 </div>
 
-                <div class="form-group my-hidden">
-                    <label>status</label>
-                    <input type='hidden' name="status" class="form-control"  :value="payment_status">
+                <div v-show="flag_cart == false" class="form-group">
+    
+                    <div class="form-group">
+                        <label>Nome e Cognome</label>
+                        <input type="text" name="customer_name" class="form-control" id="exampleFormControlInput1" placeholder="Mario Rossi" v-model='nomeCognome' required>
+                    </div>
+                    <div class="form-group">
+                        <label>Indirizzo email</label>
+                        <input type="email" name="customer_email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" v-model='indirizzoMail' required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}">
+                        
+                    </div>
+                    <div class="form-group">
+                        <label>Inserisci il tuo indirizzo</label>
+                        <input type="text" name="customer_address" class="form-control" id="exampleFormControlInput1" v-model='indirizzo' required>
+                    </div>
+                    <div class="form-group">
+                        <label>Numero di telefono</label>
+                        <input type="text" name="customer_phone" class="form-control" id="exampleFormControlInput1" v-model='numeroTelefono' required pattern="[0-9]{10}">
+                    </div>
+    
+                    <div class="form-group my-hidden">
+                        <label>status</label>
+                        <input type='hidden' name="status" class="form-control"  :value="payment_status" required>
+                    </div>
+    
+                    <button type="submit" class="btn btn-success"> Paga </button>
+                    {{-- <button class="my-hidden" id="pay" type="button" v-on:click="payment" class="btn btn-success"> Paga </button> --}}
+                    <button v-on:click="flag_cart = true"class='btn btn-success'>Torna al carrello</button>
                 </div>
-
-                <button type="button" v-on:click="payment" class="btn btn-success"> Paga
-                </button>
-                <button v-on:click="flag_cart = true"class='btn btn-success'>Torna al carrello</button>
-            </div>
+            </form>
         </div>
         
     </div>
