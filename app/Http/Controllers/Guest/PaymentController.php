@@ -24,15 +24,15 @@ class PaymentController extends Controller
     public function index1(Request $request)
     {
         $data = $request->all();
-        $amount = $request->amount;
         $gateway = new \Braintree\Gateway([
             'environment' => config('services.braintree.environment'),
             'merchantId' => config('services.braintree.merchantId'),
             'publicKey' => config('services.braintree.publicKey'),
             'privateKey' => config('services.braintree.privateKey')
         ]);
-    
+        
         $token = $gateway->ClientToken()->generate();
+        $amount = $request->amount;
     
         return view('guest.payment.welcome', [
             'token' => $token,
