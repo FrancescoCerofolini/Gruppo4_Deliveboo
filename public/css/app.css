@@ -527,7 +527,7 @@ body #app .container {
   margin-top: 20px;
 }
 
-body #app header {
+body #app #not-valid {
   display: none;
 }
 
