@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use \Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,23 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+Route::post('/checkout', function (Request $request) {
+    
+    $gateway = new Braintree\Gateway([
+        'environment' => config('services.braintree.environment'),
+        'merchantId' => config('services.braintree.merchantId'),
+        'publicKey' => config('services.braintree.publicKey'),
+        'privateKey' => config('services.braintree.privateKey')
+    ]);
+
+    $amount = $request->amount;
+    $nonce = $request->payment_method_nonce;
+
+    
+    @dd($request);
+
+    
+});
 
 
 Auth::routes();
@@ -25,7 +43,9 @@ Route::prefix('guest')
         Route::resource('dish', DishController::class)->names([
             'index' => 'guest.dish.index',
         ]);
-        Route::resource('/order', 'OrderController');
+        Route::resource('/order', 'OrderController')->names([
+            'store' => 'order.store',
+        ]);
         Route::resource('/category', 'CategoryController');
         
         Route::get('/payment', 'PaymentController@index1')->name('guest.payment');

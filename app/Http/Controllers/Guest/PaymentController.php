@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
-    public function index1(Request $request)
+    public function index1(/* Request $request */)
     {
 
-        $data = $request->all();
-
+        /* $data = $request->all();
+ */
         $gateway = new \Braintree\Gateway([
             'environment' => config('services.braintree.environment'),
             'merchantId' => config('services.braintree.merchantId'),
@@ -23,12 +23,12 @@ class PaymentController extends Controller
     
         return view('guest.payment.welcome', [
             'token' => $token,
-            'data' => $data,
+            /* 'data' => $data, */
         ]);
 
     }
 
-    /* public function index2(Request $request)
+    public function index2(Request $request)
     {
 
         
@@ -50,6 +50,6 @@ class PaymentController extends Controller
             'token' => $token
         ]);
 
-    } */
+    }
 
 }

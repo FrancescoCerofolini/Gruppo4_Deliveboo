@@ -65,7 +65,7 @@ class OrderController extends Controller
     public function store(Request $request,Faker $faker)
     {
 
-        $request->validate([
+/*         $request->validate([
             'customer_address' => 'required|string|max:255',
             'customer_email' => 'required|string|email|max:255',
             'customer_phone' => 'required|regex:/[0-9]{10}/',
@@ -73,7 +73,7 @@ class OrderController extends Controller
             'code' => 'unique',
             'amount' => 'required',
         ]);    
-
+ */
         $data = $request->all();
         
         $gateway = new \Braintree\Gateway([
@@ -85,7 +85,9 @@ class OrderController extends Controller
         
         $amount = $request->amount;
         $nonce = $request->payment_method_nonce;
-        //@dd($data);
+        /* $result = $gateway->paymentMethodNonce()->create($data['_token']);
+        $nonce = $result->paymentMethodNonce->nonce;
+        @dd($data); */
     
         $result = $gateway->transaction()->sale([
             'amount' => $amount,
@@ -101,7 +103,7 @@ class OrderController extends Controller
         ]);
 
         if ($result->success) {
-            @dd('successo');
+            @dd('successo',$data);
             $transaction = $result->transaction;
             // header("Location: transaction.php?id=" . $transaction->id);
 
@@ -151,7 +153,7 @@ class OrderController extends Controller
     
             //return back()->with('success_message', 'Transaction successful. The ID is:'. $transaction->id);
         } else {
-            @dd('fallimento');
+            @dd('fallimento',$data);
 
             /* $errorString = "";
     
