@@ -8,7 +8,7 @@
 
 
         {{-- INPUT FORM --}}
-    <div class="row justify-content-center">
+    <div class="row justify-content-flex-start">
         <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
             <form class='ms-create-dish' action="{{ route('order.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
@@ -86,8 +86,8 @@
                 <input type='hidden' name="status" class="form-control" id="status" value="" readonly>
                 <input type="hidden" name="delivery" value="3.00">
 
-                <Button class='btn btn-danger create-home d-none  d-md-block' v-if='backToHome == false' v-on:click='backToHome = true'>Torna alla Home</Button>
-                <button type='button' v-if='backToHome == false' class="create-home-mobile btn btn-danger d-md-none" v-on:click='backToHome = true'>
+                <Button class='btn btn-danger create-home d-none  d-sm-block' v-if='backToHome == false' v-on:click='backToHome = true'>Torna alla Home</Button>
+                <button type='button' v-if='backToHome == false' class="create-home-mobile btn btn-danger d-sm-none" v-on:click='backToHome = true'>
                     <i class="fas fa-home"></i>
                 </button>
                 

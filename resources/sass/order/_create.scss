@@ -1,16 +1,31 @@
 @import '../variables';
+body {
+    #app {
+        .container {
+            margin-top: 20px;
+        }
+        header {
+            display: none;
+        }
+    }
+}
 .ms-cart {
+    padding: 10px;
+    border-radius: 10px;
     position: fixed;
     right: 5%;
     top: 20%;
+    z-index: 998;
+    border: 2px solid $brandPrimary;
+    background-color: rgba(255, 255, 255, 0.7);
     span,button,label,input {
         font-size: 15px;
     }
     .cart_icon {
-        position: fixed;
+        position: absolute;
         transform: translate(-50%, -50%);
-        right: 7.5%;
-        top : 15%;
+        top : -35%;
+        left : 50%;
         text-align: center;
         .cart-button {
             border: none;
@@ -97,13 +112,15 @@
     }
     .create-home {
         position: fixed;
-        bottom: 2%;
-        right: 2%;
+        top: 2%;
+        right: 5%;
+        z-index: 999;
     }
     .create-home-mobile {
         position: fixed;
-        bottom: 2%;
-        right: 2%;
+        top: 2%;
+        right: 5%;
+        z-index: 999;
     }
     .backToHome {
         z-index: 999;
@@ -161,18 +178,37 @@
 }
 @media screen and (min-width : 992px){
     .ms-create-dish {
-        .left-side,.right-side {
-            display: inline-block;
-        }
+
         .left-side {
-            min-width: 70%;
+            min-width: 50%;
         }
     }
 }
+@media screen and (max-width : 992px){
+    .ms-create-dish {
+        .left-side {
+            min-width: 250px;
+        }
+    }
+}
+@media screen and (min-width : 768px){
+    
+}
 @media screen and (max-width : 768px){
     .ms-create-dish {
+        .left-side {
+            min-width: 210px;
+        }
         .amount-container {
             width: 50%;
+        }
+    }
+}
+@media screen and (min-width : 576px) {
+    .ms-create-dish {
+
+        .left-side,.right-side {
+            display: inline-block;
         }
     }
 }
@@ -182,28 +218,15 @@
             font-size: 12px;
         }
         .cart_icon {
-            position: fixed;
-            transform: translate(-50%, -50%);
-            right: 15%;
-            top : 15%;
-            text-align: center;
+            top : -30%;
             .cart-button {
                 i {
-                    font-size: 35px;
+                    font-size: 50px;
                 }
             }
         }
     }
     .ms-create-dish {
-        h1 {
-            font-size: 20px;
-        }
-        h3 {
-            font-size: 16px;
-        }
-        h4,h5 {
-            font-size: 12px;
-        }
         .left-side,.right-side {
             display: block;
             padding: 0px;
