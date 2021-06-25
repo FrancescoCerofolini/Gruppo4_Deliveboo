@@ -135,8 +135,8 @@
                 </div> 
                 
                 {{-- <button class="btn btn-success" v-on:click='resetCart({{$nDishes}})' type='button'>Svuota il carrello</button> --}}
-
-                <button type="button" class="btn btn-success" v-on:click="hiddenCart, flag_cart = false, cartShow = false">Procedi al pagamento</button>
+                    <button type="button" class="btn btn-success" v-on:click="hiddenCart, flag_cart = false, cartShow = false">Procedi al pagamento</button>
+                
         
             </div>
             {{-- DATI UTENTE --}}

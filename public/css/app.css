@@ -532,11 +532,11 @@ body #app header {
 }
 
 .ms-cart {
-  padding: 10px;
+  padding: 5px;
   border-radius: 10px;
   position: fixed;
   right: 5%;
-  top: 20%;
+  top: 22.5%;
   z-index: 998;
   border: 2px solid #ff8d00;
   background-color: rgba(255, 255, 255, 0.7);
@@ -552,7 +552,7 @@ body #app header {
 .ms-cart .cart_icon {
   position: absolute;
   transform: translate(-50%, -50%);
-  top: -35%;
+  top: -45px;
   left: 50%;
   text-align: center;
 }
@@ -568,11 +568,11 @@ body #app header {
 
 .ms-cart .cart_icon .cart-button i {
   font-size: 60px;
-  color: #ff8d00;
+  color: #38c171;
 }
 
 .ms-cart .cart_icon .cart-button i:hover {
-  color: #ff8d0087;
+  color: #38c17177;
 }
 
 .ms-cart .dish div {
@@ -760,11 +760,24 @@ body #app header {
   }
 
   .ms-cart .cart_icon {
-    top: -30%;
+    top: -35px;
   }
 
   .ms-cart .cart_icon .cart-button i {
-    font-size: 50px;
+    font-size: 40px;
+  }
+
+  .ms-create-dish h1 {
+    font-size: 20px;
+  }
+
+  .ms-create-dish h3 {
+    font-size: 16px;
+  }
+
+  .ms-create-dish h4,
+  .ms-create-dish h5 {
+    font-size: 12px;
   }
 
   .ms-create-dish .left-side,

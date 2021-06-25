@@ -10,11 +10,11 @@ body {
     }
 }
 .ms-cart {
-    padding: 10px;
+    padding: 5px;
     border-radius: 10px;
     position: fixed;
     right: 5%;
-    top: 20%;
+    top: 22.5%;
     z-index: 998;
     border: 2px solid $brandPrimary;
     background-color: rgba(255, 255, 255, 0.7);
@@ -24,7 +24,7 @@ body {
     .cart_icon {
         position: absolute;
         transform: translate(-50%, -50%);
-        top : -35%;
+        top : -45px;
         left : 50%;
         text-align: center;
         .cart-button {
@@ -36,9 +36,9 @@ body {
             }
             i {
                 font-size: 60px;
-                color: $brandPrimary;
+                color: #38c171;
                 &:hover {
-                    color: #ff8d0087;
+                    color: #38c17177;
                 }
             }
         }
@@ -218,15 +218,24 @@ body {
             font-size: 12px;
         }
         .cart_icon {
-            top : -30%;
+            top : -35px;
             .cart-button {
                 i {
-                    font-size: 50px;
+                    font-size: 40px;
                 }
             }
         }
     }
     .ms-create-dish {
+        h1 {
+            font-size: 20px;
+        }
+        h3 {
+            font-size: 16px;
+        }
+        h4,h5 {
+            font-size: 12px;
+        }
         .left-side,.right-side {
             display: block;
             padding: 0px;
