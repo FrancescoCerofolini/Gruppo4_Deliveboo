@@ -8,7 +8,7 @@
 
 
         {{-- INPUT FORM --}}
-    <div class="row justify-content-center">
+    <div class="row justify-content-flex-start">
         <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
             <form class='ms-create-dish' action="{{ route('order.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
@@ -29,17 +29,13 @@
                         $nDishes = count($avaibleDishes);
                         
                     @endphp
-                    <div v-if='!flag_cart' class="amount-container">
-                        <label for="amount">Totale €</label>
-                        <input id='resoconto' :type="(flag_cart == false) ? 'number' : 'hidden'" name="amount" class="form-control" id="amount" v-model="amount" readonly>
-                    </div>
                     
                 @foreach ($data['dishes'] as $index => $dish)
                     @if ($dish->visibility == 1)                   
                 
                     <div class="form-group ms-create-dish">
                         <div class="left-side">
-                            <label v-if='flag_cart != false'>
+                            <label>
                                 <h3 class="name_dish">{{ucfirst($dish->name)}}</h3>
                                 <h4>{{ucfirst($dish->description)}}</h4>
                                 <h5>Prezzo : <span class="price">{{$dish->price}}€</span></h5>                            
@@ -66,6 +62,10 @@
                     @endif
                     
                 @endforeach
+                <div v-if='!flag_cart' class="amount-container">
+                    <label for="amount">Totale : €</label>
+                    <input id='resoconto' :type="(flag_cart == false) ? 'number' : 'hidden'" name="amount" class="form-control" id="amount" v-model="amount" readonly>
+                </div>
                 {{-- CURRENT MAIN --}}
                 <input type='hidden' name="customer_name" class="form-control" :value="(nomeCognome == '') ? 'placeholder' : nomeCognome" required max="255" min='1'>
                 @error('customer_name')
@@ -86,8 +86,8 @@
                 <input type='hidden' name="status" class="form-control" id="status" value="" readonly>
                 <input type="hidden" name="delivery" value="3.00">
 
-                <Button class='btn btn-danger create-home d-none  d-md-block' v-if='backToHome == false' v-on:click='backToHome = true'>Torna alla Home</Button>
-                <button type='button' v-if='backToHome == false' class="create-home-mobile btn btn-danger d-md-none" v-on:click='backToHome = true'>
+                <Button class='btn btn-danger create-home d-none  d-sm-block' v-if='backToHome == false' v-on:click='backToHome = true'>Torna alla Home</Button>
+                <button type='button' v-if='backToHome == false' class="create-home-mobile btn btn-danger d-sm-none" v-on:click='backToHome = true'>
                     <i class="fas fa-home"></i>
                 </button>
                 
@@ -135,8 +135,8 @@
                 </div> 
                 
                 {{-- <button class="btn btn-success" v-on:click='resetCart({{$nDishes}})' type='button'>Svuota il carrello</button> --}}
-
-                <button type="button" class="btn btn-success" v-on:click="hiddenCart, flag_cart = false, cartShow = false">Procedi al pagamento</button>
+                    <button type="button" class="btn btn-success" v-on:click="hiddenCart, flag_cart = false, cartShow = false">Procedi al pagamento</button>
+                
         
             </div>
             {{-- DATI UTENTE --}}

@@ -1,4 +1,9 @@
+@if (!Request::is('guest/order/create*'))
 <header>
+@else
+    <header id='not-valid'>
+@endif
+
     {{-- navbar --}}
     <div class="my-navbar">
         <div class="row">
