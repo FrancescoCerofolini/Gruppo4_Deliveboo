@@ -69,7 +69,7 @@ Route::prefix('admin')
 
 //pagamenti
 
-Route::get('/payment', function () {
+Route::get('/payment', function (Request $request) {
     $gateway = new \Braintree\Gateway([
         'environment' => config('services.braintree.environment'),
         'merchantId' => config('services.braintree.merchantId'),
@@ -80,7 +80,8 @@ Route::get('/payment', function () {
     $token = $gateway->ClientToken()->generate();
 
     return view('guest.payment.welcome', [
-        'token' => $token
+        'token' => $token,
+        'request' => $request
     ]);
 });
 
@@ -117,7 +118,13 @@ Route::post('/payment/checkout', function (Request $request) {
         // header("Location: transaction.php?id=" . $transaction->id);
 
         //return back()->with('success_message', 'Transaction successful. The ID is:'. $transaction->id);
-        return view('guest.order.store');
+        //return view('guest.order.store');
+
+        $data = [
+            'request' => $request,
+        ];
+
+        return view('guest.order.store',$data);
     } else {
         $errorString = "";
 

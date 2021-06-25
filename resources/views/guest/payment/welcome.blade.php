@@ -97,6 +97,8 @@
             <div class="content">
                 <form method="post" id="payment-form" action="{{ url('/payment/checkout') }}">
                     @csrf
+
+                    
                     <section>
                         <label for="amount">
                             <span class="input-label">Amount</span>
@@ -104,12 +106,23 @@
                                 <input id="amount" name="amount" type="tel" min="1" placeholder="Amount" value="10">
                             </div>
                         </label>
-
+                        
                         <div class="bt-drop-in-wrapper">
                             <div id="bt-dropin"></div>
                         </div>
                     </section>
 
+                    <input name="customer_name" value="{{$request['customer_name']}}"></input>
+                    <input name="customer_address" value="{{$request['customer_address']}}"></input>
+                    <input name="customer_phone" value="{{$request['customer_phone']}}"></input>
+                    <input name="customer_email" value="{{$request['customer_email']}}"></input>
+
+                    <input name="user_slug" value="{{$request['user_slug']}}"></input>
+                    <input name="user_id" value="{{$request['user_id']}}"></input>
+                    <input name="dishes[]" value="{{$request['name_dish']}}"></input>
+                    <input name="amount" value="{{$request['amount']}}"></input>
+                    <input name="quantity[]" value="{{$request['quantity_dish']}}"></input>
+                    
                     <input id="nonce" name="payment_method_nonce" {{-- type="hidden" --}} />
                     <button class="button" type="submit"><span>Test Transaction</span></button>
                 </form>
