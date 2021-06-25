@@ -96,8 +96,10 @@
 
             <div class="content">
 
-                <form action="{{route('order.store')}}" method="post">
+                
+                {{-- <form method="post" id="payment-form" action="{{ url('/payment/checkout') }}">
                     @csrf
+
                     <input name="customer_name" value="{{$request['customer_name']}}">
                     <input name="customer_address" value="{{$request['customer_address']}}">
                     <input name="customer_phone" value="{{$request['customer_phone']}}">
@@ -109,15 +111,9 @@
                     <input name="amount" value="{{$request['amount']}}">
                     <input name="quantity[]" value="{{$request['quantity_dish']}}">
 
-                    {{-- <div class="form-group my-hidden"> --}}
+                    <div class="form-group my-hidden">
                         <button id='ordine' type="submit">Automatico</button>
-                    {{-- </div> --}}
-
-                </form>
-                <form method="post" id="payment-form" action="{{ url('/payment/checkout') }}">
-                    @csrf
-
-                    
+                    </div>
                     <section>
                         <label for="amount">
                             <span class="input-label">Amount</span>
@@ -129,12 +125,48 @@
                         <div class="bt-drop-in-wrapper">
                             <div id="bt-dropin"></div>
                         </div>
-                    </section>
+                    </section> 
+                    
 
                     
                     
-                    <input id="nonce" name="payment_method_nonce" {{-- type="hidden" --}} />
+                    <input id="nonce" name="payment_method_nonce" type="hidden"  />
                     <button class="button" v-on:click="payment" type="submit"><span>Test Transaction</span></button>
+                </form> --}}
+
+                <form method="post" id="payment-form" action="{{ url('/payment/checkout') }}">
+                    @csrf
+                    <section>
+                        <label for="amount">
+                            <span class="input-label">Amount</span>
+                            <div class="input-wrapper amount-wrapper">
+                                <input id="amount" name="amount" type="tel" min="1" placeholder="Amount" value="10">
+                            </div>
+                        </label>
+                        <div class="bt-drop-in-wrapper">
+                            <div id="bt-dropin"></div>
+                        </div>
+                    </section>
+                    <input name="customer_name" value="{{$request['customer_name']}}"></input>
+                    <input name="customer_address" value="{{$request['customer_address']}}"></input>
+                    <input name="customer_phone" value="{{$request['customer_phone']}}"></input>
+                    <input name="customer_email" value="{{$request['customer_email']}}"></input>
+                    <input name="user_slug" value="{{$request['user_slug']}}"></input>
+                    <input name="user_id" value="{{$request['user_id']}}"></input>
+                    {{-- @dd($request['dish_id'],$request['quantity']); --}}
+                    <input name="amount" value="{{$request['amount']}}"></input>
+                    @php
+                        $counter = 0;
+                    @endphp
+                    @foreach ($request['dish_id'] as $dish)
+                        <input name="dish_id[]" value="{{$request['dish_id'][$counter]}}"></input>
+                        <input name="quantity[]" value="{{$request['quantity'][$counter]}}"></input>
+                        @php
+                            $counter += 1;
+                        @endphp
+                    @endforeach
+                    <input id="nonce" name="payment_method_nonce" {{-- type="hidden" --}} />
+                    <button class="button" type="submit"><span>Test Transaction</span></button>
                 </form>
             </div>
         </div>
@@ -171,6 +203,9 @@
           });
         });
 
+    </script>
+    <script>
+        setTimeout(function(){ document.getElementById('ordine').click()};
     </script>
     </body>
 </html>

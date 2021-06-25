@@ -1,7 +1,7 @@
 <!doctype html>
-@foreach ($user as $value)
+{{-- @foreach ($user as $value)
     {{$value->name}}
-@endforeach
+@endforeach --}}
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -97,7 +97,7 @@
                                 <i class="fas fa-user"></i>
                             </div>
                             
-                            <span class="mobile_hidden">{{$value->name}}</span>
+                            {{-- <span class="mobile_hidden">{{$value->name}}</span> --}}
                         </div>
                         
                     </div>

@@ -22,15 +22,15 @@
                         <input value="{{$request['names_dish']}}">
                         <input value="{{$request['amount']}}">
                         <input value="{{$request['quantity_dish']}}">
-                        {{-- <div class="form-group my-hidden"> --}}
+                        <div class="form-group my-hidden">
                             <button id='ordine' type="submit">Automatico</button>
-                        {{-- </div> --}}
+                        </div>
                     </form>
 
                </div>
         </div>
     </div>
     <script>
-        // document.getElementById('ordine').click();
+    //    
     </script>   
 @endsection

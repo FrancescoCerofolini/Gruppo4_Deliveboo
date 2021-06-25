@@ -140,7 +140,7 @@
             </div>
             {{-- DATI UTENTE --}}
 
-            <form action="/payment" method="get">
+            {{-- <form action="/payment" method="get">
                 
                 <div v-show="!flag_cart && !cartShow " class="form-group">
 
@@ -174,13 +174,57 @@
                     
 
                     
+                    <button type="button" v-on:click="payment" class="btn btn-success"> Paga
+                    </button>
+                    <a href="/payment" class="btn btn-success"> Paga </a>
+                    <button type="submit" class="btn btn-success"> Paga </button>
+                    <button v-on:click="flag_cart = true , cartShow = true"class='btn btn-success'>Torna al carrello</button>
+                </div>
+
+            </form> --}}
+
+            <form action="/payment" method="GET">
+                <div v-show="!flag_cart && !cartShow " class="form-group">
+                    <div class="form-group">
+                        <label>Nome e Cognome</label>
+                        <input type="text" name="customer_name" class="form-control" id="exampleFormControlInput1" placeholder="Mario Rossi" v-model='nomeCognome' required>
+                    </div>
+                    <div class="form-group">
+                        <label>Indirizzo email</label>
+                        <input type="email" name="customer_email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" v-model='indirizzoMail' required>
+                    </div>
+                    <div class="form-group">
+                        <label>Inserisci il tuo indirizzo</label>
+                        <input type="text" name="customer_address" class="form-control" id="exampleFormControlInput1" v-model='indirizzo' required>
+                    </div>
+                    <div class="form-group">
+                        <label>Numero di telefono</label>
+                        <input type="text" name="customer_phone" class="form-control" id="exampleFormControlInput1" value="+39" v-model='numeroTelefono' required>
+                    </div>
+                    <div class="form-group my-hidden">
+                        <input type='hidden' name="status" class="form-control" :value="payment_status" required>
+                        <input type='hidden' name="user_slug" class="form-control" value="{{$data['user_slug']}}">
+                        <input type='hidden' name="user_id" class="form-control" value="{{$data['user_id']}}">
+                        <input type="hidden" name="amount" class="form-control" :value="amount" >
+                        @php
+                            $counter = 0;
+                        @endphp
+                        @foreach ($data['dishes'] as $index => $dish)
+                            @if ($dish->visibility == 1)                   
+                                <input type="hidden" name="dish_id[]" class="form-control" value="{{ $dish->id }}">
+                                <input type='hidden' name="quantity[]" class="form-control" :value="quantity_dish[{{$counter}}]" readonly>
+                                @php
+                                    $counter += 1;
+                                @endphp
+                            @endif
+                        @endforeach
+                    </div>
                     {{-- <button type="button" v-on:click="payment" class="btn btn-success"> Paga
                     </button> --}}
                     {{-- <a href="/payment" class="btn btn-success"> Paga </a> --}}
                     <button type="submit" class="btn btn-success"> Paga </button>
                     <button v-on:click="flag_cart = true , cartShow = true"class='btn btn-success'>Torna al carrello</button>
                 </div>
-
             </form>
 
         </div>
