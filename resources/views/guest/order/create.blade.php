@@ -140,8 +140,8 @@
             </div>
             {{-- DATI UTENTE --}}
 
-            <form action="/payment" method="GET">
-
+            <form action="/payment" method="get">
+                
                 <div v-show="!flag_cart && !cartShow " class="form-group">
 
                     <div class="form-group">

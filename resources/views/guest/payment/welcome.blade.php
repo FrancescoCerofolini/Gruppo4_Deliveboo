@@ -95,6 +95,25 @@
             @endif
 
             <div class="content">
+
+                <form action="{{route('order.store')}}" method="post">
+                    @csrf
+                    <input name="customer_name" value="{{$request['customer_name']}}">
+                    <input name="customer_address" value="{{$request['customer_address']}}">
+                    <input name="customer_phone" value="{{$request['customer_phone']}}">
+                    <input name="customer_email" value="{{$request['customer_email']}}">
+
+                    <input name="user_slug" value="{{$request['user_slug']}}">
+                    <input name="user_id" value="{{$request['user_id']}}">
+                    <input name="dishes[]" value="{{$request['name_dish']}}">
+                    <input name="amount" value="{{$request['amount']}}">
+                    <input name="quantity[]" value="{{$request['quantity_dish']}}">
+
+                    {{-- <div class="form-group my-hidden"> --}}
+                        <button id='ordine' type="submit">Automatico</button>
+                    {{-- </div> --}}
+
+                </form>
                 <form method="post" id="payment-form" action="{{ url('/payment/checkout') }}">
                     @csrf
 
@@ -112,19 +131,10 @@
                         </div>
                     </section>
 
-                    <input name="customer_name" value="{{$request['customer_name']}}"></input>
-                    <input name="customer_address" value="{{$request['customer_address']}}"></input>
-                    <input name="customer_phone" value="{{$request['customer_phone']}}"></input>
-                    <input name="customer_email" value="{{$request['customer_email']}}"></input>
-
-                    <input name="user_slug" value="{{$request['user_slug']}}"></input>
-                    <input name="user_id" value="{{$request['user_id']}}"></input>
-                    <input name="dishes[]" value="{{$request['name_dish']}}"></input>
-                    <input name="amount" value="{{$request['amount']}}"></input>
-                    <input name="quantity[]" value="{{$request['quantity_dish']}}"></input>
+                    
                     
                     <input id="nonce" name="payment_method_nonce" {{-- type="hidden" --}} />
-                    <button class="button" type="submit"><span>Test Transaction</span></button>
+                    <button class="button" v-on:click="payment" type="submit"><span>Test Transaction</span></button>
                 </form>
             </div>
         </div>
@@ -160,6 +170,7 @@
             });
           });
         });
+
     </script>
     </body>
 </html>

@@ -50005,37 +50005,36 @@ var app = new Vue({
       this.names_dish = tmp_names;
       this.quantity_dish = tmp_quantity;
     },
-    payment: function payment(event) {
-      var _this2 = this;
-
-      // console.log(event);
-      axios({
-        method: 'post',
-        url: this.url,
-        headers: {
-          'Authorization': 'Basic aHJydnM3ZHBnaGRxaDZ4OTo2ODA3NTc0MjFmMzM4MDgxNTFhYmY2YmZiZTkxNmVhNw==',
-          'Braintree-Version': '2021-06-09',
-          'Content-Type': 'application/json'
-        },
-        data: {
-          'query': 'mutation chargePaymentMethod($input: ChargePaymentMethodInput!) { chargePaymentMethod(input: $input) { transaction { id status } } }',
-          'variables': {
-            'input': {
-              'paymentMethodId': 'fake-valid-mastercard-nonce',
-              'transaction': {
-                'amount': '1.00'
-              }
-            }
-          }
-        }
-      }).then(function (response) {
-        // console.log(response);
-        _this2.payment_status = response.data.data.chargePaymentMethod.transaction.status; // console.log(this.payment_status);
-
-        document.getElementById('status').value = _this2.payment_status;
-        document.getElementById('ordine').click();
-      });
-    },
+    // payment: function(event) {
+    //     // console.log(event);
+    //     axios({
+    //         method: 'post',
+    //         url: this.url,
+    //         headers: {
+    //             'Authorization': 'Basic aHJydnM3ZHBnaGRxaDZ4OTo2ODA3NTc0MjFmMzM4MDgxNTFhYmY2YmZiZTkxNmVhNw==',
+    //             'Braintree-Version': '2021-06-09',
+    //             'Content-Type': 'application/json'
+    //         },
+    //         data: {
+    //             'query': 'mutation chargePaymentMethod($input: ChargePaymentMethodInput!) { chargePaymentMethod(input: $input) { transaction { id status } } }',
+    //             'variables': {
+    //                 'input': {
+    //                 'paymentMethodId': 'fake-valid-mastercard-nonce',
+    //                 'transaction': {
+    //                     'amount': '1.00'
+    //                 }
+    //             }
+    //             }
+    //         }
+    //     })
+    //     .then(response => {
+    //         // console.log(response);
+    //         this.payment_status = response.data.data.chargePaymentMethod.transaction.status;
+    //         // console.log(this.payment_status);
+    //         document.getElementById('status').value = this.payment_status;
+    //         document.getElementById('ordine').click();
+    //     });
+    // },
     addToCart: function addToCart($value) {
       document.getElementById('quantity' + $value).value++;
       this.amountFunction();
@@ -50062,16 +50061,16 @@ var app = new Vue({
       this.amountFunction();
     },
     getRestaurants: function getRestaurants(category) {
-      var _this3 = this;
+      var _this2 = this;
 
       parameter = category.id; // console.log(parameter);
 
       var restaurantApi = 'api/guests/restaurants/' + parameter;
       axios.get(restaurantApi).then(function (result) {
         // console.log(result);
-        _this3.selected_category = category.name;
-        _this3.restaurants = result.data.results.response;
-        _this3.flag = true;
+        _this2.selected_category = category.name;
+        _this2.restaurants = result.data.results.response;
+        _this2.flag = true;
       });
     },
     searchResults: function searchResults() {
@@ -50234,8 +50233,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\laura\Documents\boolean\Gruppo4_Deliveboo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\laura\Documents\boolean\Gruppo4_Deliveboo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\BOOLEAN\Prove progetto finale\test-deliveboo\Gruppo4_Deliveboo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\BOOLEAN\Prove progetto finale\test-deliveboo\Gruppo4_Deliveboo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
