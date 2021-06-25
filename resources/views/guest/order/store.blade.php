@@ -10,5 +10,8 @@
                     <h1>Pagamento accettato</h1>
                </div>
         </div>
-    </div>    
+    </div>
+    <script>
+        
+    </script>   
 @endsection

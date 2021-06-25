@@ -111,12 +111,13 @@ Route::post('/payment/checkout', function (Request $request) {
 
     if ($result->success) {
 
-        @dd('ciao, ok pagamento');
+        //@dd('ciao, ok pagamento');
 
         $transaction = $result->transaction;
         // header("Location: transaction.php?id=" . $transaction->id);
 
-        return back()->with('success_message', 'Transaction successful. The ID is:'. $transaction->id);
+        //return back()->with('success_message', 'Transaction successful. The ID is:'. $transaction->id);
+        return view('guest.order.store');
     } else {
         $errorString = "";
 

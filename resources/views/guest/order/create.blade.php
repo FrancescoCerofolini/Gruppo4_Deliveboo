@@ -167,6 +167,8 @@
                     <input type='hidden' name="status" class="form-control"  :value="payment_status" required>
                 </div>
 
+                
+
                 {{-- <button type="button" v-on:click="payment" class="btn btn-success"> Paga
                 </button> --}}
                 <a href="/payment" class="btn btn-success"> Paga </a>
