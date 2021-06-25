@@ -3,11 +3,7 @@
     <div class="my-navbar">
         <div class="row">
 
-<<<<<<< HEAD
-            <div class="col-4 col-md-4 logo">
-=======
             <div class="col-3 col-md-4 logo">
->>>>>>> remotes/origin/michela
                 <a href="{{ route('guest-home') }}">
                     <img src="{{ asset('img/DeliveBoo_logo.png') }}" alt="DeliveBoo logo" id="logo_big">
                     <img src="{{ asset('img/DeliveBoo_logo_small.png') }}" alt="DeliveBoo logo small" id="logo_small">
