@@ -29,17 +29,13 @@
                         $nDishes = count($avaibleDishes);
                         
                     @endphp
-                    <div v-if='!flag_cart' class="amount-container">
-                        <label for="amount">Totale €</label>
-                        <input id='resoconto' :type="(flag_cart == false) ? 'number' : 'hidden'" name="amount" class="form-control" id="amount" v-model="amount" readonly>
-                    </div>
                     
                 @foreach ($data['dishes'] as $index => $dish)
                     @if ($dish->visibility == 1)                   
                 
                     <div class="form-group ms-create-dish">
                         <div class="left-side">
-                            <label v-if='flag_cart != false'>
+                            <label>
                                 <h3 class="name_dish">{{ucfirst($dish->name)}}</h3>
                                 <h4>{{ucfirst($dish->description)}}</h4>
                                 <h5>Prezzo : <span class="price">{{$dish->price}}€</span></h5>                            
@@ -66,6 +62,10 @@
                     @endif
                     
                 @endforeach
+                <div v-if='!flag_cart' class="amount-container">
+                    <label for="amount">Totale : €</label>
+                    <input id='resoconto' :type="(flag_cart == false) ? 'number' : 'hidden'" name="amount" class="form-control" id="amount" v-model="amount" readonly>
+                </div>
                 {{-- CURRENT MAIN --}}
                 <input type='hidden' name="customer_name" class="form-control" :value="(nomeCognome == '') ? 'placeholder' : nomeCognome" required max="255" min='1'>
                 @error('customer_name')

@@ -536,7 +536,7 @@ body #app header {
   border-radius: 10px;
   position: fixed;
   right: 5%;
-  top: 22.5%;
+  top: 17%;
   z-index: 998;
   border: 2px solid #ff8d00;
   background-color: rgba(255, 255, 255, 0.7);
@@ -708,14 +708,16 @@ body #app header {
 }
 
 .ms-create-dish .amount-container {
+  color: red;
+  font-weight: bolder;
   width: 70%;
-  padding: 0px 0px 0px 5px;
-  border: 2px solid black;
-  border-radius: 10px;
-  background-color: #e9ecef;
+  background-color: transparent;
+  margin-bottom: 10px;
 }
 
 .ms-create-dish .amount-container #resoconto {
+  color: red;
+  font-weight: bolder;
   background-color: transparent;
   display: inline-block;
   width: 50%;
