@@ -104,10 +104,12 @@
                 </div>
             </nav>
 
-            <main role="main">
+            <main role="main" class="col-10">
                 @yield('content')
             </main>
         </div>
     </div>
+    
+    {{-- @include('partials.footer') --}}
 </body>
 </html>

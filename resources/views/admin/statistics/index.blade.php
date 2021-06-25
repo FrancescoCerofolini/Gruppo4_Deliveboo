@@ -1,10 +1,11 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-xs-12">
-                    <canvas id="myChart1" height="500" width="700"></canvas>
+                    <h1>Grafici Ordini</h1>
+                    <canvas id="myChart1" height="500" width="700" style="margin-bottom: 50px"> <h2>ciao</h2></canvas>
                     <canvas id="myChart2" height="500" width="700"></canvas>
             </div>
         </div>
