@@ -8,11 +8,15 @@
 
 .container {
   margin-top: 80px;
+body {
+  font-family: "Nunito", sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.6;
 }
 
 .my-navbar {
   width: 100%;
-  height: 180px;
+  height: 60px;
   font-weight: 500;
   line-height: 60px;
   color: #ff8d00;
@@ -30,6 +34,16 @@
   max-height: 60px;
 }
 
+.my-navbar #logo_big,
+.my-navbar #city,
+.my-navbar #login {
+  display: none;
+}
+
+.my-navbar #logo_small {
+  display: inline-block;
+}
+
 .my-navbar i {
   padding: 0 5px;
 }
@@ -45,8 +59,14 @@
 }
 
 @media (min-width: 768px) {
-  .my-navbar {
-    height: 60px;
+  .my-navbar #logo_big,
+  .my-navbar #city,
+  .my-navbar #login {
+    display: inline-block;
+  }
+
+  .my-navbar #logo_small {
+    display: none;
   }
 }
 
@@ -69,7 +89,7 @@
 }
 
 .table_title {
-  margin-bottom: 20px;
+  margin: 20px 0;
 }
 
 .panel .panel-body .table thead tr th {
@@ -285,7 +305,7 @@
 }
 
 .content {
-  padding-top: 180px;
+  padding-top: 60px;
 }
 
 .content .btn-categoria {
@@ -325,10 +345,6 @@
 }
 
 @media (min-width: 768px) {
-  .content {
-    padding-top: 60px;
-  }
-
   .slideshow-container .overlay h2 {
     font-size: 2.5rem;
   }
@@ -797,7 +813,7 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: "Poppins", sans-serif;
+  --font-family-sans-serif: "Nunito", sans-serif;
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
@@ -829,7 +845,7 @@ section {
 
 body {
   margin: 0;
-  font-family: "Poppins", sans-serif;
+  font-family: "Nunito", sans-serif;
   font-size: 1.2rem;
   font-weight: 400;
   line-height: 1.6;
@@ -7170,7 +7186,7 @@ a.close.disabled {
   z-index: 1070;
   display: block;
   margin: 0;
-  font-family: "Poppins", sans-serif;
+  font-family: "Nunito", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.6;
@@ -7295,7 +7311,7 @@ a.close.disabled {
   z-index: 1060;
   display: block;
   max-width: 276px;
-  font-family: "Poppins", sans-serif;
+  font-family: "Nunito", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.6;
