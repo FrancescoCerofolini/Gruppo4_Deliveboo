@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
@@ -28,8 +29,39 @@ class HomeController extends Controller
      */
     public function index()
     {
+        
         $id = Auth::id();
         $user = User::all()->where('id', $id);
-        return view('admin.home', compact('user'));
+
+        $tot_orders = DB::table('order_dish')
+            ->select(DB::raw('count(dishes.name) as tot_order'))
+            ->join('dishes', 'order_dish.dish_id', '=', 'dishes.id')
+            ->join('orders', 'order_dish.order_id', '=', 'orders.id')
+            ->where('dishes.user_id', $id)
+            ->get();
+        // @dd($tot_orders[0]->tot_order);
+        
+        $tot_dishes = DB::table('dishes')
+            ->select(DB::raw('count(dishes.id) as tot_dish'))
+            ->where('dishes.user_id', $id)
+            ->get();
+        // @dd($tot_dish);
+
+        $tot_amounts = DB::table('order_dish')
+            ->select(DB::raw('SUM(orders.amount) as tot_amount'))
+            ->join('dishes', 'order_dish.dish_id', '=', 'dishes.id')
+            ->join('orders', 'order_dish.order_id', '=', 'orders.id')
+            ->where('dishes.user_id', $id)
+            ->get();
+        // @dd($tot_amount);
+        
+        $data = [
+            'user' => $user,
+            'tot_orders' => $tot_orders,
+            'tot_dishes' => $tot_dishes,
+            'tot_amounts' => $tot_amounts
+
+        ];
+        return view('admin.home', $data);
     }
 }

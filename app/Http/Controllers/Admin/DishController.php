@@ -35,7 +35,9 @@ class DishController extends Controller
      */
     public function create(Request $request)
     {   
-        return view('admin.dishes.create');
+        $id = Auth::id();
+        $user = User::all()->where('id', $id);
+        return view('admin.dishes.create',compact('user'));
     }
 
     /**
@@ -81,7 +83,13 @@ class DishController extends Controller
      */
     public function edit(Dish $dish)
     {   
-        return view('admin.dishes.edit', compact('dish'));
+        $id = Auth::id();
+        $user = User::all()->where('id', $id);
+        $data = [
+            'user' => $user,
+            'dish' => $dish
+        ];
+        return view('admin.dishes.edit', $data);
     }
 
     /**

@@ -1,7 +1,4 @@
 <!doctype html>
-@foreach ($user as $value)
-    {{$value->name}}
-@endforeach
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -49,7 +46,7 @@
     </nav> --}}
     {{-- @include('partials.header') --}}
     <div class="container-fluid p-0" id="dashboard">
-        <div class="row">
+        <div class="row justify-content-center">
             <nav id="nav_left">
                 <div class="menu_nav_left">
                     <img class="logo" src="{{ asset('img/DeliveBoo_logo.png') }}" alt="DeliveBoo logo">
@@ -97,19 +94,17 @@
                                 <i class="fas fa-user"></i>
                             </div>
                             
-                            <span class="mobile_hidden">{{$value->name}}</span>
+                            <span class="mobile_hidden">{{$user[0]->name}}</span>
                         </div>
                         
                     </div>
                 </div>
             </nav>
 
-            <main role="main" class="col-10">
+            <main role="main">
                 @yield('content')
             </main>
         </div>
     </div>
-    
-    {{-- @include('partials.footer') --}}
 </body>
 </html>

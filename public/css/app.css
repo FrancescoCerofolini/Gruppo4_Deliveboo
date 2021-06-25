@@ -486,6 +486,15 @@ body {
   margin-left: 220px;
 }
 
+#dashboard main strong {
+  display: block;
+  color: #ff8d00;
+}
+
+#dashboard main .block_recap {
+  margin: 30px 0;
+}
+
 @media screen and (max-width: 768px) {
   .mobile_hidden {
     display: none;
@@ -505,7 +514,7 @@ body {
   }
 
   #dashboard main {
-    max-width: calc(100% - 80px);
+    width: calc(100% - 80px);
     margin-left: 80px;
   }
 
@@ -516,11 +525,13 @@ body {
 }
 
 #myChart1 {
-  position: relative;
+  width: 1400px;
+  height: 1000px;
 }
 
-#myChart1 h2 {
-  position: absolute;
+#myChart2 {
+  width: 1400px;
+  height: 1000px;
 }
 
 .ms-cart {
