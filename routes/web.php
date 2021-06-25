@@ -27,6 +27,8 @@ Route::prefix('guest')
         'index' => 'guest.dish.index',
         ]);
         Route::resource('/order', 'OrderController');
+        Route::post('/order/store', 'OrderController@store')->name('order.store');
+
         Route::resource('/category', 'CategoryController');
         });
 Route::prefix('admin')

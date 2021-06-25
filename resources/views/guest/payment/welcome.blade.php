@@ -112,16 +112,25 @@
                         </div>
                     </section>
 
-                    <input name="customer_name" value="{{$request['customer_name']}}"></input>
-                    <input name="customer_address" value="{{$request['customer_address']}}"></input>
-                    <input name="customer_phone" value="{{$request['customer_phone']}}"></input>
-                    <input name="customer_email" value="{{$request['customer_email']}}"></input>
+                    <input name="customer_name" value="{{$request['customer_name']}}">
+                    <input name="customer_address" value="{{$request['customer_address']}}">
+                    <input name="customer_phone" value="{{$request['customer_phone']}}">
+                    <input name="customer_email" value="{{$request['customer_email']}}">
 
-                    <input name="user_slug" value="{{$request['user_slug']}}"></input>
-                    <input name="user_id" value="{{$request['user_id']}}"></input>
-                    <input name="dishes[]" value="{{$request['name_dish']}}"></input>
-                    <input name="amount" value="{{$request['amount']}}"></input>
-                    <input name="quantity[]" value="{{$request['quantity_dish']}}"></input>
+                    <input name="user_slug" value="{{$request['user_slug']}}">
+                    <input name="user_id" value="{{$request['user_id']}}">
+                    {{-- @dd($request['dish_id'],$request['quantity']); --}}
+                    <input name="amount" value="{{$request['amount']}}">
+                    @php
+                        $counter = 0;
+                    @endphp
+                    @foreach ($request['dish_id'] as $dish)
+                        <input name="dish_id[]" value="{{$request['dish_id'][$counter]}}">
+                        <input name="quantity[]" value="{{$request['quantity'][$counter]}}">
+                        @php
+                            $counter += 1;
+                        @endphp
+                    @endforeach
                     
                     <input id="nonce" name="payment_method_nonce" {{-- type="hidden" --}} />
                     <button class="button" type="submit"><span>Test Transaction</span></button>

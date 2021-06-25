@@ -10,8 +10,8 @@
         {{-- INPUT FORM --}}
     <div class="row justify-content-center">
         <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
-            <form class='ms-create-dish' action="{{ route('order.store') }}" method="post" enctype="multipart/form-data">
-                @csrf
+            <form class='ms-create-dish' {{-- action="{{ route('order.store') }}" method="post" enctype="multipart/form-data" --}}>
+                {{-- @csrf --}}
                 
                 <h1>{{ strtoupper(str_replace('-', ' ', $data['user_slug'])) }}</h1>
                     <input type="hidden" name="user_id" class="form-control" value="{{$data['user_id']}}">
@@ -98,9 +98,9 @@
                 </div>
 
                 
-                <div class="form-group my-hidden">
+                {{-- <div class="form-group my-hidden">
                     <button id='ordine' type="submit">Automatico</button>
-                </div>
+                </div> --}}
 
             </form>
             
@@ -166,13 +166,28 @@
                         <input type='hidden' name="status" class="form-control" :value="payment_status" required>
                         <input type='hidden' name="user_slug" class="form-control" value="{{$data['user_slug']}}">
                         <input type='hidden' name="user_id" class="form-control" value="{{$data['user_id']}}">
-                        <input type='hidden' name="dishes[]" class="form-control" value="name_dish">
                         <input type="hidden" name="amount" class="form-control" :value="amount">
-                        <input type='hidden' name="quantity[]" class="form-control" value="quantity_dish">
+
+                        @php
+                            $counter = 0;
+                        @endphp
+
+                        @foreach ($data['dishes'] as $index => $dish)
+
+                            @if ($dish->visibility == 1)                   
+                        
+                                <input type="hidden" name="dish_id[]" class="form-control" value="{{ $dish->id }}">
+                                <input type='hidden' name="quantity[]" class="form-control" :value="quantity_dish[{{$counter}}]" readonly>
+
+                                @php
+                                    $counter += 1;
+                                @endphp
+                            
+                            @endif
+                            
+                        @endforeach
+
                     </div>
-
-                    
-
                     
                     {{-- <button type="button" v-on:click="payment" class="btn btn-success"> Paga
                     </button> --}}
