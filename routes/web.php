@@ -94,7 +94,7 @@ Route::post('/payment/checkout', function (Request $request) {
 
     $amount = $request->amount;
     $nonce = $request->payment_method_nonce;
-    @dd($request);
+    //@dd($request);
 
     $result = $gateway->transaction()->sale([
         'amount' => $amount,
@@ -110,6 +110,9 @@ Route::post('/payment/checkout', function (Request $request) {
     ]);
 
     if ($result->success) {
+
+        @dd('ciao, ok pagamento');
+
         $transaction = $result->transaction;
         // header("Location: transaction.php?id=" . $transaction->id);
 
