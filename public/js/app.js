@@ -50096,7 +50096,50 @@ var app = new Vue({
     resetRestaurants: function resetRestaurants() {
       this.collection = this.restaurants;
       this.flag = true;
+    },
+    cityMenu: function cityMenu() {
+      var city = document.getElementById('city-menu');
+
+      if (city.classList.contains('hidden')) {
+        city.classList.add('show');
+        city.classList.remove('hidden');
+      } else if (city.classList.contains('show')) {
+        city.classList.add('hidden');
+        city.classList.remove('show');
+      }
+
+      ;
+    },
+
+    /*         cityMenuDesktop() {
+                var cityDesktop = document.getElementById('city-menu');
+                if (cityDesktop.classList.contains('hidden')) {
+                    cityDesktop.classList.add('show');
+                    cityDesktop.classList.remove('hidden');
+                } else if (cityDesktop.classList.contains('show')) {
+                    cityDesktop.classList.add('hidden');
+                    cityDesktop.classList.remove('show');
+                };
+            }, */
+    hamburgerMenu: function hamburgerMenu() {
+      var show = document.getElementById('hamburger-menu');
+
+      if (show.classList.contains('hidden')) {
+        show.classList.add('show');
+        show.classList.remove('hidden');
+      } else if (show.classList.contains('show')) {
+        show.classList.add('hidden');
+        show.classList.remove('show');
+      }
+
+      ;
     }
+    /*         closeHamburgerMenu() {
+                var hidden = document.getElementById('hamburger-menu');
+                hidden.classList.add('hidden');
+                hidden.classList.remove('show');
+            } */
+
   }
 });
 
@@ -50234,8 +50277,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\BOOLEAN\Prove progetto finale\test-deliveboo\Gruppo4_Deliveboo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\BOOLEAN\Prove progetto finale\test-deliveboo\Gruppo4_Deliveboo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\miche\Desktop\deliveboo\Gruppo4_Deliveboo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\miche\Desktop\deliveboo\Gruppo4_Deliveboo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

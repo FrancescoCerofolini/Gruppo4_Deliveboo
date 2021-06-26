@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
@@ -30,6 +31,16 @@ class HomeController extends Controller
     {
         $id = Auth::id();
         $user = User::all()->where('id', $id);
-        return view('admin.home', compact('user'));
+
+        $current = Carbon::now()->format('d/m/Y');
+
+        $data = [
+            'user' => $user,
+            'date_time' => $current,
+
+
+        ];
+
+        return view('admin.home', $data);
     }
 }

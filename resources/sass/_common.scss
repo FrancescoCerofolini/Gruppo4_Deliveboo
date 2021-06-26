@@ -13,6 +13,13 @@ body {
     line-height: $line-height-base;
 }
 
+.show {
+    display: block;
+}
+.hidden {
+    display: none;
+}
+
 // Navbar
 .my-navbar {
     width: 100%;
@@ -28,6 +35,8 @@ body {
     left: 0;
     right: 0;
     z-index: 999;
+    display: flex;
+    justify-content: space-between;
 
     .logo img {
         max-height: 60px;
@@ -35,27 +44,111 @@ body {
 
     #logo_big,
     #city,
-    #login {
+    .header_right {
         display: none;
     }
 
-    #logo_small {
+    #logo_small,
+    #login
+    #city-menu-container {
         display: inline-block;
     }
 
-    i {
-        padding: 0 5px;
+    .header-center-container,
+    .header-right-container {
+        position: relative;
     }
 
-    a {
-        padding: 0 10px;
-        color: $link;
+    #city-marker {
+        cursor: pointer;
+    }
+
+    #city-menu-container {
 
         &:hover {
             color: $brandPrimary;
-            text-decoration: none;
+        }
+
+
+        #city-menu {
+
+            .active_link {
+                display: block;
+                color: $link;
+
+                &:hover {
+                    color: $brandPrimary;
+                    text-decoration: none;
+                }
+
+            }
+            .inactive_link {
+                display: block;
+                color: $inactive_link;
+                pointer-events: none;
+                cursor: default;
+                position: relative;
+
+                &::after {
+                    content: "prossimamente";
+                    font-size: 0.6rem;
+                    font-style: oblique;
+                    text-align: right;
+                    text-decoration: underline;
+                    color: $brandSecondary;
+                    position: absolute;
+                    bottom: -20px;
+                    left: 20px;
+                }
+            }
         }
     }
+
+    #city-menu-container,
+    .hamburger-menu-container {
+        position: absolute;
+        top: 60px;
+        display: inline-block;
+    }
+    #city-menu-container {
+        left: -50px;
+    }
+    .hamburger-menu-container {
+        right: 0;
+    }
+
+    #city-menu-container,
+    .header_right,
+    .hamburger-menu-container {
+        
+        i {
+            padding: 0;
+            color: $link;
+
+            &:hover {
+                color: $brandPrimary;
+            }
+        }
+
+        #city-menu,
+        #hamburger-menu {
+            background-color: $body-bg;
+            padding: 10px;
+            border-radius: 10px;
+
+            a {
+                display: block;
+                padding: 0 10px;
+                color: $link;
+        
+                &:hover {
+                    color: $brandPrimary;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+
 }
 
 @media (min-width: 768px) {
@@ -63,12 +156,36 @@ body {
 
         #logo_big,
         #city,
-        #login {
+        .header_right,
+        #city-menu-container,
+        #login,
+        .header-center-container:hover #city-menu {
             display: inline-block;
         }
 
-        #logo_small {
+        #logo_small,
+        .hamburger-menu-container {
             display: none;
+        }
+
+        #city-marker,
+        .header-right-container {
+            i {
+                display: none;
+            }
+        }
+        .header_right,
+        .hamburger-menu-container {
+
+            a {
+                padding: 0 10px;
+                color: $link;
+        
+                &:hover {
+                    color: $brandPrimary;
+                    text-decoration: none;
+                }
+            }
         }
     }
 }

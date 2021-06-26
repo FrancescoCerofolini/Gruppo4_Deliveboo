@@ -28,6 +28,9 @@
         width: 75%;
         align-self: center;
     }
+    .logo_small {
+        display: none;
+    }
 
     .menu_dashboard {
         height: calc(100% - 100px);
@@ -109,16 +112,13 @@
     #nav_left {
         max-width: 80px;
         min-width: 80px;
-    }
-}
 
-
-
-#myChart1 {
-    position: relative;
-
-    h2 {
-        position: absolute;
+        .logo {
+            display: none;
+        }
+        .logo_small {
+            display: inline-block;
+        }
     }
 }
 
