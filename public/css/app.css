@@ -84,7 +84,6 @@ body {
   display: block;
   color: #aaa69f;
   pointer-events: none;
-  cursor: default;
   position: relative;
 }
 
@@ -173,6 +172,10 @@ body {
   .my-navbar #logo_small,
   .my-navbar .hamburger-menu-container {
     display: none;
+  }
+
+  .my-navbar .header-center-container {
+    cursor: pointer;
   }
 
   .my-navbar #city-marker i,

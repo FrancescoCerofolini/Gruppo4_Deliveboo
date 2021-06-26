@@ -86,7 +86,6 @@ body {
                 display: block;
                 color: $inactive_link;
                 pointer-events: none;
-                cursor: default;
                 position: relative;
 
                 &::after {
@@ -166,6 +165,10 @@ body {
         #logo_small,
         .hamburger-menu-container {
             display: none;
+        }
+
+        .header-center-container {
+            cursor: pointer;
         }
 
         #city-marker,
