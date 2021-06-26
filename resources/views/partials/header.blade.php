@@ -96,7 +96,7 @@
             <div class="header-center-container">
                 <div id="city">
                     <i class="fas fa-map-marker-alt"></i>
-                    <span>Milano</span>   
+                    <span>Milano</span>
                 </div>
         
                 <div id="city-marker">

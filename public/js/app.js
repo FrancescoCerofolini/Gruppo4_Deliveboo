@@ -50110,17 +50110,6 @@ var app = new Vue({
 
       ;
     },
-
-    /*         cityMenuDesktop() {
-                var cityDesktop = document.getElementById('city-menu');
-                if (cityDesktop.classList.contains('hidden')) {
-                    cityDesktop.classList.add('show');
-                    cityDesktop.classList.remove('hidden');
-                } else if (cityDesktop.classList.contains('show')) {
-                    cityDesktop.classList.add('hidden');
-                    cityDesktop.classList.remove('show');
-                };
-            }, */
     hamburgerMenu: function hamburgerMenu() {
       var show = document.getElementById('hamburger-menu');
 
@@ -50134,12 +50123,6 @@ var app = new Vue({
 
       ;
     }
-    /*         closeHamburgerMenu() {
-                var hidden = document.getElementById('hamburger-menu');
-                hidden.classList.add('hidden');
-                hidden.classList.remove('show');
-            } */
-
   }
 });
 
