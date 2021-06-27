@@ -64,68 +64,62 @@ class OrderController extends Controller
      */
     public function store(Request $request,Faker $faker)
     {
-        $request->validate([
-            'customer_address' => 'required|string|max:255',
-            'customer_email' => 'required|string|email|max:255',
-            'customer_phone' => 'required|regex:/[0-9]{10}/',
-            'customer_name' => 'required|string|max:255',
-            'code' => 'unique',
-            'amount' => 'required',
-        ]);    
+        // $request->validate([
+        //     'customer_address' => 'required|string|max:255',
+        //     'customer_email' => 'required|string|email|max:255',
+        //     'customer_phone' => 'required|regex:/[0-9]{10}/',
+        //     'customer_name' => 'required|string|max:255',
+        //     'code' => 'unique',
+        //     'amount' => 'required',
+        // ]);    
 
-        $data = $request->all();
+        // $data = $request->all();
         // @dd($data);
 
-        if ($data['status'] == 'SUBMITTED_FOR_SETTLEMENT') {
-            $new_order = new Order();
-            $new_order->status = $data['status'];
-            $code = $faker->isbn10();
-            $code_presente = Order::where('code', $code)->first();
-            while ($code_presente) {
-                $code = $faker->isbn10();
-                $code_presente = Order::where('code', $code)->first();
-            }
-            $new_order->code = $code;
-            $new_order->amount = $data['amount'] + $data['delivery'];
-            $new_order->fill($data);
-            $new_order->save();
+    
+        //     $new_order = new Order();
+        //     $new_order->status = 'paid';
+        //     $code = $faker->isbn10();
+        //     $code_presente = Order::where('code', $code)->first();
+        //     while ($code_presente) {
+        //         $code = $faker->isbn10();
+        //         $code_presente = Order::where('code', $code)->first();
+        //     }
+        //     $new_order->code = $code;
+        //     $new_order->amount = $request['amount'];  + $request['delivery'];
+        //     $new_order->fill($data);
+        //     $new_order->save();
 
-            // Codice Laura
-            $amount = 0;
-            $counter = 0;
-            $dish_ids = $data['dish_id'];
-            foreach ($dish_ids as $value) {
+        //     Codice Laura
+        //     $amount = 0;
+        //     $counter = 0;
+        //     $dish_ids = $request['dish_id'];
+        //     foreach ($dish_ids as $dish_id) {
 
-                if ($data['quantity'][$counter]) {
+        //         if ($request['quantity'][$counter]) {
 
-                    $new_order->dishes()->attach(['order_id' => $new_order->id], ['dish_id' => $value]);
+        //             $new_order->dishes()->attach(['order_id' => $new_order->id], ['dish_id' => $dish_id]);
 
-                    $new_order->dishes()->updateExistingPivot([$new_order->id, $value], ['quantity' => $data['quantity'][$counter]]);
-                    $price = Dish::select('price')->where('user_id', $data['user_id'])->where('id', $value)->get(['price'])->toArray()[0]["price"];
-                    $amount = $amount + ($data['quantity'][$counter] * $price);
-                }
+        //             $new_order->dishes()->updateExistingPivot([$new_order->id, $dish_id], ['quantity' => $request['quantity'][$counter]]);
+        //             $price = Dish::select('price')->where('user_id', $request['user_id'])->where('id', $dish_id)->get(['price'])->toArray()[0]["price"];
+        //             $amount = $amount + ($request['quantity'][$counter] * $price);
+        //         }
 
-                $counter = $counter + 1;
-            }
-            $new_order->amount = $amount + $data['delivery'];
-            $data["amount"] = $data["amount"] + $data['delivery'];
-            $new_order->update($data);
+        //         $counter = $counter + 1;
+        //     }
+        //     $new_order->amount = $amount + $request['delivery'];
+        //     $request["amount"] = $request["amount"] + $request['delivery'];
+        //     $new_order->update($data);
             
-            //dd($msUser);
+        //     dd($msUser);
 
-            // $user_slug = User::all()->where('id', $data['user_id']);
+        //     $user_slug = User::all()->where('id', $request['user_id']);
 
-            // @dd($user_slug);
+        //     @dd($user_slug);
 
-            Mail::to($new_order->customer_email)->send(new SendNewMail($new_order));
+        //     Mail::to($new_order->customer_email)->send(new SendNewMail($new_order));
 
-            return (($data['status'] == 'SUBMITTED_FOR_SETTLEMENT') ? 'Pagamento accettato, ' : 'null') . ' mail inviata a ' . $new_order->customer_email . view('guest.order.store', $data);
-        }
-        else {
-            $msUser = new User();
-            $msUser = User::select('slug')->where('id', $data['user_id'])->first();
-            return view('guest.order.failed', compact('data', 'msUser') );
-        }
+        //     return (($request['status'] == 'SUBMITTED_FOR_SETTLEMENT') ? 'Pagamento accettato, ' : 'null') . ' mail inviata a ' . $new_order->customer_email . view('guest.order.show', $request);
     }
     
     /**

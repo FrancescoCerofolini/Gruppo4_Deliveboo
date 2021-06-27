@@ -1,7 +1,11 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+ 
+use \Illuminate\Http\Response;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +31,10 @@ Route::prefix('guest')
         ]);
         Route::resource('/order', 'OrderController');
         Route::resource('/category', 'CategoryController');
+        Route::get('/payment', 'PaymentController@payment');
+        Route::post('/payment/checkout', 'PaymentController@paymentCheckout');
         });
+
 Route::prefix('admin')
     ->namespace('Admin')
     ->middleware('auth')
@@ -65,3 +72,4 @@ Route::prefix('admin')
             'store' => 'admin.category.store',
         ]);
         });
+

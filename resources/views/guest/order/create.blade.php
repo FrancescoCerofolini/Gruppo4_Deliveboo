@@ -10,7 +10,7 @@
         {{-- INPUT FORM --}}
     <div class="row justify-content-flex-start">
         <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
-            <form class='ms-create-dish' action="{{ route('order.store') }}" method="post" enctype="multipart/form-data">
+            <form class='ms-create-dish' action="#" method="post" enctype="multipart/form-data">
                 @csrf
                 
                 <h1>{{ strtoupper(str_replace('-', ' ', $data['user_slug'])) }}</h1>
@@ -18,7 +18,7 @@
                     @php
                     $counter = 0;
                     @endphp
-                    {{-- @dd($data['quantity'][$counter])    --}}
+
                     @php
                         $avaibleDishes = [];
                         foreach($data['dishes'] as $dish) {
@@ -97,7 +97,6 @@
                     <button v-on:click='backToHome = false'>No</button>
                 </div>
 
-                {{-- Bottoni pagamento nel form di blade --}}
                 
                 <div class="form-group my-hidden">
                     <button id='ordine' type="submit">Automatico</button>
@@ -124,10 +123,10 @@
                 </div>
 
                 
-                <div>
+                {{-- <div>
                     <label for="amount">Totale €</label>
                     <input id='amount' name="amount" v-model="amount" readonly>
-                </div>
+                </div> --}}
 
                 <div>
                     <label for="delivery">Spese di consegna €</label>
@@ -140,37 +139,94 @@
         
             </div>
             {{-- DATI UTENTE --}}
-            
 
-            <div v-show="!flag_cart && !cartShow " class="form-group">
+            {{-- <form action="/payment" method="get">
+                
+                <div v-show="!flag_cart && !cartShow " class="form-group">
 
-                <div class="form-group">
-                    <label>Nome e Cognome</label>
-                    <input type="text" name="customer_name" class="form-control" id="exampleFormControlInput1" placeholder="Mario Rossi" v-model='nomeCognome' required>
-                </div>
-                <div class="form-group">
-                    <label>Indirizzo email</label>
-                    <input type="email" name="customer_email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" v-model='indirizzoMail' required>
+                    <div class="form-group">
+                        <label>Nome e Cognome</label>
+                        <input type="text" name="customer_name" class="form-control" id="exampleFormControlInput1" placeholder="Mario Rossi" v-model='nomeCognome' required>
+                    </div>
+                    <div class="form-group">
+                        <label>Indirizzo email</label>
+                        <input type="email" name="customer_email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" v-model='indirizzoMail' required>
+                        
+                    </div>
+                    <div class="form-group">
+                        <label>Inserisci il tuo indirizzo</label>
+                        <input type="text" name="customer_address" class="form-control" id="exampleFormControlInput1" v-model='indirizzo' required>
+                    </div>
+                    <div class="form-group">
+                        <label>Numero di telefono</label>
+                        <input type="text" name="customer_phone" class="form-control" id="exampleFormControlInput1" value="+39" v-model='numeroTelefono' required>
+                    </div>
+
+                    <div class="form-group my-hidden">
+                        <input type='hidden' name="status" class="form-control" :value="payment_status" required>
+                        <input type='hidden' name="user_slug" class="form-control" value="{{$data['user_slug']}}">
+                        <input type='hidden' name="user_id" class="form-control" value="{{$data['user_id']}}">
+                        <input type='hidden' name="dishes[]" class="form-control" value="name_dish">
+                        <input type="hidden" name="amount" class="form-control" :value="amount">
+                        <input type='hidden' name="quantity[]" class="form-control" value="quantity_dish">
+                    </div>
+
                     
-                </div>
-                <div class="form-group">
-                    <label>Inserisci il tuo indirizzo</label>
-                    <input type="text" name="customer_address" class="form-control" id="exampleFormControlInput1" v-model='indirizzo' required>
-                </div>
-                <div class="form-group">
-                    <label>Numero di telefono</label>
-                    <input type="text" name="customer_phone" class="form-control" id="exampleFormControlInput1" value="+39" v-model='numeroTelefono' required>
+
+                    
+                    <button type="button" v-on:click="payment" class="btn btn-success"> Paga
+                    </button>
+                    <a href="/payment" class="btn btn-success"> Paga </a>
+                    <button type="submit" class="btn btn-success"> Paga </button>
+                    <button v-on:click="flag_cart = true , cartShow = true"class='btn btn-success'>Torna al carrello</button>
                 </div>
 
-                <div class="form-group my-hidden">
-                    <label>status</label>
-                    <input type='hidden' name="status" class="form-control"  :value="payment_status" required>
-                </div>
+            </form> --}}
 
-                <button type="button" v-on:click="payment" class="btn btn-success"> Paga
-                </button>
-                <button v-on:click="flag_cart = true , cartShow = true"class='btn btn-success'>Torna al carrello</button>
-            </div>
+            <form action="/guest/payment" method="GET">
+                <div v-show="!flag_cart && !cartShow " class="form-group">
+                    <div class="form-group">
+                        <label>Nome e Cognome</label>
+                        <input type="text" name="customer_name" class="form-control" id="exampleFormControlInput1" placeholder="Mario Rossi" v-model='nomeCognome' required>
+                    </div>
+                    <div class="form-group">
+                        <label>Indirizzo email</label>
+                        <input type="email" name="customer_email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" v-model='indirizzoMail' required>
+                    </div>
+                    <div class="form-group">
+                        <label>Inserisci il tuo indirizzo</label>
+                        <input type="text" name="customer_address" class="form-control" id="exampleFormControlInput1" v-model='indirizzo' required>
+                    </div>
+                    <div class="form-group">
+                        <label>Numero di telefono</label>
+                        <input type="text" name="customer_phone" class="form-control" id="exampleFormControlInput1" value="+39" v-model='numeroTelefono' required>
+                    </div>
+                    <div class="form-group my-hidden">
+                        <input type='hidden' name="status" class="form-control" :value="payment_status" required>
+                        <input type='hidden' name="user_slug" class="form-control" value="{{$data['user_slug']}}">
+                        <input type='hidden' name="user_id" class="form-control" value="{{$data['user_id']}}">
+                        <input type="hidden" name="amount" class="form-control" :value="amount" >
+                        @php
+                            $counter = 0;
+                        @endphp
+                        @foreach ($data['dishes'] as $index => $dish)
+                            @if ($dish->visibility == 1)                   
+                                <input type="hidden" name="dish_id[]" class="form-control" value="{{ $dish->id }}">
+                                <input type='hidden' name="quantity[]" class="form-control" :value="quantity_dish[{{$counter}}]" readonly>
+                                @php
+                                    $counter += 1;
+                                @endphp
+                            @endif
+                        @endforeach
+                    </div>
+                    {{-- <button type="button" v-on:click="payment" class="btn btn-success"> Paga
+                    </button> --}}
+                    {{-- <a href="/payment" class="btn btn-success"> Paga </a> --}}
+                    <button type="submit" class="btn btn-success"> Paga </button>
+                    <button v-on:click="flag_cart = true , cartShow = true"class='btn btn-success'>Torna al carrello</button>
+                </div>
+            </form>
+
         </div>
         
     </div>
@@ -180,37 +236,3 @@
 </div>
 @endsection
 
-{{-- @section('extra-script')
-    <script src="https://js.braintreegateway.com/web/dropin/1.13.0/js/dropin.min.js"></script>
-    <script>
-        var form = document.querySelector('#payment-form');
-        var client_token = "{{ $token }}";
-
-        braintree.dropin.create({
-          authorization: client_token,
-          selector: '#bt-dropin',
-          paypal: {
-            flow: 'vault'
-          }
-        }, function (createErr, instance) {
-          if (createErr) {
-            console.log('Create Error', createErr);
-            return;
-          }
-          form.addEventListener('submit', function (event) {
-            event.preventDefault();
-
-            instance.requestPaymentMethod(function (err, payload) {
-              if (err) {
-                console.log('Request Payment Method Error', err);
-                return;
-              }
-
-              // Add the nonce to the form and submit
-              document.querySelector('#nonce').value = payload.nonce;
-              form.submit();
-            });
-          });
-        });
-    </script>
-@endsection --}}

@@ -1,4 +1,10 @@
 <!doctype html>
+<<<<<<< HEAD
+=======
+{{-- @foreach ($user as $value)
+    {{$value->name}}
+@endforeach --}}
+>>>>>>> prova-braintree-fra
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -95,6 +101,7 @@
                             </div>
                             
                             <span class="mobile_hidden">{{$user[0]->name}}</span>
+                            {{-- <span class="mobile_hidden">{{$value->name}}</span> --}}
                         </div>
                         
                     </div>
