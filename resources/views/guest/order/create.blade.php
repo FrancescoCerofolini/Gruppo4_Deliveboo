@@ -10,7 +10,7 @@
         {{-- INPUT FORM --}}
     <div class="row justify-content-center">
         <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
-            <form class='ms-create-dish' action="{{ route('order.store') }}" method="post" enctype="multipart/form-data">
+            <form class='ms-create-dish' action="#" method="post" enctype="multipart/form-data">
                 @csrf
                 
                 <h1>{{ strtoupper(str_replace('-', ' ', $data['user_slug'])) }}</h1>
@@ -123,10 +123,10 @@
                 </div>
 
                 
-                <div>
+                {{-- <div>
                     <label for="amount">Totale €</label>
                     <input id='amount' name="amount" v-model="amount" readonly>
-                </div>
+                </div> --}}
 
                 <div>
                     <label for="delivery">Spese di consegna €</label>
@@ -183,7 +183,7 @@
 
             </form> --}}
 
-            <form action="/payment" method="GET">
+            <form action="/guest/payment" method="GET">
                 <div v-show="!flag_cart && !cartShow " class="form-group">
                     <div class="form-group">
                         <label>Nome e Cognome</label>

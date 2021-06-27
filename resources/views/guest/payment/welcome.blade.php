@@ -134,38 +134,40 @@
                     <button class="button" v-on:click="payment" type="submit"><span>Test Transaction</span></button>
                 </form> --}}
 
-                <form method="post" id="payment-form" action="{{ url('/payment/checkout') }}">
+                <form method="post" id="payment-form" action="{{ url('/guest/payment/checkout') }}">
                     @csrf
                     <section>
                         <label for="amount">
                             <span class="input-label">Amount</span>
                             <div class="input-wrapper amount-wrapper">
-                                <input id="amount" name="amount" type="tel" min="1" placeholder="Amount" value="10">
+                                <input id="amount" name="amount" type="tel" min="1" placeholder="Amount" value="{{$request['amount']}}" readonly>
                             </div>
                         </label>
                         <div class="bt-drop-in-wrapper">
                             <div id="bt-dropin"></div>
                         </div>
                     </section>
-                    <input name="customer_name" value="{{$request['customer_name']}}"></input>
-                    <input name="customer_address" value="{{$request['customer_address']}}"></input>
-                    <input name="customer_phone" value="{{$request['customer_phone']}}"></input>
-                    <input name="customer_email" value="{{$request['customer_email']}}"></input>
-                    <input name="user_slug" value="{{$request['user_slug']}}"></input>
-                    <input name="user_id" value="{{$request['user_id']}}"></input>
-                    {{-- @dd($request['dish_id'],$request['quantity']); --}}
-                    <input name="amount" value="{{$request['amount']}}"></input>
+                    
+                    <input type="hidden" name="customer_name" value="{{$request['customer_name']}}">
+                    <input type="hidden" name="customer_address" value="{{$request['customer_address']}}">
+                    <input type="hidden" name="customer_phone" value="{{$request['customer_phone']}}">
+                    <input type="hidden" name="customer_email" value="{{$request['customer_email']}}">
+                    <input type="hidden" name="user_slug" value="{{$request['user_slug']}}">
+                    <input type="hidden" name="user_id" value="{{$request['user_id']}}">
+                    
+                    <input type="hidden" name="amount" value="{{$request['amount']}}">
                     @php
                         $counter = 0;
                     @endphp
                     @foreach ($request['dish_id'] as $dish)
-                        <input name="dish_id[]" value="{{$request['dish_id'][$counter]}}"></input>
-                        <input name="quantity[]" value="{{$request['quantity'][$counter]}}"></input>
+                        <input type="hidden" name="dish_id[]" value="{{$request['dish_id'][$counter]}}">
+                        <input type="hidden" name="quantity[]" value="{{$request['quantity'][$counter]}}">
                         @php
                             $counter += 1;
                         @endphp
                     @endforeach
-                    <input id="nonce" name="payment_method_nonce" {{-- type="hidden" --}} />
+                    <input type="hidden" id="nonce" name="payment_method_nonce" />
+                    
                     <button class="button" type="submit"><span>Test Transaction</span></button>
                 </form>
             </div>
@@ -189,6 +191,7 @@
           }
           form.addEventListener('submit', function (event) {
             event.preventDefault();
+            
 
             instance.requestPaymentMethod(function (err, payload) {
               if (err) {
@@ -201,6 +204,24 @@
               form.submit();
             });
           });
+        //   dropinInstance.requestPaymentMethod(function (requestPaymentMethodError, payload) {
+        //         if (requestPaymentMethodError) {
+        //             // handle errors
+        //             return;
+        //         }
+
+        //         functionToSendNonceToServer(payload.nonce, function (transactionError, response) {
+        //             if (transactionError) {
+        //             // transaction sale with selected payment method failed
+        //             // clear the selected payment method and add a message
+        //             // to the checkout page about the failure
+        //             dropinInstance.clearSelectedPaymentMethod();
+        //             divForErrorMessages.textContent = 'my error message about entering a different payment method.';
+        //             } else {
+        //             // redirect to success page
+        //             }
+        //         });
+        //     });
         });
 
     </script>
