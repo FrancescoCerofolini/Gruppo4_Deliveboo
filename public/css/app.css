@@ -651,14 +651,6 @@ body {
     min-width: 80px;
   }
 
-
-
-body #app .container {
-  margin-top: 20px;
-}
-
-body #app #not-valid {
-  display: none;
   #nav_left .logo {
     display: none;
   }
@@ -666,6 +658,19 @@ body #app #not-valid {
   #nav_left .logo_small {
     display: inline-block;
   }
+}
+
+#myChart2 {
+  width: 1400px;
+  height: 1000px;
+}
+
+body #app .container {
+  margin-top: 20px;
+}
+
+body #app #not-valid {
+  display: none;
 }
 
 .ms-cart {
