@@ -6,6 +6,13 @@
             <div class="col-11">
                     <h1>Grafici Ordini</h1>
                     <form>
+                        <select name="what" id="what" onchange="destroy();graph()">
+                            @foreach (['ordini','incassi'] as $what)
+                                <option value="{{$what}}">{{$what}}</option>
+                            @endforeach
+                        </select>
+                    </form>
+                    <form>
                         <select name="year" id="year" onchange="destroy();graph()">
                             @foreach ([0,1,2,3,4,5,6,7,8,9] as $year)
                                 <option value="{{$year}}">{{$year + 2012}}</option>
@@ -21,14 +28,17 @@
     </div>
 
     <script>
-        var arrays = <?php echo json_encode($orders_by_month_pretty); ?>;
         function graph() {
+            if (document.getElementById('what').value == 'ordini') {
+                var arrays = <?php echo json_encode($orders_by_month_pretty); ?>;
+            } else {
+                var arrays = <?php echo json_encode($amount_by_month_pretty); ?>;
+            };
             for (var i = 0; i < arrays.length; i++) {
                 var year = document.getElementById('year').value;
                 if (i == year) {
                     var ctx1 = document.getElementById('myChart1').getContext('2d');
                     var array = arrays[year];
-                    console.log(array);
                     var myChart1 = new Chart(ctx1, {
                         type: 'bar',
                         data: {
