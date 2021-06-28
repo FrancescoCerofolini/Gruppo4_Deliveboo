@@ -24,20 +24,42 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($dishes as $dish)
+                            @php
+                            $Mtmp = [];                                                         
+                            @endphp
+                            {{-- @dd($dishes) --}}
+                            @foreach ($dishes as $index => $dish)
+                            <?php $tmp = [] ?> 
+                            <?php $tmp [] = $dish->name ?>
+                            <?php $tmp [] = $dish->id ?>
+                            <?php $tmp [] = $dish->description ?>
+                            <?php $tmp [] = $dish->price ?>
+                            <?php $tmp [] = $dish->visibility ?>
+                            @php
+                            $Mtmp [] = $tmp;
+                            @endphp
+                            @endforeach
+                            @php
+                            function compareByName($a, $b) {
+                            return strcmp($a[0], $b[0]);
+                            }
+                            usort($Mtmp, 'compareByName');
+                            // dd($Mtmp)
+                            @endphp
+                            @foreach ($Mtmp as $dish)
                             <tr class="row_on_hover">
-                                <td>{{ $dish->id }}</td>
-                                <td>{{ $dish->name }}</td>
-                                <td>{{ $dish->description }}</td>
-                                <td class="text-center">{{ $dish->price }} &euro;</td>
-                                <td class="text-center">{{ $dish->visibility }}</td>
+                                <td>{{ $dish[1] }}</td> {{-- ID --}}
+                                <td>{{ $dish[0] }}</td> {{-- nome --}}
+                                <td>{{ $dish[2] }}</td> {{-- descrizione --}}
+                                <td class="text-center">{{ $dish[3] }} &euro;</td> {{-- prezzo --}}
+                                <td class="text-center">{{ $dish[4] }}</td> {{-- visibilità --}}
                                 <td class="text-center">
                                     <ul class="action-list">
                                         <li>
-                                            <a href="{{ route('admin.dish.edit', $dish->id) }}"" data-tip="modifica"><i class="fa fa-edit"></i></a>
+                                            <a href="{{ route('admin.dish.edit', $dish[1]) }}" data-tip="modifica"><i class="fa fa-edit"></i></a>
                                         </li>
                                         <li>
-                                            <form class="d-inline-block form_elimina" action="{{ route('admin.dish.destroy', $dish->id) }}" method="post" data-tip="elimina">
+                                            <form class="d-inline-block form_elimina" action="{{ route('admin.dish.destroy', $dish[1]) }}" method="post" data-tip="elimina">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="">
@@ -48,7 +70,9 @@
                                     </ul>
                                 </td>
                             </tr>
+                                
                             @endforeach
+                            {{-- @dd($Mtmp) --}}
                         </tbody>
                     </table>
                 </div>
