@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -22,6 +23,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+    @yield('content2')
     <div id="app">
         {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -75,11 +77,8 @@
         </nav> --}}
         @include('partials.header')
         <main>
-            @yield('content')
-
-            
+            @yield('content')  
         </main>
-        @yield('extra-script')
         @include('partials.footer')
     </div>
     

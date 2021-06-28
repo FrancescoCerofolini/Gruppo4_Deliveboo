@@ -6,7 +6,6 @@
 @section('content')
 <div class="container">
 
-
         {{-- INPUT FORM --}}
     <div class="row justify-content-flex-start">
         <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">

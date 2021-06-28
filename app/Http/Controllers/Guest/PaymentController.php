@@ -98,6 +98,11 @@ class PaymentController extends Controller
             $amount = 0;
             $counter = 0;
             $dish_ids = $request['dish_id'];
+            $dish_names = [];
+            foreach ($dish_ids as $id_dish) {
+                $dish_name = Dish::where('id', $id_dish)->get();
+                $dish_names [] = $dish_name;
+            }
             foreach ($dish_ids as $dish_id) {
 
                 if ($request['quantity'][$counter]) {
@@ -108,13 +113,13 @@ class PaymentController extends Controller
                     $price = Dish::select('price')->where('user_id', $request['user_id'])->where('id', $dish_id)->get(['price'])->toArray()[0]["price"];
                     $amount = $amount + ($request['quantity'][$counter] * $price);
                 }
-
                 $counter = $counter + 1;
             }
             $new_order->amount = $amount + $request['delivery'];
             $request["amount"] = $request["amount"] + $request['delivery'];
             $new_order->update($data);
 
+            
             //dd($msUser);
 
             // $user_slug = User::all()->where('id', $request['user_id']);
@@ -122,8 +127,9 @@ class PaymentController extends Controller
             // @dd($user_slug);
 
             Mail::to($new_order->customer_email)->send(new SendNewMail($new_order));
+            // dd($data);
 
-            return (' mail inviata a ' . $new_order->customer_email . view('guest.order.show', $request)); //($request['status'] == 'SUBMITTED_FOR_SETTLEMENT') ? 'Pagamento accettato, ' : 'null') . 
+            return (' mail inviata a ' . $new_order->customer_email . view('guest.order.show', $request, compact('dish_names'))); //($request['status'] == 'SUBMITTED_FOR_SETTLEMENT') ? 'Pagamento accettato, ' : 'null') . 
         } else {
             $errorString = "";
 
@@ -133,7 +139,7 @@ class PaymentController extends Controller
             $msUser = new User();
             $msUser = User::select('slug')->where('id', $data['user_id'])->first();
             return view('guest.order.failed', compact('data', 'msUser'));
-            // @dd($data);
+            
             // $_SESSION["errors"] = $errorString;
             // header("Location: index.php");
             // return view('guest.order.failed', $data);//back()->withErrors('An error occurred with the message: '.$result->message);
