@@ -24,6 +24,24 @@ body {
   display: none;
 }
 
+.in-linea {
+  display: inline-block;
+}
+
+.btn_orange {
+  padding: 5px 10px;
+  background-color: #ff8d00;
+  border-color: #ff8d00;
+  border-radius: 7px;
+  color: white;
+}
+
+.btn_orange:hover {
+  text-decoration: none;
+  color: white;
+  background-color: rgba(255, 141, 0, 0.5);
+}
+
 .my-navbar {
   width: 100%;
   height: 60px;
@@ -194,113 +212,6 @@ body {
     color: #ff8d00;
     text-decoration: none;
   }
-}
-
-.in-linea {
-  display: inline-block;
-}
-
-.btn_orange {
-  padding: 5px 10px;
-  background-color: #ff8d00;
-  border-color: #ff8d00;
-  border-radius: 7px;
-  color: white;
-}
-
-.btn_orange:hover {
-  text-decoration: none;
-  color: white;
-  background-color: rgba(255, 141, 0, 0.5);
-}
-
-.table_title {
-  margin: 20px 0;
-}
-
-.panel .panel-body .table thead tr th {
-  color: white;
-  background-color: rgba(255, 141, 0, 0.5);
-  font-size: 1rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  padding: 12px;
-  border: none;
-}
-
-.panel .panel-body .table tbody .row_on_hover:hover {
-  background-color: rgba(255, 141, 0, 0.2);
-}
-
-.panel .panel-body .table tbody tr td {
-  color: #720e07;
-  font-size: 0.8rem;
-  padding: 10px 12px;
-  vertical-align: middle;
-  border: none;
-}
-
-.panel .panel-body .table tbody .action-list {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.panel .panel-body .table tbody .action-list li {
-  display: inline-block;
-  margin: 0 5px;
-}
-
-.panel .panel-body .table tbody .action-list li a,
-.panel .panel-body .table tbody .action-list li .form_elimina {
-  color: #0a0404;
-  font-size: 15px;
-  position: relative;
-  z-index: 1;
-  transition: all 0.3s ease 0s;
-}
-
-.panel .panel-body .table tbody .action-list li a:before,
-.panel .panel-body .table tbody .action-list li a:after,
-.panel .panel-body .table tbody .action-list li .form_elimina:before,
-.panel .panel-body .table tbody .action-list li .form_elimina:after {
-  content: attr(data-tip);
-  color: white;
-  background-color: #ff8d00;
-  font-size: 12px;
-  padding: 5px 7px;
-  border-radius: 4px;
-  text-transform: capitalize;
-  display: none;
-  transform: translateX(-50%);
-  position: absolute;
-  left: 50%;
-  top: -32px;
-  transition: all 0.3s ease 0s;
-}
-
-.panel .panel-body .table tbody .action-list li a:after,
-.panel .panel-body .table tbody .action-list li .form_elimina:after {
-  content: "";
-  height: 15px;
-  width: 15px;
-  padding: 0;
-  border-radius: 0;
-  transform: translateX(-50%) rotate(45deg);
-  top: -18px;
-  z-index: -1;
-}
-
-.panel .panel-body .table tbody .action-list li a:hover:before,
-.panel .panel-body .table tbody .action-list li a:hover:after,
-.panel .panel-body .table tbody .action-list li .form_elimina:hover:before,
-.panel .panel-body .table tbody .action-list li .form_elimina:hover:after {
-  display: block;
-}
-
-.panel .panel-body .table tbody .action-list li .form_elimina button {
-  border: none;
-  background-color: transparent;
 }
 
 .slideshow-container {
@@ -663,6 +574,143 @@ body {
 #myChart2 {
   width: 1400px;
   height: 1000px;
+}
+
+.table_title {
+  margin: 20px 0;
+}
+
+.table_title .btn_orange {
+  display: inline-block;
+}
+
+.table_title i {
+  display: none;
+  color: #ff8d00;
+}
+
+.col-12.table_padding {
+  padding-right: 30px;
+}
+
+.panel .panel-body .table thead tr th {
+  color: white;
+  background-color: rgba(255, 141, 0, 0.5);
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 12px;
+  border: none;
+}
+
+.panel .panel-body .table tbody .row_on_hover:hover {
+  background-color: rgba(255, 141, 0, 0.2);
+}
+
+.panel .panel-body .table tbody tr td {
+  color: #720e07;
+  font-size: 0.8rem;
+  padding: 10px 12px;
+  vertical-align: middle;
+  border: none;
+}
+
+.panel .panel-body .table tbody .action-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.panel .panel-body .table tbody .action-list li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.panel .panel-body .table tbody .action-list li a,
+.panel .panel-body .table tbody .action-list li .form_elimina {
+  color: #0a0404;
+  font-size: 15px;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease 0s;
+}
+
+.panel .panel-body .table tbody .action-list li a:before,
+.panel .panel-body .table tbody .action-list li a:after,
+.panel .panel-body .table tbody .action-list li .form_elimina:before,
+.panel .panel-body .table tbody .action-list li .form_elimina:after {
+  content: attr(data-tip);
+  color: white;
+  background-color: #ff8d00;
+  font-size: 12px;
+  padding: 5px 7px;
+  border-radius: 4px;
+  text-transform: capitalize;
+  display: none;
+  transform: translateX(-50%);
+  position: absolute;
+  left: 50%;
+  top: -32px;
+  transition: all 0.3s ease 0s;
+}
+
+.panel .panel-body .table tbody .action-list li a:after,
+.panel .panel-body .table tbody .action-list li .form_elimina:after {
+  content: "";
+  height: 15px;
+  width: 15px;
+  padding: 0;
+  border-radius: 0;
+  transform: translateX(-50%) rotate(45deg);
+  top: -18px;
+  z-index: -1;
+}
+
+.panel .panel-body .table tbody .action-list li a:hover:before,
+.panel .panel-body .table tbody .action-list li a:hover:after,
+.panel .panel-body .table tbody .action-list li .form_elimina:hover:before,
+.panel .panel-body .table tbody .action-list li .form_elimina:hover:after {
+  display: block;
+}
+
+.panel .panel-body .table tbody .action-list li .form_elimina button {
+  border: none;
+  background-color: transparent;
+}
+
+@media (max-width: 767px) {
+  .col-12.table_padding {
+    padding: 0 30px;
+  }
+
+  .col-12.table_padding .table_title {
+    margin: 10px 0;
+  }
+
+  .col-12.table_padding .table_title h1,
+  .col-12.table_padding .table_title .btn_orange {
+    font-size: 1.2rem;
+  }
+
+  .col-12.table_padding .table_title h1 {
+    font-weight: 600;
+  }
+
+  .col-12.table_padding .table_title .btn_orange {
+    display: none;
+  }
+
+  .col-12.table_padding .table_title i {
+    display: inline-block;
+  }
+
+  .col-12.table_padding .table_title .btn_orange {
+    padding: 2px 5px;
+  }
+
+  .col-12.table_padding .table thead tr th {
+    font-size: 0.8rem;
+  }
 }
 
 body #app .container {

@@ -7,6 +7,9 @@
 // Common
 @import 'common';
 
+// Navbar
+@import '_header.scss';
+
 // Home
 @import 'home';
 
@@ -16,9 +19,11 @@
 //dashboard
 @import '_dashboard';
 
+// Tabelle
+@import 'admin/_tables';
+
 // Order Create
 @import 'order/create';
-
 
 //footer
 @import '_footer';

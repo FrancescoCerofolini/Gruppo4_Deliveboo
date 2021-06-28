@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-12">
+        <div class="col-12 table_padding">
             <div class="d-flex justify-content-between align-items-center table_title">
                 <h1>Ordini ricevuti</h1>
             </div>
