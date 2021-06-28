@@ -15,11 +15,10 @@
                         </div>
                     @endif
 
-                    
-
                     @foreach ($user as $value)
                         <p>Bentornato <strong>{{$value->name}}</strong>!</p>
                     @endforeach
+                    <p>{{$date_time}}</p>
                 </div>
             </div>
         </div>

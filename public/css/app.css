@@ -16,6 +16,14 @@ body {
   line-height: 1.6;
 }
 
+.show {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
 .my-navbar {
   width: 100%;
   height: 60px;
@@ -30,6 +38,8 @@ body {
   left: 0;
   right: 0;
   z-index: 999;
+  display: flex;
+  justify-content: space-between;
 }
 
 .my-navbar .logo img {
@@ -38,24 +48,113 @@ body {
 
 .my-navbar #logo_big,
 .my-navbar #city,
-.my-navbar #login {
+.my-navbar .header_right {
   display: none;
 }
 
-.my-navbar #logo_small {
+.my-navbar #logo_small,
+.my-navbar #login #city-menu-container {
   display: inline-block;
 }
 
-.my-navbar i {
-  padding: 0 5px;
+.my-navbar .header-center-container,
+.my-navbar .header-right-container {
+  position: relative;
 }
 
-.my-navbar a {
+.my-navbar #city-marker {
+  cursor: pointer;
+}
+
+.my-navbar #city-menu-container:hover {
+  color: #ff8d00;
+}
+
+.my-navbar #city-menu-container #city-menu .active_link {
+  display: block;
+  color: #6b6b83;
+}
+
+.my-navbar #city-menu-container #city-menu .active_link:hover {
+  color: #ff8d00;
+  text-decoration: none;
+}
+
+.my-navbar #city-menu-container #city-menu .inactive_link {
+  display: block;
+  color: #aaa69f;
+  pointer-events: none;
+  position: relative;
+}
+
+.my-navbar #city-menu-container #city-menu .inactive_link::after {
+  content: "prossimamente";
+  font-size: 0.6rem;
+  font-style: oblique;
+  text-align: right;
+  text-decoration: underline;
+  color: #720e07;
+  position: absolute;
+  bottom: -20px;
+  left: 20px;
+}
+
+.my-navbar #city-menu-container,
+.my-navbar .hamburger-menu-container {
+  position: absolute;
+  top: 60px;
+  display: inline-block;
+}
+
+.my-navbar #city-menu-container {
+  left: -50px;
+}
+
+.my-navbar .hamburger-menu-container {
+  right: 0;
+}
+
+.my-navbar #city-menu-container i,
+.my-navbar .header_right i,
+.my-navbar .hamburger-menu-container i {
+  padding: 0;
+  color: #6b6b83;
+}
+
+.my-navbar #city-menu-container i:hover,
+.my-navbar .header_right i:hover,
+.my-navbar .hamburger-menu-container i:hover {
+  color: #ff8d00;
+}
+
+.my-navbar #city-menu-container #city-menu,
+.my-navbar #city-menu-container #hamburger-menu,
+.my-navbar .header_right #city-menu,
+.my-navbar .header_right #hamburger-menu,
+.my-navbar .hamburger-menu-container #city-menu,
+.my-navbar .hamburger-menu-container #hamburger-menu {
+  background-color: #f8fafc;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.my-navbar #city-menu-container #city-menu a,
+.my-navbar #city-menu-container #hamburger-menu a,
+.my-navbar .header_right #city-menu a,
+.my-navbar .header_right #hamburger-menu a,
+.my-navbar .hamburger-menu-container #city-menu a,
+.my-navbar .hamburger-menu-container #hamburger-menu a {
+  display: block;
   padding: 0 10px;
   color: #6b6b83;
 }
 
-.my-navbar a:hover {
+.my-navbar #city-menu-container #city-menu a:hover,
+.my-navbar #city-menu-container #hamburger-menu a:hover,
+.my-navbar .header_right #city-menu a:hover,
+.my-navbar .header_right #hamburger-menu a:hover,
+.my-navbar .hamburger-menu-container #city-menu a:hover,
+.my-navbar .hamburger-menu-container #hamburger-menu a:hover {
   color: #ff8d00;
   text-decoration: none;
 }
@@ -63,12 +162,37 @@ body {
 @media (min-width: 768px) {
   .my-navbar #logo_big,
   .my-navbar #city,
-  .my-navbar #login {
+  .my-navbar .header_right,
+  .my-navbar #city-menu-container,
+  .my-navbar #login,
+  .my-navbar .header-center-container:hover #city-menu {
     display: inline-block;
   }
 
-  .my-navbar #logo_small {
+  .my-navbar #logo_small,
+  .my-navbar .hamburger-menu-container {
     display: none;
+  }
+
+  .my-navbar .header-center-container {
+    cursor: pointer;
+  }
+
+  .my-navbar #city-marker i,
+  .my-navbar .header-right-container i {
+    display: none;
+  }
+
+  .my-navbar .header_right a,
+  .my-navbar .hamburger-menu-container a {
+    padding: 0 10px;
+    color: #6b6b83;
+  }
+
+  .my-navbar .header_right a:hover,
+  .my-navbar .hamburger-menu-container a:hover {
+    color: #ff8d00;
+    text-decoration: none;
   }
 }
 
@@ -442,6 +566,10 @@ body {
   align-self: center;
 }
 
+.menu_nav_left .logo_small {
+  display: none;
+}
+
 .menu_nav_left .menu_dashboard {
   height: calc(100% - 100px);
 }
@@ -522,17 +650,8 @@ body {
     max-width: 80px;
     min-width: 80px;
   }
-}
 
-#myChart1 {
-  width: 1400px;
-  height: 1000px;
-}
 
-#myChart2 {
-  width: 1400px;
-  height: 1000px;
-}
 
 body #app .container {
   margin-top: 20px;
@@ -540,6 +659,13 @@ body #app .container {
 
 body #app #not-valid {
   display: none;
+  #nav_left .logo {
+    display: none;
+  }
+
+  #nav_left .logo_small {
+    display: inline-block;
+  }
 }
 
 .ms-cart {

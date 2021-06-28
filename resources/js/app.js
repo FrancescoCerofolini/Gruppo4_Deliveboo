@@ -203,6 +203,26 @@ const app = new Vue({
             this.collection = this.restaurants
             this.flag = true;
         },
+        cityMenu() { 
+            var city = document.getElementById('city-menu');
+            if (city.classList.contains('hidden')) {
+                city.classList.add('show');
+                city.classList.remove('hidden');
+            } else if (city.classList.contains('show')) {
+                city.classList.add('hidden');
+                city.classList.remove('show');
+            };
+        },
+        hamburgerMenu() {
+            var show = document.getElementById('hamburger-menu');
+            if (show.classList.contains('hidden')) {
+                show.classList.add('show');
+                show.classList.remove('hidden');
+            } else if (show.classList.contains('show')) {
+                show.classList.add('hidden');
+                show.classList.remove('show');
+            };
+        },
     }
 });
 

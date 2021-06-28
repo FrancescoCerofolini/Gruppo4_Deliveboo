@@ -1,10 +1,9 @@
 <!doctype html>
-<<<<<<< HEAD
-=======
+
 {{-- @foreach ($user as $value)
     {{$value->name}}
 @endforeach --}}
->>>>>>> prova-braintree-fra
+
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -56,6 +55,7 @@
             <nav id="nav_left">
                 <div class="menu_nav_left">
                     <img class="logo" src="{{ asset('img/DeliveBoo_logo.png') }}" alt="DeliveBoo logo">
+                    <img src="{{ asset('img/DeliveBoo_logo_small.png') }}" alt="DeliveBoo logo small" class="logo_small">
                     <ul class="nav flex-column menu_dashboard">
                         <li class="nav-item">
                             <a class="nav-link active" href="{{route('admin-home')}}">
@@ -99,9 +99,15 @@
                             <div class="img_user">
                                 <i class="fas fa-user"></i>
                             </div>
+
                             
                             <span class="mobile_hidden">{{$user[0]->name}}</span>
                             {{-- <span class="mobile_hidden">{{$value->name}}</span> --}}
+
+                            @foreach ($user as $value)
+                                <span class="mobile_hidden">{{$value->name}}</span>
+                            @endforeach
+
                         </div>
                         
                     </div>
