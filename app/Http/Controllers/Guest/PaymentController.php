@@ -53,23 +53,15 @@ class PaymentController extends Controller
             ],
             'options' => [
                 'submitForSettlement' => true,
-                // 'gatewayRejected' => true
+                
                 ]
             ]);
             
-            // @dd($request);
-        // $request->validate([
-        //     'customer_address' => 'required|string|max:255',
-        //     'customer_email' => 'required|string|email|max:255',
-        //     'customer_phone' => 'required|regex:/[0-9]{10}/',
-        //     'customer_name' => 'required|string|max:255',
-        //     'code' => 'unique',
-        //     'amount' => 'required',
-        // ]);
+            
 
         $data = $request->all();
 
-        // @dd($result);
+      
 
         if ($result->success) {
             $new_order = new Order();
@@ -81,16 +73,13 @@ class PaymentController extends Controller
                 $code_presente = Order::where('code', $code)->first();
             }
             $new_order->code = $code;
-            $new_order->amount = $request['amount']; // + $request['delivery'];
+            $new_order->amount = $request['amount']  + $request['delivery'];
             $new_order->fill($data);
             $new_order->save();
-            //@dd('ciao, ok pagamento');
+            
 
             $transaction = $result->transaction;
-            // header("Location: transaction.php?id=" . $transaction->id);
-
-            //return back()->with('success_message', 'Transaction successful. The ID is:'. $transaction->id);
-            //return view('guest.order.store');
+            
 
 
 
@@ -98,6 +87,11 @@ class PaymentController extends Controller
             $amount = 0;
             $counter = 0;
             $dish_ids = $request['dish_id'];
+            $dish_names = [];
+            foreach ($dish_ids as $id_dish) {
+                $dish_name = Dish::where('id', $id_dish)->get();
+                $dish_names[] = $dish_name;
+            }
             foreach ($dish_ids as $dish_id) {
 
                 if ($request['quantity'][$counter]) {
@@ -118,12 +112,12 @@ class PaymentController extends Controller
             //dd($msUser);
 
             // $user_slug = User::all()->where('id', $request['user_id']);
-
+            
             // @dd($user_slug);
-
             Mail::to($new_order->customer_email)->send(new SendNewMail($new_order));
-
-            return (' mail inviata a ' . $new_order->customer_email . view('guest.order.show', $request)); //($request['status'] == 'SUBMITTED_FOR_SETTLEMENT') ? 'Pagamento accettato, ' : 'null') . 
+            
+           
+            return (' mail inviata a ' . $new_order->customer_email . view('guest.order.show', $request, compact('dish_names'))); //($request['status'] == 'SUBMITTED_FOR_SETTLEMENT') ? 'Pagamento accettato, ' : 'null') . 
         } else {
             $errorString = "";
 
@@ -133,7 +127,6 @@ class PaymentController extends Controller
             $msUser = new User();
             $msUser = User::select('slug')->where('id', $data['user_id'])->first();
             return view('guest.order.failed', compact('data', 'msUser'));
-            // @dd($data);
             // $_SESSION["errors"] = $errorString;
             // header("Location: index.php");
             // return view('guest.order.failed', $data);//back()->withErrors('An error occurred with the message: '.$result->message);

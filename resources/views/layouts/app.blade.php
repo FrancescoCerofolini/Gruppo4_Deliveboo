@@ -22,6 +22,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+    @yield('content2')
+
     <div id="app">
         {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -79,9 +81,8 @@
 
             
         </main>
-        @yield('extra-script')
+        
         @include('partials.footer')
     </div>
-    
 </body>
 </html>
