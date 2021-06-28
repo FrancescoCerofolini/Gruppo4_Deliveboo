@@ -45,6 +45,7 @@ const app = new Vue({
         if (window.location.pathname == '/guest/order/create') {
             this.amountFunction();
         };
+
     },
     created() {
         this.amountFunction();
