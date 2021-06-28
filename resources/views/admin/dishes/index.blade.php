@@ -20,7 +20,6 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>#</th>
                                 <th>Nome</th>
                                 <th>Descrizione</th>
                                 <th class="text-center">Prezzo</th>
@@ -31,7 +30,6 @@
                         <tbody>
                             @foreach ($dishes as $dish)
                             <tr class="row_on_hover">
-                                <td>{{ $dish->id }}</td>
                                 <td>{{ $dish->name }}</td>
                                 <td>{{ $dish->description }}</td>
                                 <td class="text-center">{{ $dish->price }} &euro;</td>
