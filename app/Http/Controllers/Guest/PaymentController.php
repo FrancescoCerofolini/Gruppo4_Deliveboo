@@ -54,10 +54,17 @@ class PaymentController extends Controller
             'options' => [
                 'submitForSettlement' => true,
                 
-                ]
-            ]);
-            
-            
+            ]
+        ]);
+
+        $request->validate([
+            'customer_address' => 'required|string|max:255',
+            'customer_email' => 'required|string|email|max:255',
+            'customer_phone' => 'required|regex:/[0-9]{10}/',
+            'customer_name' => 'required|string|max:255',
+            'code' => 'unique',
+            'amount' => 'required',
+        ]);
 
         $data = $request->all();
 

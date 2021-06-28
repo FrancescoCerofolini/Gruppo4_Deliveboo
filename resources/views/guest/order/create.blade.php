@@ -141,19 +141,19 @@
                 <div v-show="!flag_cart && !cartShow " class="form-group">
                     <div class="form-group">
                         <label>Nome e Cognome</label>
-                        <input type="text" name="customer_name" class="form-control" id="exampleFormControlInput1" placeholder="Mario Rossi" v-model='nomeCognome' required>
+                        <input type="text" name="customer_name" class="form-control" id="exampleFormControlInput1" placeholder="Mario Rossi" v-model='nomeCognome' required max="255" min='1'>
                     </div>
                     <div class="form-group">
                         <label>Indirizzo email</label>
-                        <input type="email" name="customer_email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" v-model='indirizzoMail' required>
+                        <input type="email" name="customer_email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" v-model='indirizzoMail' required max="255" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$" min='1'>
                     </div>
                     <div class="form-group">
                         <label>Inserisci il tuo indirizzo</label>
-                        <input type="text" name="customer_address" class="form-control" id="exampleFormControlInput1" v-model='indirizzo' required>
+                        <input type="text" name="customer_address" class="form-control" id="exampleFormControlInput1" v-model='indirizzo' required max="255" min='1'>
                     </div>
                     <div class="form-group">
                         <label>Numero di telefono</label>
-                        <input type="text" name="customer_phone" class="form-control" id="exampleFormControlInput1" value="+39" v-model='numeroTelefono' required>
+                        <input type="text" name="customer_phone" class="form-control" id="exampleFormControlInput1" value="+39" v-model='numeroTelefono' required pattern="[0-9]{10}">
                     </div>
                     <div class="form-group my-hidden">
                         <input type='hidden' name="status" class="form-control" :value="payment_status" required>
