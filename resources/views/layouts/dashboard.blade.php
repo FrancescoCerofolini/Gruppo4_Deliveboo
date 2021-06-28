@@ -1,9 +1,4 @@
 <!doctype html>
-
-{{-- @foreach ($user as $value)
-    {{$value->name}}
-@endforeach --}}
-
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -99,10 +94,6 @@
                             <div class="img_user">
                                 <i class="fas fa-user"></i>
                             </div>
-
-                            
-                            <span class="mobile_hidden">{{$user[0]->name}}</span>
-                            {{-- <span class="mobile_hidden">{{$value->name}}</span> --}}
 
                             @foreach ($user as $value)
                                 <span class="mobile_hidden">{{$value->name}}</span>

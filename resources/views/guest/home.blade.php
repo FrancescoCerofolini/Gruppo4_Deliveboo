@@ -22,12 +22,9 @@
             <div class="content">
                 @include('partials.header')
                 
-
                 {{-- Slider --}}
                 <div class="slideshow-container">
 
-
-                
                     <div class="mySlides" id="slide1">
                         <div class="overlay">
                             <h2>Scopri nuovi ristoranti vicino a te e goditi i loro fantastici piatti comodamente a casa tua.</h2>
@@ -90,12 +87,12 @@
                             </form>
                         </span>
                         <span v-for='(element, index) in collection' v-if='flag == false && selected_category != ""'>
-                            <form action="{{ route('order.create')}}" method="get">
+                            <form action="{{ route('order.create')}}" method="get" class="d-inline">
                                 <div class=" form-group my-hidden">
                                     <input name="user_id" type="text" :value="(element.user_id != '') ? element.user_id : 'default'">
                                     <input name="user_slug" type="text" :value="(element.slug != '') ? element.slug : 'default'">
                                 </div>
-                                <button type="submit">@{{element.slug.replace('-', ' ') }}</button>
+                                <button type="submit" class="btn-ristorante">@{{element.slug.replace('-', ' ') }}</button>
         
                             </form>
                         </span>

@@ -3,19 +3,23 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-12">
+        <div class="col-12 table_padding">
             <div class="d-flex justify-content-between align-items-center table_title">
                 <h1>I tuoi piatti</h1>
-                <a href="{{ route('admin.dish.create') }}" class="btn_orange">
-                    Crea nuovo piatto
-                </a>
+                <span>
+                    <a href="{{ route('admin.dish.create') }}" class="btn_orange">
+                        Crea nuovo piatto
+                    </a>
+                    <a href="{{ route('admin.dish.create') }}">
+                        <i class="fas fa-plus-square"></i>
+                    </a>
+                </span>
             </div>
             <div class="panel">
                 <div class="panel-body table-responsive">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>#</th>
                                 <th>Nome</th>
                                 <th>Descrizione</th>
                                 <th class="text-center">Prezzo</th>
@@ -26,7 +30,6 @@
                         <tbody>
                             @foreach ($dishes as $dish)
                             <tr class="row_on_hover">
-                                <td>{{ $dish->id }}</td>
                                 <td>{{ $dish->name }}</td>
                                 <td>{{ $dish->description }}</td>
                                 <td class="text-center">{{ $dish->price }} &euro;</td>
