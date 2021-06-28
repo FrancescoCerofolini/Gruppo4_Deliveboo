@@ -49966,7 +49966,8 @@ var app = new Vue({
       indirizzoMail: '',
       nomeCognome: '',
       backToHome: false,
-      cartShow: true
+      cartShow: true,
+      delivery: 3
     };
   },
   methods: {
@@ -49989,7 +49990,7 @@ var app = new Vue({
       }
 
       amount = parseFloat(amount.toFixed(2));
-      this.amount = amount; // count quantity
+      this.amount = this.delivery + amount; // count quantity
 
       var names = document.getElementsByClassName("name_dish");
       var tmp_quantity = [];
