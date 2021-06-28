@@ -101,12 +101,12 @@
                             </div>
 
                             
-                            <span class="mobile_hidden">{{$user[0]->name}}</span>
-                            {{-- <span class="mobile_hidden">{{$value->name}}</span> --}}
+                            {{-- <span class="mobile_hidden">{{$user[0]->name}}</span>
+                            {{-- <span class="mobile_hidden">{{$value->name}}</span> 
 
                             @foreach ($user as $value)
                                 <span class="mobile_hidden">{{$value->name}}</span>
-                            @endforeach
+                            @endforeach --}}
 
                         </div>
                         

@@ -21,6 +21,12 @@ use \Illuminate\Http\Response;
 
 
 Auth::routes();
+// Route::get('/register', 'RegisterController@index')->name('register');
+Route::prefix('register')
+    ->namespace('Auth')
+    ->group(function () {
+        Route::get('', 'RegisterController@index')->name('register');
+    });
 Route::get('/', 'HomeController@index')->name('guest-home');
 Route::prefix('guest')
     ->namespace('Guest')

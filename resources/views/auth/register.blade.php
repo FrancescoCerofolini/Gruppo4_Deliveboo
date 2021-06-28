@@ -74,6 +74,20 @@
                                     @enderror
                                 </div>
                             </div>
+
+                            <div class="form-group row">
+                                {{-- @dd($categories) --}}
+                                    <h3>seleziona le categorie</h3>
+                                    @foreach ($categories as $category)
+                                        <div class='col-lg-4'>
+                                            <div class="form-check">
+                                                <input placeholder="Categorie" id="categories" type="checkbox" class="form-check-input" name="categories[]" value="{{ $category->id }}" autofocus>
+                                                <label class="form-check-label"> {{$category->name}}</label>
+                                            </div>
+                                        </div>
+                                        
+                                    @endforeach 
+                            </div>
     
                             <div class="form-group row">
     
