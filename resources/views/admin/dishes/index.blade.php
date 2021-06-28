@@ -27,7 +27,6 @@
                             @php
                             $Mtmp = [];                                                         
                             @endphp
-                            {{-- @dd($dishes) --}}
                             @foreach ($dishes as $index => $dish)
                             <?php $tmp = [] ?> 
                             <?php $tmp [] = $dish->name ?>
