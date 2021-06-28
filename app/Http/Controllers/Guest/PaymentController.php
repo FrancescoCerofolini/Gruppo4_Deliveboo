@@ -42,22 +42,22 @@ class PaymentController extends Controller
 
         $amount = $request->amount;
         $nonce = $request->payment_method_nonce;
-        //@dd($request);
-
+        
         $result = $gateway->transaction()->sale([
             'amount' => $amount,
             'paymentMethodNonce' => $nonce,
             'customer' => [
-                'firstName' => 'Tony',
-                'lastName' => 'Stark',
-                'email' => 'tony@avengers.com',
+                'firstName' => $request['customer_name'],
+                
+                'email' => $request['customer_email'],
             ],
             'options' => [
                 'submitForSettlement' => true,
                 // 'gatewayRejected' => true
-            ]
-        ]);
-
+                ]
+            ]);
+            
+            // @dd($request);
         // $request->validate([
         //     'customer_address' => 'required|string|max:255',
         //     'customer_email' => 'required|string|email|max:255',
