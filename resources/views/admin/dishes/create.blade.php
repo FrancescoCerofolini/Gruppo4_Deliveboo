@@ -43,7 +43,10 @@
                         <div class="invalid-feedback" role="alert">{{ $message }}</div>
                     @enderror
                     <label for="visibility">Disponibile</label>
-                    <input type="checkbox" name="visibility" id="" value="1">
+                    <select name="visibility" id="">
+                        <option selected value="1">si</option>
+                        <option value="0">no</option>      
+                    </select>
                 </div>
                 {{-- <div class="form-group">
                     <label>Categoria</label>
