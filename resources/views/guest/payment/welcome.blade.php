@@ -76,16 +76,53 @@
     </div>
         
         <script src="https://js.braintreegateway.com/web/dropin/1.13.0/js/dropin.min.js"></script>
+        <script src="https://pay.google.com/gp/p/js/pay.js"></script>
+        <script src="https://js.braintreegateway.com/web/3.78.2/js/client.min.js"></script>
+        <script src="https://js.braintreegateway.com/web/3.78.2/js/google-payment.min.js"></script>
         <script>
         var form = document.querySelector('#payment-form');
         var client_token = "{{ $token }}";
-
+        var paymentsClient = new google.payments.api.PaymentsClient({
+        environment: 'TEST'
+        });
         braintree.dropin.create({
-          authorization: client_token,
-          selector: '#bt-dropin',
-          paypal: {
-            flow: 'vault'
-          }
+            authorization: client_token,
+            selector: '#bt-dropin',
+            // card: {
+            //     overrides: {
+            //     styles: {
+            //         input: {
+            //         color: 'blue',
+            //         'font-size': '18px'
+            //         },
+            //         '.number': {
+            //         'font-family': 'monospace'
+            //         // Custom web fonts are not supported. Only use system installed fonts.
+            //         },
+            //         '.invalid': {
+            //         color: 'red'
+            // }
+            paypal: {
+            flow: 'vault',
+            buttonStyle: {
+            color: 'blue',
+            shape: 'rect',
+            size: 'medium'
+            }
+            },
+            venmo: {
+                allowNewBrowserTab: false
+            },
+            googlePay: {
+            googlePayVersion: 2,
+            merchantId: 'merchant-id-from-google',
+            transactionInfo: {
+            totalPriceStatus: 'FINAL',
+            totalPrice: '1.00',
+            currencyCode: 'USD'
+            },
+            
+        }
         }, function (createErr, instance) {
           if (createErr) {
             console.log('Create Error', createErr);
@@ -107,12 +144,12 @@
               form.submit();
             });
           });
+          
         });
+        
 
         </script>
-        <script>
-            setTimeout(function(){ document.getElementById('ordine').click()});
-        </script>   
+        
 @endsection 
 
         
