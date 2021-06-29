@@ -50121,6 +50121,22 @@ var app = new Vue({
       }
 
       ;
+    },
+    showCategoryRegister: function showCategoryRegister() {
+      var show = document.getElementById('categories_toggle');
+
+      if (show.classList.contains('hidden')) {
+        show.classList.remove('hidden');
+      }
+
+      ;
+    },
+    hiddenCategoryRegister: function hiddenCategoryRegister() {
+      var show = document.getElementById('categories_toggle');
+
+      if (!show.classList.contains('hidden')) {
+        show.classList.add('hidden');
+      }
     }
   }
 });

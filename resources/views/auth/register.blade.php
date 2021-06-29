@@ -61,6 +61,23 @@
                                     @enderror
                                 </div>
                             </div>
+
+                            <div id="input_categories" class="form-group row">
+                                <div class="col-lg-12 form-control" v-on:click="showCategoryRegister" v-on:mouseleave="hiddenCategoryRegister">
+                                    <span>seleziona le categorie</span>
+                                    <i class="fas fa-angle-down"></i>
+                                    <div id="categories_toggle" class="block_categories hidden row">
+                                        @foreach ($categories as $category)
+                                        <div class='col-lg-4 my_col'>
+                                            <div class="form-check">
+                                                <input placeholder="Categorie" id="categories" type="checkbox" class="form-check-input" name="categories[]" value="{{ $category->id }}"  {{in_array($category->id, old('categories', [])) ? 'checked=checked' : '' }} autofocus>
+                                                <label class="form-check-label"> {{$category->name}}</label>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                </div> 
+                            </div>
     
                             <div class="form-group row">
     
@@ -75,19 +92,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                {{-- @dd($categories) --}}
-                                    <h3>seleziona le categorie</h3>
-                                    @foreach ($categories as $category)
-                                        <div class='col-lg-4'>
-                                            <div class="form-check">
-                                                <input placeholder="Categorie" id="categories" type="checkbox" class="form-check-input" name="categories[]" value="{{ $category->id }}" autofocus>
-                                                <label class="form-check-label"> {{$category->name}}</label>
-                                            </div>
-                                        </div>
-                                        
-                                    @endforeach 
-                            </div>
+                            
     
                             <div class="form-group row">
     
@@ -111,7 +116,7 @@
     
                             <div class="form-group row mb-0">
                                 <div class="col-lg-12">
-                                    <button type="submit" class="btn_orange w-100">
+                                    <button type="submit" class="btn_orange w-100 mt-4">
                                         {{ __('Register') }}
                                     </button>
                                 </div>
