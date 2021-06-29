@@ -1,4 +1,5 @@
-@if (!Request::is('guest/order/create*'))
+@if (!Request::is('guest/order/create*') && !Request::is('guest/payment'))
+
 <header>
 @else
     <header id='not-valid'>

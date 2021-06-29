@@ -32,7 +32,8 @@ class PaymentController extends Controller
     }
 
     public function paymentCheckout(Request $request, Faker $faker)
-    {
+    {   
+        
         $gateway = new \Braintree\Gateway([
             'environment' => config('services.braintree.environment'),
             'merchantId' => config('services.braintree.merchantId'),
@@ -67,6 +68,7 @@ class PaymentController extends Controller
         ]);
 
         $data = $request->all();
+        
 
       
 
@@ -116,15 +118,14 @@ class PaymentController extends Controller
             $new_order->update($data);
 
             
-            //dd($msUser);
-
-            // $user_slug = User::all()->where('id', $request['user_id']);
             
-            // @dd($user_slug);
-            Mail::to($new_order->customer_email)->send(new SendNewMail($new_order));
+            $data[] = $code;
+            $data[] = $dish_names;
+            // DA SCOMMENTARE E VERIFICARE PERCHÈ NON INVIA EMAIL
+            // Mail::to($new_order->customer_email)->send(new SendNewMail($data));
             // dd($data);
 
-            return (' mail inviata a ' . $new_order->customer_email . view('guest.order.show', $request, compact('dish_names'))); //($request['status'] == 'SUBMITTED_FOR_SETTLEMENT') ? 'Pagamento accettato, ' : 'null') . 
+            return (view('guest.order.show', $request, compact('dish_names'))); //' mail inviata a ' . $new_order->customer_email ($request['status'] == 'SUBMITTED_FOR_SETTLEMENT') ? 'Pagamento accettato, ' : 'null') . 
         } else {
             $errorString = "";
 
@@ -133,11 +134,8 @@ class PaymentController extends Controller
             }
             $msUser = new User();
             $msUser = User::select('slug')->where('id', $data['user_id'])->first();
-            return view('guest.order.failed', compact('data', 'msUser'));
+            return view('guest.payment.failed', compact('data', 'msUser'));
             
-            // $_SESSION["errors"] = $errorString;
-            // header("Location: index.php");
-            // return view('guest.order.failed', $data);//back()->withErrors('An error occurred with the message: '.$result->message);
         }
     }
 }

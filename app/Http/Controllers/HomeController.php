@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+// use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
@@ -20,6 +21,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // $user = Auth::id();
+        // Auth::login($user, true);
         return view('guest.home');
     }
 }

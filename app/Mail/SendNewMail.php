@@ -21,6 +21,7 @@ class SendNewMail extends Mailable
      */
     public function __construct($data)
     {   
+        // dd($data);
         $this->test = $data;
     }
 

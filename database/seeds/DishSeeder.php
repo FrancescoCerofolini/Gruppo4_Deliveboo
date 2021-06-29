@@ -20,7 +20,7 @@ class DishSeeder extends Seeder
             $newdish->name = $data[0][$i];
             $newdish->user_id = floor($i/5) + 1;
             $newdish->description = "allergeni: " . $data[1][rand(0, count($data[1]) -1)];
-            $newdish->price = $faker->randomFloat(2, 1, 20);
+            $newdish->price = $faker->randomFloat(1, 1, 20);
             $newdish->visibility = true;
             $newdish->save();
         }

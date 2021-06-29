@@ -5,22 +5,61 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-12">
                 <h1>Pagamento accettato</h1>
-                <h2>Riepilogo Ordine</h2>
-                <h4>Nome: {{$customer_name}}</h4>
-                <h4>Email: {{$customer_email}}</h4>
-                <h4>Indirizzo di consegna: {{$customer_address}}</h4>
-                <h4>Telefono: {{$customer_phone}}</h4>
-                <h4>Ristorante: {{ucfirst(str_replace('-', ' ', $user_slug))}}</h4>
-                <h4>Riepilogo ordine : </h4>
-                @foreach ($dish_id as $index => $item)
+                <h2>Dati Cliente</h2>
+
+                <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Indirizzo</th>
+                        <th scope="col">Cellulare</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <th scope="row">{{$customer_name}}</th>
+                    <td>{{$customer_email}}</td>
+                    <td>{{$customer_address}}</td>
+                    <td>{{$customer_phone}}</td>
+                    </tr>
+                    
+                </tbody>
+                </table>
+                <h4>Riepilogo Ordine :</h4>
+                <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Piatto</th>
+                        <th scope="col">Quantità</th>
+                        <th scope="col">Prezzo</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    @foreach ($dish_id as $index => $item)
                     @if ($quantity[$index] > 0)
-                        <p>- {{ucfirst($dish_names[$index][0]->name)}} x {{$quantity[$index]}} : {{$dish_names[$index][0]->price * $quantity[$index]}} €</p>
-                    @endif                        
-                @endforeach           
-                
+                    <th scope="row">
+                        {{ucfirst($dish_names[$index][0]->name)}}
+                    </th>
+                    <td>
+                        {{$quantity[$index]}}
+                    </td>
+                    <td>
+                        {{$dish_names[$index][0]->price * $quantity[$index]}} €                    
+                    </td>
+
+                    </tr>
+                    @endif
+                    @endforeach
+                </tbody>
+                </table>   
+                <h4>Spese di Consegna: 3 €</h4>                      
                 <h4>Prezzo Totale: {{$amount}} €</h4>
+                <p>Grazie per averci scelto, il tuo ordine sarà recapitato il prima possibile all'indirizzo indicato. Buon Appetito e alla prossima dal team di Deliveboo</p>
             </div>
         </div>
     </div>
