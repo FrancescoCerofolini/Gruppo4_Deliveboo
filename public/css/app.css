@@ -679,37 +679,74 @@ body {
 }
 
 @media (max-width: 767px) {
-  .col-12.table_padding {
+  .col-12.table_padding,
+  .col-md-12 {
     padding: 0 30px;
   }
 
-  .col-12.table_padding .table_title {
+  .col-12.table_padding .table_title,
+  .col-md-12 .table_title {
     margin: 10px 0;
   }
 
   .col-12.table_padding .table_title h1,
-  .col-12.table_padding .table_title .btn_orange {
+  .col-12.table_padding .table_title .btn_orange,
+  .col-md-12 .table_title h1,
+  .col-md-12 .table_title .btn_orange {
     font-size: 1.2rem;
   }
 
-  .col-12.table_padding .table_title h1 {
+  .col-12.table_padding .table_title h1,
+  .col-md-12 .table_title h1 {
     font-weight: 600;
   }
 
-  .col-12.table_padding .table_title .btn_orange {
+  .col-12.table_padding .table_title .btn_orange,
+  .col-md-12 .table_title .btn_orange {
     display: none;
   }
 
-  .col-12.table_padding .table_title i {
+  .col-12.table_padding .table_title i,
+  .col-md-12 .table_title i {
     display: inline-block;
   }
 
-  .col-12.table_padding .table_title .btn_orange {
+  .col-12.table_padding .table_title .btn_orange,
+  .col-md-12 .table_title .btn_orange {
     padding: 2px 5px;
   }
 
-  .col-12.table_padding .table thead tr th {
+  .col-12.table_padding .table thead tr th,
+  .col-md-12 .table thead tr th {
     font-size: 0.8rem;
+  }
+}
+
+.container#charts_container {
+  padding: 0 20px;
+}
+
+.container#charts_container .col-12 {
+  padding: 0 20px;
+}
+
+.container#charts_container .col-12 .select_menu select {
+  border: 1px solid #ff8d00;
+  background-color: #ff8d00;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  display: block;
+  margin: 10px 0;
+}
+
+@media (min-width: 768px) {
+  .container#charts_container {
+    padding: 0 20px;
+  }
+
+  .container#charts_container .col-md-12 .select_menu select {
+    display: inline-block;
   }
 }
 

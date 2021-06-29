@@ -91,7 +91,8 @@
 
 @media (max-width: 767px) {
 
-    .col-12.table_padding {
+    .col-12.table_padding,
+    .col-md-12 {
         padding: 0 30px;
 
         .table_title {

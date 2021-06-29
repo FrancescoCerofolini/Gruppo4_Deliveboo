@@ -1,0 +1,34 @@
+.container#charts_container {
+    padding: 0 20px;
+
+    .col-12 {
+        padding: 0 20px;
+        
+        .select_menu {
+            select {
+                border: 1px solid $brandPrimary;
+                background-color: $brandPrimary;
+                border-radius: 5px;
+                color: white;
+                cursor: pointer;
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .container#charts_container {
+        padding: 0 20px;
+
+        .col-md-12 {
+            .select_menu {
+                select {
+                    display: inline-block;
+                }
+            }
+        }
+    }
+}
+

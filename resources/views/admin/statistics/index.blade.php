@@ -1,36 +1,38 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-11">
+    <div class="container" id="charts_container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-12">
+                <div class="table_title">
                     <h1>Grafici Ordini</h1>
-                    <form>
-                        <select name="what1" id="what1" onchange="destroy1();graph1()">
-                            @foreach (['ordini','incassi'] as $what)
-                                <option value="{{$what}}">{{$what}}</option>
-                            @endforeach
-                        </select>
-                        <select name="year" id="year" onchange="destroy1();graph1()">
-                            @foreach ([0,1,2,3,4,5,6,7,8,9] as $year)
-                                <option value="{{$year}}">{{$year + 2012}}</option>
-                            @endforeach
-                        </select>
-                    </form>
-                    <div id="month-container">
-                        <canvas id="myChart1" height="100" width="300" style="margin-bottom: 50px"></canvas>
-                    </div>
+                </div>
+                <form class="table_title select_menu">
+                    <select name="what1" id="what1" onchange="destroy1();graph1()">
+                        @foreach (['ordini','incassi'] as $what)
+                            <option value="{{$what}}">{{$what}}</option>
+                        @endforeach
+                    </select>
+                    <select name="year" id="year" onchange="destroy1();graph1()">
+                        @foreach ([0,1,2,3,4,5,6,7,8,9] as $year)
+                            <option value="{{$year}}">{{$year + 2012}}</option>
+                        @endforeach
+                    </select>
+                </form>
+                <div id="month-container">
+                    <canvas id="myChart1" height="100" width="300" style="margin-bottom: 50px"></canvas>
+                </div>
 
-                    <form>
-                        <select name="what2" id="what2" onchange="destroy2();graph2()">
-                            @foreach (['ordini','incassi'] as $what)
-                                <option value="{{$what}}">{{$what}}</option>
-                            @endforeach
-                        </select>
-                    </form>
-                    <div id="year-container">
-                        <canvas id="myChart2" height="100" width="300"></canvas>
-                    </div>
+                <form class="table_title select_menu">
+                    <select name="what2" id="what2" onchange="destroy2();graph2()">
+                        @foreach (['ordini','incassi'] as $what)
+                            <option value="{{$what}}">{{$what}}</option>
+                        @endforeach
+                    </select>
+                </form>
+                <div id="year-container">
+                    <canvas id="myChart2" height="100" width="300"></canvas>
+                </div>
             </div>
         </div>
     </div>
