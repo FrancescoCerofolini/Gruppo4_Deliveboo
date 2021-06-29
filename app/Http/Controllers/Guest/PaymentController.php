@@ -122,9 +122,9 @@ class PaymentController extends Controller
             
             // @dd($user_slug);
             Mail::to($new_order->customer_email)->send(new SendNewMail($new_order));
-            // dd($data);
-
-            return (' mail inviata a ' . $new_order->customer_email . view('guest.order.show', $request, compact('dish_names'))); //($request['status'] == 'SUBMITTED_FOR_SETTLEMENT') ? 'Pagamento accettato, ' : 'null') . 
+            
+           
+            return (' mail inviata a ' . $new_order->customer_email . view('guest.order.show', $request, compact('dish_names'))); 
         } else {
             $errorString = "";
 
@@ -133,8 +133,7 @@ class PaymentController extends Controller
             }
             $msUser = new User();
             $msUser = User::select('slug')->where('id', $data['user_id'])->first();
-            return view('guest.order.failed', compact('data', 'msUser'));
-            
+            return view('guest.payment.failed', compact('data', 'msUser'));
             // $_SESSION["errors"] = $errorString;
             // header("Location: index.php");
             // return view('guest.order.failed', $data);//back()->withErrors('An error occurred with the message: '.$result->message);

@@ -1,8 +1,13 @@
 // Slider
+.min-vh-50 {
+    min-height: 50vh;
+}
+// 
 .slideshow-container {
     width: 100%;
     height: 500px;
     position: relative;
+    
     
     .mySlides {
         display: none;
