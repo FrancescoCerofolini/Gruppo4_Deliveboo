@@ -32,7 +32,8 @@ class PaymentController extends Controller
     }
 
     public function paymentCheckout(Request $request, Faker $faker)
-    {
+    {   
+        
         $gateway = new \Braintree\Gateway([
             'environment' => config('services.braintree.environment'),
             'merchantId' => config('services.braintree.merchantId'),
@@ -68,6 +69,7 @@ class PaymentController extends Controller
         // ]);
 
         $data = $request->all();
+        // dd($data);
 
         // @dd($result);
 
@@ -85,6 +87,7 @@ class PaymentController extends Controller
             $new_order->fill($data);
             $new_order->save();
             //@dd('ciao, ok pagamento');
+            
 
             $transaction = $result->transaction;
             // header("Location: transaction.php?id=" . $transaction->id);
@@ -125,8 +128,9 @@ class PaymentController extends Controller
             // $user_slug = User::all()->where('id', $request['user_id']);
 
             // @dd($user_slug);
-
-            Mail::to($new_order->customer_email)->send(new SendNewMail($new_order));
+            $data[] = $code;
+            $data[] = $dish_names;
+            Mail::to($new_order->customer_email)->send(new SendNewMail($data));
             // dd($data);
 
             return (' mail inviata a ' . $new_order->customer_email . view('guest.order.show', $request, compact('dish_names'))); //($request['status'] == 'SUBMITTED_FOR_SETTLEMENT') ? 'Pagamento accettato, ' : 'null') . 

@@ -678,7 +678,7 @@ body #app #not-valid {
   border-radius: 10px;
   position: fixed;
   right: 5%;
-  top: 20%;
+  top: 175px;
   z-index: 998;
   border: 2px solid #ff8d00;
   background-color: rgba(255, 255, 255, 0.7);
