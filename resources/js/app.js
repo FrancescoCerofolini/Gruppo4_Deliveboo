@@ -191,6 +191,19 @@ const app = new Vue({
                 show.classList.remove('show');
             };
         },
+
+        showCategoryRegister() {
+            var show = document.getElementById('categories_toggle');
+            if (show.classList.contains('hidden')) {
+                show.classList.remove('hidden');
+            };
+        },
+        hiddenCategoryRegister() {
+            var show = document.getElementById('categories_toggle');
+            if (! show.classList.contains('hidden')) {
+                show.classList.add('hidden');
+            }
+        }
     }
 });
 

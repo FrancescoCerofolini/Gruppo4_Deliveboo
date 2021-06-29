@@ -439,9 +439,52 @@ body {
   font-weight: 700;
 }
 
+#input_categories {
+  position: relative;
+  margin: 0 0 1rem 0;
+  cursor: pointer;
+}
+
+#input_categories .hidden {
+  display: none;
+}
+
+#input_categories i {
+  float: right;
+  font-size: 23px;
+  margin-top: 5px;
+}
+
+.block_categories {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  z-index: 999;
+  background-color: white;
+}
+
+.block_categories .my_col {
+  max-width: calc(100% / 3);
+  padding-left: 0;
+}
+
+.block_categories .my_col label {
+  font-size: 16px;
+}
+
+@media screen and (max-width: 991px) {
+  #input_categories .block_categories label {
+    font-size: 14px;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .banner.register {
     height: 1000px;
+  }
+
+  #input_categories .block_categories label {
+    font-size: 18px;
   }
 }
 

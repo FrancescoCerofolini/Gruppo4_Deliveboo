@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Illuminate\Contracts\Auth\Authenticatable;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Category;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -57,6 +59,15 @@ class RegisterController extends Controller
         ]);
     }
 
+    protected function index () {
+        $categories =  Category::all();
+        // dd($categories);
+        $data = [
+            'categories' => $categories,
+        ];
+        return view('auth.register', $data);
+    } 
+
     /**
      * Create a new user instance after a valid registration.
      *
@@ -65,13 +76,19 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'address' => $data['address'],
-            'piva' => $data['piva'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'slug' => Str::slug($data['name'], '-')
-        ]);
+        // dd($data);
+        
+        $new_user = new User;
+        $new_user->fill($data);
+        $new_user->id = Auth::id();
+        $new_user->slug = Str::slug($data['name'], '-');
+        $new_user->password = Hash::make($data['password']);
+        $new_user->save();
+        
+        
+        $new_user->categories()->attach($data['categories']);
+        Auth::login($new_user, true);
+        return $new_user;
+        // return view('guest.home');        
     }
 }
