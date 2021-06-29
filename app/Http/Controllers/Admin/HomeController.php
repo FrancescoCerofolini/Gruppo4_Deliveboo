@@ -39,16 +39,14 @@ class HomeController extends Controller
             ->join('orders', 'order_dish.order_id', '=', 'orders.id')
             ->where('dishes.user_id', $id)
             ->get();
-        // @dd($tot_orders[0]->tot_order);
         
         $tot_dishes = DB::table('dishes')
             ->select(DB::raw('count(dishes.id) as tot_dish'))
             ->where('dishes.user_id', $id)
             ->get();
-        // @dd($tot_dish);
 
         $amounts = DB::table('order_dish')
-            ->select(DB::raw('orders.amount,orders.id'))
+            ->select(DB::raw('(orders.amount) as amount, orders.id'))
             ->join('dishes', 'order_dish.dish_id', '=', 'dishes.id')
             ->join('orders', 'order_dish.order_id', '=', 'orders.id')
             ->where('dishes.user_id', $id)
@@ -60,7 +58,6 @@ class HomeController extends Controller
         foreach ($amounts as $amount) {
             $tot_amount += $amount->amount;
         }
-        //@dd($tot_amount);
         
         $data = [
             'user' => $user,
