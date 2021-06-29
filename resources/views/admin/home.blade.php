@@ -49,9 +49,7 @@
         </div>
 
         <div class="col-sm-12 block_recap">
-            @foreach ($tot_amounts as $tot_amount)
-                <h3 class="text-center">Totale soldi guadagnati: <strong>{{$tot_amount->tot_amount}} €</strong></h3>
-            @endforeach
+            <h3 class="text-center">Totale incassi: <strong>{{$tot_amount}} €</strong></h3>
         </div>
 
     </div>

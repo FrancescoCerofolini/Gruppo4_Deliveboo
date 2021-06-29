@@ -34,7 +34,7 @@ class HomeController extends Controller
         $user = User::all()->where('id', $id);
 
         $tot_orders = DB::table('order_dish')
-            ->select(DB::raw('count(dishes.name) as tot_order'))
+            ->select(DB::raw('count(distinct(orders.id)) as tot_order'))
             ->join('dishes', 'order_dish.dish_id', '=', 'dishes.id')
             ->join('orders', 'order_dish.order_id', '=', 'orders.id')
             ->where('dishes.user_id', $id)
@@ -47,19 +47,26 @@ class HomeController extends Controller
             ->get();
         // @dd($tot_dish);
 
-        $tot_amounts = DB::table('order_dish')
-            ->select(DB::raw('SUM(orders.amount) as tot_amount'))
+        $amounts = DB::table('order_dish')
+            ->select(DB::raw('orders.amount,orders.id'))
             ->join('dishes', 'order_dish.dish_id', '=', 'dishes.id')
             ->join('orders', 'order_dish.order_id', '=', 'orders.id')
             ->where('dishes.user_id', $id)
+            ->groupBy('orders.id')
             ->get();
-        // @dd($tot_amount);
+
+
+        $tot_amount = 0;
+        foreach ($amounts as $amount) {
+            $tot_amount += $amount->amount;
+        }
+        //@dd($tot_amount);
         
         $data = [
             'user' => $user,
             'tot_orders' => $tot_orders,
             'tot_dishes' => $tot_dishes,
-            'tot_amounts' => $tot_amounts
+            'tot_amount' => $tot_amount
 
         ];
         return view('admin.home', $data);
