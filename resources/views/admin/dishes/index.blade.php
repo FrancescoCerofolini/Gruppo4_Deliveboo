@@ -32,7 +32,7 @@
                             <?php $tmp [] = $dish->name ?>
                             <?php $tmp [] = $dish->id ?>
                             <?php $tmp [] = $dish->description ?>
-                            <?php $tmp [] = $dish->price ?>
+                            <?php $tmp [] = $pushdish->price ?>
                             <?php $tmp [] = $dish->visibility ?>
                             @php
                             $Mtmp [] = $tmp;
