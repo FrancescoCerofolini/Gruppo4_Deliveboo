@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
     {   
         $data = config('user');
         
-       for ($i = 0; $i < 10; $i ++) {
+       for ($i = 0; $i < 50; $i ++) {
            $newUser = new User();
            $newUser->name = $data[0][$i];
            $newUser->email = $data[1][$i];
