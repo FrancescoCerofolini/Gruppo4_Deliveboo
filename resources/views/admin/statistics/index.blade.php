@@ -4,32 +4,32 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-11">
-                    <h1>Grafici Ordini</h1>
+                    <h1>Statistiche</h1>
                     <form>
-                        <select name="what1" id="what1" onchange="destroy1();graph1()">
-                            @foreach (['ordini','incassi'] as $what)
+                        <select class="btn btn-primary text-capitalize" name="what1" id="what1" onchange="destroy1();graph1()">
+                            @foreach (['Ordini','Incassi'] as $what)
                                 <option value="{{$what}}">{{$what}}</option>
                             @endforeach
                         </select>
-                        <select name="year" id="year" onchange="destroy1();graph1()">
+                        <select class="btn btn-primary text-capitalize" name="year" id="year" onchange="destroy1();graph1()">
                             @foreach ([0,1,2,3,4,5,6,7,8,9] as $year)
                                 <option value="{{$year}}">{{$year + 2012}}</option>
                             @endforeach
                         </select>
                     </form>
                     <div id="month-container">
-                        <canvas id="myChart1" height="100" width="300" style="margin-bottom: 50px"></canvas>
+                        <canvas id="myChart1" height="100" width="300" style="margin-bottom: 50px" maintainAspectRatio="true"></canvas>
                     </div>
 
                     <form>
-                        <select name="what2" id="what2" onchange="destroy2();graph2()">
-                            @foreach (['ordini','incassi'] as $what)
+                        <select class="btn btn-primary text-capitalize" name="what2" id="what2" onchange="destroy2();graph2()">
+                            @foreach (['Ordini','Incassi'] as $what)
                                 <option value="{{$what}}">{{$what}}</option>
                             @endforeach
                         </select>
                     </form>
                     <div id="year-container">
-                        <canvas id="myChart2" height="100" width="300"></canvas>
+                        <canvas id="myChart2" height="100" width="300" maintainAspectRatio="true"></canvas>
                     </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
     <script>
         function graph1() {
             var what1 = document.getElementById('what1').value;
-            if (what1 == 'ordini') {
+            if (what1 == 'Ordini') {
                 var arrays = <?php echo json_encode($orders_by_month_pretty); ?>;
             } else {
                 var arrays = <?php echo json_encode($amount_by_month_pretty); ?>;
@@ -93,7 +93,7 @@
 
         function graph2() {
             var what2 = document.getElementById('what2').value;
-            if (what2 == 'ordini') {
+            if (what2 == 'Ordini') {
                 var array = <?php echo json_encode($orders_by_year_pretty); ?>;
             } else {
                 var array = <?php echo json_encode($amount_by_year_pretty); ?>;
