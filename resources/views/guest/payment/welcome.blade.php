@@ -6,41 +6,45 @@
 
 @section('content2')
     <div class="container min-vh-50">
+        <div class="row">
+            <div class="col-12">
+                <h1>Procedi al Pagamento</h1>
+                <h3>Seleziona il tuo metodo di pagamento predefinito</h3>
+            </div>
+        </div>
         <div class="row d-flex justify-content-center">
             <div class="col-6 align-middle">
-                <h3>Procedi al Pagamento</h3>
                 @if (session('success_message'))
-                <div class="alert alert-success">
-                    {{ session('success_message') }}
-                </div>
+                    <div class="alert alert-success">
+                        {{ session('success_message') }}
+                    </div>
                 @endif
-                
+
                 @if(count($errors) > 0)
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                 @endif
                 <div class="justify-content-center ">
                     @if (Route::has('login'))
-                    <div class="top-right links my-hidden">
-                        @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                        @else
-                        <a href="{{ route('login') }}">Login</a>
-                        
-                        @if (Route::has('register'))
-                        <a href="{{ route('register') }}">Register</a>
-                        @endif
-                        @endauth
-                    </div>
+                        <div class="top-right links my-hidden">
+                            @auth
+                                <a href="{{ url('/home') }}">Home</a>
+                            @else
+                                <a href="{{ route('login') }}">Login</a>
+
+                                @if (Route::has('register'))
+                                    <a href="{{ route('register') }}">Register</a>
+                                @endif
+                            @endauth
+                        </div>
                     @endif
-                    
+
                     <div class="content">                
-                        <p>Seleziona il tuo metodo di pagamento preferito</p>
                         <form method="post" id="payment-form" action="{{ url('/guest/payment/checkout') }}">
                             @csrf
                             <section>
@@ -99,6 +103,20 @@
         braintree.dropin.create({
             authorization: client_token,
             selector: '#bt-dropin',
+            // card: {
+            //     overrides: {
+            //     styles: {
+            //         input: {
+            //         color: 'blue',
+            //         'font-size': '18px'
+            //         },
+            //         '.number': {
+            //         'font-family': 'monospace'
+            //         // Custom web fonts are not supported. Only use system installed fonts.
+            //         },
+            //         '.invalid': {
+            //         color: 'red'
+            // }
             paypal: {
             flow: 'vault',
             buttonStyle: {
@@ -143,9 +161,7 @@
           });
           
         });
-        function timeoutButton(){
-            document.getElementById('btn-hidden').style.visibility = 'hidden';
-        }
+        
 
         </script>
         
