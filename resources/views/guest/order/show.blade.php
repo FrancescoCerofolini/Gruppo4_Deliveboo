@@ -17,9 +17,9 @@
                 @foreach ($dish_id as $index => $item)
                     @if ($quantity[$index] > 0)
                         <p>- {{ucfirst($dish_names[$index][0]->name)}} x {{$quantity[$index]}} : {{$dish_names[$index][0]->price * $quantity[$index]}} €</p>
-                    @endif
-                @endforeach
-
+                    @endif                        
+                @endforeach           
+                
                 <h4>Prezzo Totale: {{$amount}} €</h4>
             </div>
         </div>
