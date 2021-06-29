@@ -51,7 +51,7 @@
                             @endphp
                             @foreach ($Mtmp as $dish)
                             <tr class="row_on_hover">
-                                <td>{{ $dish[1] }}</td> {{-- ID --}}
+                                {{-- <td>{{ $dish[1] }}</td> ID --}}
                                 <td>{{ $dish[0] }}</td> {{-- nome --}}
                                 <td>{{ $dish[2] }}</td> {{-- descrizione --}}
                                 <td class="text-center">{{ $dish[3] }} &euro;</td> {{-- prezzo --}}

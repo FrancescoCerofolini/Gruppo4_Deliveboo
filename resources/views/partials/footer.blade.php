@@ -16,25 +16,33 @@
 
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="block">
-                    <h3>altro su di noi</h3>
-                    <ul>
-                        <li><a href="#">chi siamo</a></li>
-                        <li><a href="#">blog</a></li>
-                        <li><a href="#">lavora con noi</a></li>
-                        <li><a href="#">partners</a></li>
-
+                    <div class="link-list-wrapper">
+                    <ul class="link-list">
+                        <h3>Lavora Con Noi</h3>
+                        <li>
+                        <a class="list-item" href="#"><span>Link list 1</span></a>
+                        </li>
+                        <li>
+                        <a class="list-item disabled" href="#"><span>Link list 2 disabled</span></a>
+                        </li>
+                        <li>
+                        <a class="list-item" href="#"><span>Link list 3</span></a>
+                        </li>
                     </ul>
+                    </div>
                 </div>
             </div>
 
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="block">
-                    <h3>ristoratori</h3>
+                    <h3>Sei un Ristorante?</h3>
                     <ul>
-                        <li><a href="#">dettagli account</a></li>
-                        <li><a href="#">storico ordini</a></li>
-                        <li><a href="#">login</a></li>
-                        <li><a href="#">crea un account</a></li>
+                        <li><a href="{{asset('/login')}}">login</a></li>
+                        <li><a href="{{asset('/register')}}">Registrati</a></li>
+                        <li><a href="{{asset('/admin/dish')}}">Personalizza il tuo menù</a></li>
+                        <li><a href="{{asset('/admin/order')}}">Visualizza lo Storico Ordini</a></li>
+                        <li><a href="{{asset('/admin/statistics')}}">Visualizza le tue Statistiche</a></li>
+
 
                     </ul>
                 </div>

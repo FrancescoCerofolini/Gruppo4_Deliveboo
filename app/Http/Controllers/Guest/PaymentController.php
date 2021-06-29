@@ -72,7 +72,7 @@ class PaymentController extends Controller
 
         if ($result->success) {
             $new_order = new Order();
-            $new_order->status = 'paid';
+            $new_order->status = 'SUBMITTED_FOR_SETTELMENT';
             $code = $faker->isbn10();
             $code_presente = Order::where('code', $code)->first();
             while ($code_presente) {

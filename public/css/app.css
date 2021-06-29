@@ -215,7 +215,11 @@ body {
 }
 
 .min-vh-50 {
-  min-height: 50vh;
+  height: 50vh;
+}
+
+.margin-top-100 {
+  margin-top: 80px;
 }
 
 .slideshow-container {
@@ -998,6 +1002,10 @@ body #app #not-valid {
   .ms-create-dish .backToHome {
     padding: 25px;
   }
+}
+
+.color_white {
+  background-color: #fff;
 }
 
 footer {
