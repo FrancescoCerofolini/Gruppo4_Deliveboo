@@ -4,7 +4,7 @@
     
 
 @section('content')
-<div class="container">
+<div class="min-vh-50 container">
 
         {{-- INPUT FORM --}}
     <div class="row justify-content-flex-start">

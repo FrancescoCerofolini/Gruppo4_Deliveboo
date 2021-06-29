@@ -32,9 +32,9 @@ return [
 
     'braintree' => [
         'environment' => env('BT_ENVIRONMENT', 'sandbox'),
-        'merchantId' => env('BT_MERCHANT_ID','94qqpxzgsjtvx99g'),
-        'publicKey' => env('BT_PUBLIC_KEY','nqvpmbh4pr37c3v7'),
-        'privateKey' => env('BT_PRIVATE_KEY','b081964c26b18eee915551a840ca26eb'),
+        'merchantId' => env('BT_MERCHANT_ID', 'sq492dgh2fxktw4h'),
+        'publicKey' => env('BT_PUBLIC_KEY', 'yp8rp7dcqjncwdkx'),
+        'privateKey' => env('BT_PRIVATE_KEY', '1a96cf7a799051ec4b9ef6b051e010cc'),
     ],
 
 ];

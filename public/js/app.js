@@ -50006,36 +50006,6 @@ var app = new Vue({
       this.names_dish = tmp_names;
       this.quantity_dish = tmp_quantity;
     },
-    // payment: function(event) {
-    //     // console.log(event);
-    //     axios({
-    //         method: 'post',
-    //         url: this.url,
-    //         headers: {
-    //             'Authorization': 'Basic aHJydnM3ZHBnaGRxaDZ4OTo2ODA3NTc0MjFmMzM4MDgxNTFhYmY2YmZiZTkxNmVhNw==',
-    //             'Braintree-Version': '2021-06-09',
-    //             'Content-Type': 'application/json'
-    //         },
-    //         data: {
-    //             'query': 'mutation chargePaymentMethod($input: ChargePaymentMethodInput!) { chargePaymentMethod(input: $input) { transaction { id status } } }',
-    //             'variables': {
-    //                 'input': {
-    //                 'paymentMethodId': 'fake-valid-mastercard-nonce',
-    //                 'transaction': {
-    //                     'amount': '1.00'
-    //                 }
-    //             }
-    //             }
-    //         }
-    //     })
-    //     .then(response => {
-    //         // console.log(response);
-    //         this.payment_status = response.data.data.chargePaymentMethod.transaction.status;
-    //         // console.log(this.payment_status);
-    //         document.getElementById('status').value = this.payment_status;
-    //         document.getElementById('ordine').click();
-    //     });
-    // },
     addToCart: function addToCart($value) {
       document.getElementById('quantity' + $value).value++;
       this.amountFunction();

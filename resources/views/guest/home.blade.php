@@ -99,10 +99,10 @@
                     </div>
                     
                 </div>
-                @include('partials.footer')
+                
             </div>
         </div>
-
+        @include('partials.footer')
         <script>
             // funzionamento slider
             var slideIndex = 1;
