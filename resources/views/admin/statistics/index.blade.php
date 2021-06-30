@@ -1,36 +1,44 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-11">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 table_padding">
+                <div class="d-flex justify-content-between align-items-center table_title">
                     <h1>Statistiche</h1>
-                    <form>
-                        <select class="btn btn-primary text-capitalize" name="what1" id="what1" onchange="destroy1();graph1()">
-                            @foreach (['Ordini','Incassi'] as $what)
-                                <option value="{{$what}}">{{$what}}</option>
-                            @endforeach
-                        </select>
-                        <select class="btn btn-primary text-capitalize" name="year" id="year" onchange="destroy1();graph1()">
-                            @foreach ([0,1,2,3,4,5,6,7,8,9] as $year)
-                                <option value="{{$year}}">{{$year + 2012}}</option>
-                            @endforeach
-                        </select>
-                    </form>
-                    <div id="month-container">
-                        <canvas id="myChart1" height="100" width="300" style="margin-bottom: 50px" maintainAspectRatio="true"></canvas>
+                </div>
+                <div class="panel">
+                    <div class="panel-body table-responsive">
+                        <table class="table">
+                            <form>
+                                <select class="btn my-orange text-capitalize" name="what1" id="what1" onchange="destroy1();graph1()">
+                                    @foreach (['Ordini','Incassi'] as $what)
+                                        <option value="{{$what}}">{{$what}}</option>
+                                    @endforeach
+                                </select>
+                                <select class="btn my-orange text-capitalize" name="year" id="year" onchange="destroy1();graph1()">
+                                    @foreach ([0,1,2,3,4,5,6,7,8,9] as $year)
+                                        <option value="{{$year}}">{{$year + 2012}}</option>
+                                    @endforeach
+                                </select>
+                            </form>
+                            <div id="month-container" style="width:50vw; margin-bottom: 50px; min-width: 400px;">
+                                <canvas id="myChart1"></canvas>
+                            </div>
+            
+                            <form>
+                                <select class="btn my-orange text-capitalize" name="what2" id="what2" onchange="destroy2();graph2()">
+                                    @foreach (['Ordini','Incassi'] as $what)
+                                        <option value="{{$what}}">{{$what}}</option>
+                                    @endforeach
+                                </select>
+                            </form>
+                            <div id="year-container" style="width:50vw; min-width: 400px;">
+                                <canvas id="myChart2"></canvas>
+                            </div>
+                        </table>
                     </div>
-
-                    <form>
-                        <select class="btn btn-primary text-capitalize" name="what2" id="what2" onchange="destroy2();graph2()">
-                            @foreach (['Ordini','Incassi'] as $what)
-                                <option value="{{$what}}">{{$what}}</option>
-                            @endforeach
-                        </select>
-                    </form>
-                    <div id="year-container">
-                        <canvas id="myChart2" height="100" width="300" maintainAspectRatio="true"></canvas>
-                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -87,7 +95,7 @@
         };
         function destroy1() {
             $('#myChart1').remove();
-            $('#month-container').append('<canvas id="myChart1" height="100" width="300" style="margin-bottom: 50px"></canvas>');
+            $('#month-container').append('<canvas id="myChart1" style="width:50vw; margin-bottom: 50px; min-width: 400px;"></canvas>');
         };
         graph1();
 
@@ -136,7 +144,7 @@
         }
         function destroy2() {
             $('#myChart2').remove();
-            $('#year-container').append('<canvas id="myChart2" height="100" width="300" style="margin-bottom: 50px"></canvas>');
+            $('#year-container').append('<canvas id="myChart2" style="width:50vw; margin-bottom: 50px; min-width: 400px;"></canvas>');
         };
         graph2();
 

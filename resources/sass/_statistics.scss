@@ -1,11 +1,8 @@
-#year-container {
-    canvas {
-        min-width: 600px;
-    }
+#what1, #year, #what2 {
+    background-color: $brandPrimary;
+    color: white;
 }
 
-#month-container {
-    canvas {
-        min-width: 600px;
-    }
+#what1 {
+    margin-right: 20px;
 }
