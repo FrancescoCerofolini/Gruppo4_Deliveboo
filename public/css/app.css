@@ -1066,7 +1066,7 @@ body #app #not-valid {
 footer {
   width: 100%;
   background-color: #720e07;
-  margin: 30px 30px;
+  padding-top: 30px;
 }
 
 footer .block {
