@@ -82,7 +82,7 @@
                                     <input name="user_id" type="text" :value="(restaurant.user_id != '') ? restaurant.user_id : 'default'">
                                     <input name="user_slug" type="text" :value="(restaurant.slug != '') ? restaurant.slug : 'default'">
                                 </div>
-                                <button type="submit" class="btn-ristorante"> @{{ restaurant.slug.charAt(0).toUpperCase() + restaurant.slug.slice(1).replace('-', ' ') }}</button>
+                                <button type="submit" class="btn-ristorante"> @{{ restaurant.slug.charAt(0).toUpperCase() + restaurant.slug.replaceAll('-', ' ',).slice(1) }}</button>
         
                             </form>
                         </span>
@@ -92,7 +92,7 @@
                                     <input name="user_id" type="text" :value="(element.user_id != '') ? element.user_id : 'default'">
                                     <input name="user_slug" type="text" :value="(element.slug != '') ? element.slug : 'default'">
                                 </div>
-                                <button type="submit" class="btn-ristorante">@{{element.slug.replace('-', ' ') }}</button>
+                                <button type="submit" class="btn-ristorante">@{{element.slug.replaceAll('-', ' ') }}</button>
         
                             </form>
                         </span>
