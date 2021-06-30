@@ -79,7 +79,7 @@
                             @endforeach
                             <input type="hidden" id="nonce" name="payment_method_nonce" />
                             
-                            <button class="btn btn-success justify-content-center" id="btn-hidden" on-click="timeoutButton" type="submit"><span>Paga</span></button>
+                            <button class="btn btn-success justify-content-center" id="btn-hidden" onclick="hideButton()" type="submit"><span>Paga</span></button>
                         </form>
                         <br>
                         <br>
@@ -159,8 +159,10 @@
               form.submit();
             });
           });
-          
         });
+        function hideButton(){
+            document.querySelector('#btn-hidden').style.visibility = 'hidden';
+        }
         
 
         </script>

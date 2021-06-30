@@ -71,7 +71,8 @@ const app = new Vue({
             nomeCognome : '',
             backToHome : false,
             cartShow : true,
-            delivery: 3
+            delivery: 3,
+            readyToPay : false
         }
     },
     methods: {
@@ -111,6 +112,14 @@ const app = new Vue({
             // console.log(tmp_quantity);
             this.names_dish = tmp_names;
             this.quantity_dish = tmp_quantity;
+        },
+        checkBeforePayment() {
+            if(this.amount <= 3) {
+                alert('Inserisci almeno un piatto per poter ordinare !');
+            }
+            else {
+                this.readyToPay = true;
+            }
         },
        
         addToCart($value){

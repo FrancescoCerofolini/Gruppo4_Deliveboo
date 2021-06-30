@@ -3,7 +3,7 @@ footer {
     
     width: 100%;
     background-color: $brandSecondary;
-    margin: 30px 30px;
+    padding: 20px;
 
     .block {
         width: 100%;
@@ -11,6 +11,8 @@ footer {
         background: linear-gradient(#ff8d00, #e3342f);
         border-radius: 10px;
         color: white;
+        min-height: 350px;
+        margin-bottom: 30px;
 
         strong {
             color: white;
