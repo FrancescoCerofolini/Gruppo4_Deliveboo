@@ -49967,7 +49967,8 @@ var app = new Vue({
       nomeCognome: '',
       backToHome: false,
       cartShow: true,
-      delivery: 3
+      delivery: 3,
+      readyToPay: false
     };
   },
   methods: {
@@ -50020,6 +50021,13 @@ var app = new Vue({
 
       this.names_dish = tmp_names;
       this.quantity_dish = tmp_quantity;
+    },
+    checkBeforePayment: function checkBeforePayment() {
+      if (this.amount <= 3) {
+        alert('Inserisci almeno un piatto per poter ordinare !');
+      } else {
+        this.readyToPay = true;
+      }
     },
     addToCart: function addToCart($value) {
       document.getElementById('quantity' + $value).value++;
@@ -50261,8 +50269,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\laura\Documents\boolean\Gruppo4_Deliveboo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\laura\Documents\boolean\Gruppo4_Deliveboo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\miliu\Documents\Progetto di gruppo\Gruppo4_Deliveboo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\miliu\Documents\Progetto di gruppo\Gruppo4_Deliveboo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

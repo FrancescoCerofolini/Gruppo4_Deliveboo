@@ -214,9 +214,9 @@ body {
   }
 }
 
-/* .min-vh-50 {
-    height: 50vh;
-} */
+.min-vh-50 {
+  min-height: 50vh;
+}
 
 .margin-top-100 {
   margin-top: 80px;
@@ -1066,7 +1066,11 @@ body #app #not-valid {
 footer {
   width: 100%;
   background-color: #720e07;
+<<<<<<< HEAD
   padding-top: 30px;
+=======
+  padding: 20px;
+>>>>>>> remotes/origin/emilio3
 }
 
 footer .block {
@@ -1075,6 +1079,8 @@ footer .block {
   background: linear-gradient(#ff8d00, #e3342f);
   border-radius: 10px;
   color: white;
+  min-height: 350px;
+  margin-bottom: 30px;
 }
 
 footer .block strong {
