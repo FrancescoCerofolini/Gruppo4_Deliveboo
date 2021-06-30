@@ -32,7 +32,7 @@
         </main>
         
         
+        @include('partials.footer')
     </div>
-    @include('partials.footer')
 </body>
 </html>

@@ -122,10 +122,10 @@ class PaymentController extends Controller
             $data[] = $code;
             $data[] = $dish_names;
             // DA SCOMMENTARE E VERIFICARE PERCHÈ NON INVIA EMAIL
-            // Mail::to($new_order->customer_email)->send(new SendNewMail($data));
-            // dd($data);
+            Mail::to($new_order->customer_email)->send(new SendNewMail($data));
+            //dd($data);
 
-            return (view('guest.order.show', $request, compact('dish_names'))); //' mail inviata a ' . $new_order->customer_email ($request['status'] == 'SUBMITTED_FOR_SETTLEMENT') ? 'Pagamento accettato, ' : 'null') . 
+            return ' mail inviata a ' . $new_order->customer_email . (view('guest.order.show', $request, compact('dish_names')));  
         } else {
             $errorString = "";
 

@@ -75,6 +75,12 @@ const app = new Vue({
         }
     },
     methods: {
+        alert: function() {
+            if (this.amount <= 3) {
+                alert('Ok, ti invieremo un sacchetto!');
+            }
+        },
+
         hiddenCart: function() {
             this.flag_cart = false;
         },

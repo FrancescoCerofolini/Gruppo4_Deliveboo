@@ -175,8 +175,8 @@
                     {{-- <button type="button" v-on:click="payment" class="btn btn-success"> Paga
                     </button> --}}
                     {{-- <a href="/payment" class="btn btn-success"> Paga </a> --}}
-                    <button type="submit" class="btn btn-success"> Paga </button>
-                    <button v-on:click="flag_cart = true , cartShow = true"class='btn btn-success'>Torna al carrello</button>
+                    <button v-on:click="alert" :type="(amount <= 3) ? '' : 'submit'" class="btn btn-success"> Paga </button>
+                    <button v-on:click="flag_cart = true , cartShow = true" class='btn btn-success'>Torna al carrello</button>
                 </div>
             </form>
 

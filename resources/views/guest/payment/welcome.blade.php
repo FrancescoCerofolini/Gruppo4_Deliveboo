@@ -161,8 +161,10 @@
           });
           
         });
-        
 
+        function timeoutButton(){
+        document.getElementById('btn-hidden').style.visibility = 'hidden';
+        }
         </script>
         
 @endsection 

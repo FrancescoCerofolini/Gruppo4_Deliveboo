@@ -49971,6 +49971,21 @@ var app = new Vue({
     };
   },
   methods: {
+    alert: function (_alert) {
+      function alert() {
+        return _alert.apply(this, arguments);
+      }
+
+      alert.toString = function () {
+        return _alert.toString();
+      };
+
+      return alert;
+    }(function () {
+      if (this.amount <= 3) {
+        alert('Ok, ti invieremo un sacchetto!');
+      }
+    }),
     hiddenCart: function hiddenCart() {
       this.flag_cart = false;
     },
