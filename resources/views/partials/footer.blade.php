@@ -6,7 +6,7 @@
                     <h3>Contattaci</h3>
                     <ul>
                         <li>telefono: <strong>+39 123 456789</strong></li>
-                        <li>email: <strong>ordini@deliveboo.com</strong></li>
+                        <li>email: <strong>deliveboo@mail.it</strong></li>
                         <img src="{{ asset('img/AppStore.svg') }}" alt="apple-store-logo" class="apple">
                         <img src="{{ asset('img/PlayStore.png') }}" alt="play-store-logo" class="play">
 
@@ -16,20 +16,23 @@
 
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="block">
-                    <div class="link-list-wrapper">
-                    <ul class="link-list">
-                        <h3>Lavora Con Noi</h3>
-                        <li>
-                        <a class="list-item" href="#"><span>Link list 1</span></a>
-                        </li>
-                        <li>
-                        <a class="list-item disabled" href="#"><span>Link list 2 disabled</span></a>
-                        </li>
-                        <li>
-                        <a class="list-item" href="#"><span>Link list 3</span></a>
-                        </li>
+                    <h3>Lavora Con Noi</h3>
+                    <ul>
+                        <div class="disabled">
+                            <li>
+                            <a class="pointer-events" href=""><span>Diventa un Rider</span></a>
+                            </li>
+                            <li>
+                            <a class="pointer-events" href=""><span>Diventa un nostro Partner</span></a>
+                            </li>
+                            <li>
+                            <a class="pointer-events" href=""><span>Diventa uno Sviluppatore</span></a>
+                            </li>
+                            <li>
+                            <a class="pointer-events" href=""><span>SEZIONE IN COSTRUZIONE</span></a>
+                            </li>
+                        </div>
                     </ul>
-                    </div>
                 </div>
             </div>
 
@@ -37,7 +40,7 @@
                 <div class="block">
                     <h3>Sei un Ristorante?</h3>
                     <ul>
-                        <li><a href="{{asset('/login')}}">login</a></li>
+                        <li><a href="{{asset('/login')}}">Login</a></li>
                         <li><a href="{{asset('/register')}}">Registrati</a></li>
                         <li><a href="{{asset('/admin/dish')}}">Personalizza il tuo menù</a></li>
                         <li><a href="{{asset('/admin/order')}}">Visualizza lo Storico Ordini</a></li>

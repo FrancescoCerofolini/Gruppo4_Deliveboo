@@ -45,9 +45,9 @@
         Per qualsiasi informazione rimaniamo a tua completa disposizione presso :
         <ul>
             <li>telefono: +39 123 456789</li>
-            <li>email: deliveboo@gmail.com</li>
-            <li>instagram: #deliveboo</li>
-            <li>facebook: Deliveboo Official</li>           
+            <li>email: deliveboo@mail.it</li>
+            <img src="{{ asset('img/AppStore.svg') }}" alt="apple-store-logo" class="apple">
+            <img src="{{ asset('img/PlayStore.png') }}" alt="play-store-logo" class="play">          
         </ul>
     </footer>
     
@@ -66,6 +66,19 @@
         }
         footer h4 {
             color: red;
+        }
+        .apple {
+            margin: 10px;
+            width: 150px;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        .play {
+            width: 180px;
+            &:hover {
+                cursor: pointer;
+            }
         }
     </style>
 </body>

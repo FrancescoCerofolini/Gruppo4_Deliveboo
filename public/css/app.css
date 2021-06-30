@@ -1066,11 +1066,7 @@ body #app #not-valid {
 footer {
   width: 100%;
   background-color: #720e07;
-<<<<<<< HEAD
-  padding-top: 30px;
-=======
   padding: 20px;
->>>>>>> remotes/origin/emilio3
 }
 
 footer .block {
@@ -1097,9 +1093,17 @@ footer .block ul {
   list-style-type: none;
 }
 
+footer .block .disabled {
+  cursor: not-allowed;
+}
+
 footer .block li {
   margin-bottom: 10px;
   font-size: 15px;
+}
+
+footer .block .pointer-events {
+  pointer-events: none;
 }
 
 footer .block a {

@@ -26,13 +26,21 @@ footer {
         ul {
             list-style-type: none;
         }
+        .disabled {
+            cursor: not-allowed;
+        }
         li {
             margin-bottom: 10px;
             font-size: 15px;
         }
+        .pointer-events {
+            pointer-events: none;
+            
+        }
         a {
             text-decoration: none;
             color: #c3c3c3;
+            
         }
         .apple {
             margin: 10px;
