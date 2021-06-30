@@ -103,20 +103,7 @@
         braintree.dropin.create({
             authorization: client_token,
             selector: '#bt-dropin',
-            // card: {
-            //     overrides: {
-            //     styles: {
-            //         input: {
-            //         color: 'blue',
-            //         'font-size': '18px'
-            //         },
-            //         '.number': {
-            //         'font-family': 'monospace'
-            //         // Custom web fonts are not supported. Only use system installed fonts.
-            //         },
-            //         '.invalid': {
-            //         color: 'red'
-            // }
+            
             paypal: {
             flow: 'vault',
             buttonStyle: {
