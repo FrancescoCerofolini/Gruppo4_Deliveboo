@@ -1111,6 +1111,11 @@ footer .block a {
   color: #c3c3c3;
 }
 
+footer .block a:hover {
+  text-decoration: underline;
+  color: white;
+}
+
 footer .block .apple {
   margin: 10px;
   width: 150px;

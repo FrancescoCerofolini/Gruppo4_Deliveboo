@@ -40,6 +40,10 @@ footer {
         a {
             text-decoration: none;
             color: #c3c3c3;
+            &:hover {
+                text-decoration: underline;
+                color: white;
+            }
             
         }
         .apple {
